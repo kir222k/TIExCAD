@@ -54,6 +54,8 @@ namespace TIExCAD
                 ed.WriteMessage("Hello, this is your first command.");
 
             }
+
+            
         }
 
         // Modal Command with pickfirst selection
