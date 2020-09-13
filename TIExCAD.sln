@@ -5,19 +5,22 @@ VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TIExCAD_Lisp", "TIExCAD_Lisp\TIExCAD_Lisp.csproj", "{3D36581E-5987-4C12-9519-F9072029CD6D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TIExCAD_Lisp_20.1", "TIExCAD_Lisp_20.1\TIExCAD_Lisp_20.1.csproj", "{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
-		Release17|Any CPU = Release17|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
 		{3D36581E-5987-4C12-9519-F9072029CD6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{3D36581E-5987-4C12-9519-F9072029CD6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3D36581E-5987-4C12-9519-F9072029CD6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3D36581E-5987-4C12-9519-F9072029CD6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{3D36581E-5987-4C12-9519-F9072029CD6D}.Release17|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D36581E-5987-4C12-9519-F9072029CD6D}.Release17|Any CPU.Build.0 = Debug|Any CPU
+		{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
