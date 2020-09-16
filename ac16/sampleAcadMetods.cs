@@ -1,4 +1,4 @@
-﻿/* \file Файл сохранен из AutoCAD_2021_dotnet_wizards
+﻿/*! \file Файл сохранен из AutoCAD_2021_dotnet_wizards
  * как пример работы с методами, кот. вызываются
  * командой из AutoCAD. 
  * Файл не следует использовать в проектах как рабочий,
@@ -13,9 +13,9 @@ using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 
 // This line is not mandatory, but improves loading performances
-[assembly: CommandClass(typeof(namespacei.MyCommands))]
+[assembly: CommandClass(typeof(TIExCAD.MyCommands))]
 
-namespace namespacei
+namespace TIExCAD
 {
 
     // This class is instantiated by AutoCAD for each document when

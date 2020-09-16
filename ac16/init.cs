@@ -1,4 +1,4 @@
-/* \file Файл инициализации библиотеки
+/*! \file Файл инициализации библиотеки
  * \todo подумать, что добавить в автозагрузку dll    
  */
 using System;
@@ -8,15 +8,15 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 
-[assembly: ExtensionApplication(typeof(namespacei.classnamei))]
+[assembly: ExtensionApplication(typeof(TIExCAD.InitSelf))]
 
-namespace namespacei
+namespace TIExCAD
 {
     /// <summary>
     /// \brief Запускаемый класс - точка входа
     /// \details 
     /// </summary>
-    public class classnamei : IExtensionApplication
+    public class InitSelf : IExtensionApplication
     {
         /// <summary>
         /// \brief Инициализация

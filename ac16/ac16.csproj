@@ -7,7 +7,7 @@
     <ProjectGuid>{81B2CEB2-D65D-438E-94EA-A686FE1AAB61}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>ac16</RootNamespace>
+    <RootNamespace>TIExCAD</RootNamespace>
     <AssemblyName>ac16</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
