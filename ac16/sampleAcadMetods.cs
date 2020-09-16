@@ -1,5 +1,10 @@
-﻿// (C) Copyright 2020 by  
-//
+﻿/* \file Файл сохранен из AutoCAD_2021_dotnet_wizards
+ * как пример работы с методами, кот. вызываются
+ * командой из AutoCAD. 
+ * Файл не следует использовать в проектах как рабочий,
+ * оставлен для изучения и освоения конструкций [CommandMethod ...]
+ */
+
 using System;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
@@ -8,12 +13,9 @@ using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 
 // This line is not mandatory, but improves loading performances
-[assembly: CommandClass(typeof(TIExCAD.MyCommands))]
+[assembly: CommandClass(typeof(namespacei.MyCommands))]
 
-/*!
- * Общее пространство
- */ 
-namespace TIExCAD
+namespace namespacei
 {
 
     // This class is instantiated by AutoCAD for each document when
@@ -21,9 +23,10 @@ namespace TIExCAD
     // of a given document. In other words, non static data in this class
     // is implicitly per-document!
 
-    /**!
-     *  Пример применения CommandMethod от Autodesk Wizard
-     */
+    /// <summary>
+    /// Пример применения CommandMethod от Autodesk Wizard
+    /// в различных случаях
+    /// </summary>
     public class MyCommands
     {
         // The CommandMethod attribute can be applied to any public  member 
@@ -39,8 +42,7 @@ namespace TIExCAD
         // Modal Command with localized name
 
         /// <summary>
-        /// Xnj-nj 
-        /// \todo надо подкачаться? Надо, ндо подкачаться!
+        /// Отправляет сообщение  в ком. строку AutoCAD
         /// </summary>
         [CommandMethod("MyGroup", "MyCommand", "MyCommandLocal", CommandFlags.Modal)]
         public void MyCommand() // This method can have any name
@@ -55,10 +57,12 @@ namespace TIExCAD
 
             }
 
-            
+
         }
 
-        // Modal Command with pickfirst selection
+        /// <summary>
+        /// Выделение примитива/объекта в чертеже
+        /// </summary>
         [CommandMethod("MyGroup", "MyPickFirst", "MyPickFirstLocal", CommandFlags.Modal | CommandFlags.UsePickSet)]
         public void MyPickFirst() // This method can have any name
         {
@@ -75,16 +79,22 @@ namespace TIExCAD
             }
         }
 
-        // Application Session Command with localized name
+        /// <summary>
+        /// Application Session Command with localized name.
+        /// Непонятно что это. Нужно разобраться
+        /// </summary>
         [CommandMethod("MyGroup", "MySessionCmd", "MySessionCmdLocal", CommandFlags.Modal | CommandFlags.Session)]
         public void MySessionCmd() // This method can have any name
         {
             // Put your command code here
         }
 
-        // LispFunction is similar to CommandMethod but it creates a lisp 
-        // callable function. Many return types are supported not just string
-        // or integer.
+        /// <summary>
+        /// LispFunction is similar to CommandMethod but it creates a lisp 
+        /// callable function. Many return types are supported not just string
+        /// or integer.
+        /// Видимо, создание и вызов Lisp функции. Тоже нужно разбираться
+        /// </summary>
         [LispFunction("MyLispFunction", "MyLispFunctionLocal")]
         public int MyLispFunction(ResultBuffer args) // This method can have any name
         {

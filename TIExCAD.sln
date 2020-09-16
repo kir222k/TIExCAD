@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30413.136
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TIExCAD_Lisp", "TIExCAD_Lisp\TIExCAD_Lisp.csproj", "{3D36581E-5987-4C12-9519-F9072029CD6D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ac16", "ac16\ac16.csproj", "{81B2CEB2-D65D-438E-94EA-A686FE1AAB61}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TIExCAD_Lisp_20.1", "TIExCAD_Lisp_20.1\TIExCAD_Lisp_20.1.csproj", "{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ac21", "ac21\ac21.csproj", "{F8213B89-6E7A-4045-B5C1-E79CB89EAC72}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -13,14 +13,14 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{3D36581E-5987-4C12-9519-F9072029CD6D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{3D36581E-5987-4C12-9519-F9072029CD6D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{3D36581E-5987-4C12-9519-F9072029CD6D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{3D36581E-5987-4C12-9519-F9072029CD6D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B502FCD0-4564-4432-AFD0-6F9C80DEDC9E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81B2CEB2-D65D-438E-94EA-A686FE1AAB61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81B2CEB2-D65D-438E-94EA-A686FE1AAB61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81B2CEB2-D65D-438E-94EA-A686FE1AAB61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81B2CEB2-D65D-438E-94EA-A686FE1AAB61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F8213B89-6E7A-4045-B5C1-E79CB89EAC72}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F8213B89-6E7A-4045-B5C1-E79CB89EAC72}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F8213B89-6E7A-4045-B5C1-E79CB89EAC72}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F8213B89-6E7A-4045-B5C1-E79CB89EAC72}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
