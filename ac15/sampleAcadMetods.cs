@@ -1,4 +1,4 @@
-﻿/*! \file Файл сохранен из AutoCAD_2021_dotnet_wizards
+﻿/* Файл сохранен из AutoCAD_2021_dotnet_wizards
  * как пример работы с методами, кот. вызываются
  * командой из AutoCAD. 
  * Файл не следует использовать в проектах как рабочий,
@@ -12,7 +12,7 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 
-// This line is not mandatory, but improves loading performances
+// This line is not mandatory, but improves loading performances, чтобы это не значило(!)
 [assembly: CommandClass(typeof(TIExCAD.MyCommands))]
 
 namespace TIExCAD
@@ -45,7 +45,7 @@ namespace TIExCAD
         /// Отправляет сообщение  в ком. строку AutoCAD
         /// </summary>
         [CommandMethod("MyGroup", "MyCommand", "MyCommandLocal", CommandFlags.Modal)]
-        public void MyCommand() // This method can have any name
+        public void MyCommand(string strCommand) // This method can have any name
         {
             // Put your command code here
             Document doc = Application.DocumentManager.MdiActiveDocument;
@@ -53,7 +53,8 @@ namespace TIExCAD
             if (doc != null)
             {
                 ed = doc.Editor;
-                ed.WriteMessage("Hello, this is your first command.");
+                //ed.WriteMessage("Hello, this is your first command.");
+                ed.WriteMessage(strCommand);
 
             }
 
