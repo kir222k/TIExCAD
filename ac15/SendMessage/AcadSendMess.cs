@@ -30,7 +30,7 @@ namespace TIExCAD
         /// <summary>
         /// Отправка простого сообщения в ком.строку AutoCAD. Метод можно  переопределить
         /// </summary>
-        public virtual void SendString(string messText)
+        public virtual void SendStringDebug(string messText)
         {
             // Проверим, что ссылка на текущий чертеж реальная 
             if (doc != null)
@@ -76,24 +76,53 @@ namespace TIExCAD
         /// <summary>
         /// При создании экз класса требуется задать имя метода, имя класса источника сообщения
         /// </summary>
+        /// <param name="cn"></param>
+        /// <param name="mn"></param>
         public AcadSendMessExt(string mn, string cn) {  NameSourceMetod = mn; NameSourceClass = cn; }
 
         // МЕТОДЫ
         /// <summary>
         /// Отправка  сообщения в ком.строку AutoCAD. Метод переопределен, добавлена информация, откуда шлется сообщение: Класс, Метод
         /// </summary>
-        // /// <param name="messText"></param>
-        public override void SendString(string messText)
+        public override void SendStringDebug(string messText)
         {
+            // public readonly Document doc = Application.DocumentManager.MdiActiveDocument;
             if (doc != null)
             {
-                doc.Editor.WriteMessage($"\n." +
-                    $"\n****** D * E * B * U * G ******" +
-                    $"\n* Класс: {NameSourceClass} " +
-                    $"\n* Метод: {NameSourceMetod} " +
-                    $"\n* Сообщение: {messText} " +
-                    $"\n*******************************" +
-                    $"\n.");
+                StringDebugFromClass StrDeb = new StringDebugFromClass(NameSourceClass, NameSourceMetod, messText);
+                //// строка Класс
+                //string strClass = "\n* Класс:     ";
+                //// строка Метод
+                //string strMetod = "\n* Метод:     ";
+                //// строка Сообщение
+                //string strMess = "\n* Сообщение:  ";
+
+                //// строка Класс+
+                //string strClassFull = strClass + NameSourceClass;
+                //// строка Метод+
+                //string strMetodFull = strMetod + NameSourceMetod;
+                //// строка Сообщение+
+                //string strMessFull = strMess + messText;
+
+                //// Найдем строку с максимальной длиной
+
+                //// добавим необходимое кол-во звездочек в остальные строки
+
+                //// добавим строку нужной длины из звездочек 
+
+                //// соберем всю строку
+
+                // отправим сообщение
+
+                doc.Editor.WriteMessage(StrDeb.GetStringStars());
+                //    $"\n*******************************" +
+                //    $"\n*****  D   E   B   U   G  *****" +
+                //    $"\n*******************************" +
+                //    $"\n* {strClassFull}" +
+                //    $"\n* {strMetodFull}" +
+                //    $"\n* {strMessFull}" +
+                //    $"\n*******************************" +
+                //    $"\n.");
             }
         }
     }

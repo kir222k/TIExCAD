@@ -25,9 +25,10 @@ namespace TIExCAD
         /// </summary>
         void IExtensionApplication.Initialize()
         {
+            // Сообщение в ком строку AutoCAD
             AcadSendMessExt AcSM = new AcadSendMessExt("IExtensionApplication.Initialize", $"{this}");
-            AcSM.SendString("Пока никакой код здесь не выполняется");
-
+            AcSM.SendStringDebug("Пока никакой код здесь не выполняется");
+            //
 
         }
 

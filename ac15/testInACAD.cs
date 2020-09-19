@@ -23,12 +23,19 @@ namespace TIExCAD
         {
             //AcadSendMessExt AcSM = new AcadSendMessExt();
             AcadSendMessExt AcSM = new AcadSendMessExt("TIExAcSend", $"{this}");
-            AcSM.SendString("Тест!!!");
-
+            AcSM.SendStringDebug("Тест!!!");
+            
         }
 
 
 
+
+    }
+
+    public static class  HellMyHell
+    {
+        //public string MyProperty { get; set; }
+        //HellMyHell (string Str) { }
 
     }
 }
