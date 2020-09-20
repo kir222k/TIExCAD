@@ -1,27 +1,127 @@
-﻿//using System;
+﻿using System;
 using System.Collections.Generic;
-//using System.Linq;
-//using System.Text;
-//using System.Threading.Tasks;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace TIExCAD
 {
-    static public class StringMetods
+
+    /// <summary>
+    /// Статический класс для работы со строками: 
+    /// поиск наиболее длинной строки из списка, получение длины наиболее длинной строки из списка, получить многострочный текст с обрамлением *
+    /// </summary>
+    public static class StringMetods
     {
         /// <summary>
         /// Из списка строк выбирает самую длинную, возращает ее длину
         /// </summary>
-        /// <returns>lenMaxStr</returns>
-        static public byte GetLenMaxStringOfList(List<string> listString)
+        public static int GetLenMaxStringOfList(List<string> listString)
         {
-            byte lenMaxStr = 0;
+            int lenMaxStr= 0;
             // по списку
             foreach (string sitem in listString)
             {
-                lenMaxStr = ((byte)sitem.Length > lenMaxStr) ? (byte)sitem.Length : lenMaxStr;
+                lenMaxStr = (sitem.Length > lenMaxStr) ? sitem.Length : lenMaxStr;
+                // maxString = (maxString.Length)
             }
-            //Console.WriteLine();
             return lenMaxStr;
+        }
+
+        /// <summary>
+        /// Из списка строк ищет самую длинную
+        /// <returns>Строка по длине наибольшая из списка</returns>
+        /// </summary>
+        public static string GetMaxStringOfList(List<string> listString)
+        {
+            string maxStr = "";
+            foreach (string sitem in listString)
+            {
+                maxStr = (sitem.Length > maxStr.Length) ? sitem : maxStr;
+            }
+            return maxStr;
+        }
+
+        /// <summary>
+        /// Собирает строку из списка строк с обрамлением.
+        /// </summary>
+        /// <remarks>
+        /// <para>*******************************</para>
+        /// <para>*      D   E   B   U   G      *</para>
+        /// <para>*******************************</para>
+        /// <para>* Строка 1                    *</para>
+        /// <para>* Строка 2                    *</para>
+        /// <para>* Строка 3                    *</para>
+        /// <para>*******************************</para>
+        /// </remarks>
+        /// <returns> Строка с обрамлением *</returns>
+        public static string GetStringFromListStars (List<string> listString)
+        {
+            // Заголовок
+            string strDebugPrint = "\n| D E B U G";
+
+            // Найдем строку с максимальной длиной, получим ее длину
+            int lenMaxStr = GetLenMaxStringOfList(listString);
+            // Проверим, если самая длинная строка короче заголовка, то 
+            lenMaxStr = (lenMaxStr < strDebugPrint.Length) ? strDebugPrint.Length : lenMaxStr;
+            Console.WriteLine(lenMaxStr);
+
+            // Добавим в заголовок закрывающий символ
+            //string strSpaceDebug = "";
+            for (int i = 0; i < lenMaxStr - 9; i++)
+            {
+                strDebugPrint = $"{strDebugPrint} ";
+            }
+            strDebugPrint = strDebugPrint + " |";
+            Console.WriteLine(strDebugPrint.Length);
+
+
+            // Список для обработанных строк
+            List<string> listWithStars = new List<string>();
+            //foreach (var s in listWithStars) { Write(s); }
+
+            // Разница в длине между самой длинной и текущей строкой
+            int deltaSymString;
+            // Строка с нужным кол-вом пробелов
+            string strSpaceNeed;
+            // Добавим необходимое кол-во звездочек в остальные строки и получим нужный список строк
+            foreach (string sitem in listString)
+            {
+                strSpaceNeed = "";
+                // Если текущая строка  не равна наиболее длинной
+                // https://docs.microsoft.com/ru-ru/dotnet/standard/base-types/comparing
+                if (sitem.Length < lenMaxStr)
+                {
+                    // Разница в длине между самой длинной и текущей строкой
+                    deltaSymString = lenMaxStr - sitem.Length;
+
+                    for (int i = 0; i < deltaSymString; i++)
+                    {
+                        strSpaceNeed = strSpaceNeed + " ";
+                    }
+                    listWithStars.Add($"\n| {sitem} {strSpaceNeed}|");
+                }
+                else // Для самой длинной строки
+                {
+                    listWithStars.Add($"\n| {sitem} |");
+                }
+            }
+
+            // Превратим в строку
+            string strFullWithStars ="";
+            foreach (var s in listWithStars) {strFullWithStars = strFullWithStars + s;}
+
+
+            // Разделитель
+            string strTol="\n----";
+            for (int i = 0; i < lenMaxStr; i++)
+            {
+                strTol = strTol + "-";
+            }
+            //strTol = strTol + "|";
+
+
+            return strTol + strDebugPrint + strTol + strFullWithStars + $"{strTol}\n";
         }
 
     }

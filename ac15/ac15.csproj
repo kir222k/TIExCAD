@@ -31,6 +31,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>..\..\..\..\distr\lib\ac15\ac15.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AcCoreMgd">
@@ -74,7 +75,6 @@
     <Compile Include="SendMessage\AcadSendMess.cs" />
     <Compile Include="Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SendMessage\StringDebug.cs" />
     <Compile Include="SendMessage\StringMetods.cs" />
     <Compile Include="TestInACAD.cs" />
   </ItemGroup>

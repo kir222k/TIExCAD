@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace TIExCAD
 {
     /// <summary>
-    /// Содердит метод, кот возращет список строк: класс, метод, сообщение c обрамлением *.
+    /// Содержит метод, кот возращет список строк: класс, метод, сообщение c обрамлением *.
     /// </summary>
         public class StringDebugFromClass
     {
@@ -27,6 +27,7 @@ namespace TIExCAD
         // КОНСТРУКТОРЫ
         /// <summary>
         /// Принимает в конструктор имя класса, метода, откуда вызывается и само сообщение, напр.  из AcadSendMess
+        /// Содержит метод, возращающий строку 
         /// </summary>
         /// <param name="NameSourceClass"></param>
         /// <param name="NameSourceMetod"></param>
@@ -48,6 +49,10 @@ namespace TIExCAD
         // соберем всю строку в список, 
 
         // МЕТОДЫ
+        /// <summary>
+        /// Собирает строку из 
+        /// </summary>
+        /// <returns></returns>
         public string GetStringStars()
         {
                 // строка Класс+

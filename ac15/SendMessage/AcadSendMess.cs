@@ -21,7 +21,7 @@ namespace TIExCAD
     public class AcadSendMess
     {
         // ПОЛЯ
-        // Поле doc - ссылка  на активный открытый чертеж AutoCAD
+        /// <value>doc - ссылка  на активный открытый чертеж AutoCAD</value>
         public readonly Document doc = Application.DocumentManager.MdiActiveDocument;
         // Поле ed - ссылка на Editor активного чертежа
         private  Editor ed;
@@ -47,11 +47,11 @@ namespace TIExCAD
     /// Класс наследован от AcadSendMess, используется для отправки составного сообщения: 
     /// используется информация о блоке кода, откуда вызываются методы данного класса.
     /// Предназначен для отладки. Пример создания экземпляра: 
-    /// <code> AcadSendMessExt AcSM = new AcadSendMessExt("TIExAcSend", $"{this}"); </code>
+    /// <code> AcadSendMessDebug AcSM = new AcadSendMessDebug("TIExAcSend", $"{this}"); </code>
     /// или
-    /// <code>  AcadSendMessExt AcSM = new AcadSendMessExt($"{this}"); </code>
+    /// <code>  AcadSendMessDebug AcSM = new AcadSendMessDebug($"{this}"); </code>
     /// </summary>
-    public class AcadSendMessExt : AcadSendMess
+    public class AcadSendMessDebug : AcadSendMess // наследуем,  чтобы сразу использовать ссылку на активный чертеж doc
     {
         // СВОЙСТВА
         /// <summary>
@@ -67,18 +67,15 @@ namespace TIExCAD
         /// <summary>
         /// При создании экз класса имя класса=Неизвестно, имя метода=Неизвестно
         /// </summary>
-        public AcadSendMessExt() : this("Неизвестно") { }
+        public AcadSendMessDebug() : this("Неизвестно") { }
         /// <summary>
         /// При создании экз класса требуется задать имя класса источника, имя метода=Неизвестно
         /// </summary>
-        /// <param name="mn"></param>
-        public AcadSendMessExt(string cn) : this( "Неизвестно", cn) { }
+        public AcadSendMessDebug(string cn) : this( "Неизвестно", cn) { }
         /// <summary>
         /// При создании экз класса требуется задать имя метода, имя класса источника сообщения
         /// </summary>
-        /// <param name="cn"></param>
-        /// <param name="mn"></param>
-        public AcadSendMessExt(string mn, string cn) {  NameSourceMetod = mn; NameSourceClass = cn; }
+        public AcadSendMessDebug(string mn, string cn) {  NameSourceMetod = mn; NameSourceClass = cn; }
 
         // МЕТОДЫ
         /// <summary>
@@ -86,43 +83,31 @@ namespace TIExCAD
         /// </summary>
         public override void SendStringDebug(string messText)
         {
-            // public readonly Document doc = Application.DocumentManager.MdiActiveDocument;
-            if (doc != null)
+            // Проверим состояние активного чертежа, соберем список и отправим в AutoCAD
+            if (doc != null) // doc определен в базовом классе, просто используем
             {
-                StringDebugFromClass StrDeb = new StringDebugFromClass(NameSourceClass, NameSourceMetod, messText);
-                //// строка Класс
-                //string strClass = "\n* Класс:     ";
-                //// строка Метод
-                //string strMetod = "\n* Метод:     ";
-                //// строка Сообщение
-                //string strMess = "\n* Сообщение:  ";
+                // строка Класс
+                string strClass = "Класс:     ";
+                // строка Метод
+                string strMetod = "Метод:     ";
+                // строка Сообщение
+                string strMess =  "Сообщение: ";
 
-                //// строка Класс+
-                //string strClassFull = strClass + NameSourceClass;
-                //// строка Метод+
-                //string strMetodFull = strMetod + NameSourceMetod;
-                //// строка Сообщение+
-                //string strMessFull = strMess + messText;
+                // строка Класс+
+                string strClassFull = strClass + NameSourceClass;
+                // строка Метод+
+                string strMetodFull = strMetod + NameSourceMetod;
+                // строка Сообщение+
+                string strMessFull = strMess + messText;
 
-                //// Найдем строку с максимальной длиной
+                // Сформируем список
+                List<string> listText = new List<string> { strClassFull, strMetodFull, strMessFull };
 
-                //// добавим необходимое кол-во звездочек в остальные строки
-
-                //// добавим строку нужной длины из звездочек 
-
-                //// соберем всю строку
-
-                // отправим сообщение
-
-                doc.Editor.WriteMessage(StrDeb.GetStringStars());
-                //    $"\n*******************************" +
-                //    $"\n*****  D   E   B   U   G  *****" +
-                //    $"\n*******************************" +
-                //    $"\n* {strClassFull}" +
-                //    $"\n* {strMetodFull}" +
-                //    $"\n* {strMessFull}" +
-                //    $"\n*******************************" +
-                //    $"\n.");
+                // Получим строку с обрамлением *
+                string stringStars = StringMetods.GetStringFromListStars(listText);
+                
+                // Отправим сообщение в ком строку AutoCAD
+                doc.Editor.WriteMessage(stringStars);
             }
         }
     }

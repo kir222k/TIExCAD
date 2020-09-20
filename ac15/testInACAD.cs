@@ -21,21 +21,12 @@ namespace TIExCAD
         [CommandMethod ("TIExAcSend")]
         public void TIExAcSend()
         {
-            //AcadSendMessExt AcSM = new AcadSendMessExt();
-            AcadSendMessExt AcSM = new AcadSendMessExt("TIExAcSend", $"{this}");
+            //AcadSendMessDebug AcSM = new AcadSendMessDebug();
+            AcadSendMessDebug AcSM = new AcadSendMessDebug("TIExAcSend", $"{this}");
             AcSM.SendStringDebug("Тест!!!");
-            
         }
 
 
-
-
     }
 
-    public static class  HellMyHell
-    {
-        //public string MyProperty { get; set; }
-        //HellMyHell (string Str) { }
-
-    }
 }
