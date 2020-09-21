@@ -3,6 +3,7 @@
 using System;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
+using System.Collections.Generic;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
@@ -26,9 +27,22 @@ namespace TIExCAD
         void IExtensionApplication.Initialize()
         {
             // Сообщение в ком строку AutoCAD
-            AcadSendMessDebug AcSM = new AcadSendMessDebug("IExtensionApplication.Initialize", $"{this}");
-            AcSM.SendStringDebug("Пока никакой код здесь не выполняется");
-            //
+            AcadSendMess AcSM = new AcadSendMess();
+            AcSM.SendStringDebugStars(new List<string> 
+            {
+                "TIExCAD 2020", 
+                "Интерфейсные инструменты для работы с API .NET AutoCAD",
+                "Применяется в сборке DDECAD-MZ",
+                //"-----",
+                //"Для регистрации в реестре (автозагрузка) выполните команду AppCadReg"
+            });
+
+            // Регистрация сборки.
+            RegTools RegT = new RegTools("TIExCAD");
+            RegT.RegisterMyApp();
+            // Информация о сборках
+            RegT.GetRegistryKeyMyApps();
+
 
         }
 

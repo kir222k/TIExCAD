@@ -69,8 +69,17 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\ac15\AcadDocInfo\AcadDocReport.cs">
+      <Link>AcadDocReport.cs</Link>
+    </Compile>
     <Compile Include="..\ac15\Init.cs">
       <Link>Init.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\IstallAndRegistration\RegGeneric.cs">
+      <Link>RegGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\IstallAndRegistration\RegTools.cs">
+      <Link>RegTools.cs</Link>
     </Compile>
     <Compile Include="..\ac15\SendMessage\AcadSendMess.cs">
       <Link>AcadSendMess.cs</Link>
@@ -84,6 +93,7 @@
     <Compile Include="..\ac15\TestInACAD.cs">
       <Link>TestInACAD.cs</Link>
     </Compile>
+    <Compile Include="AcadDocInfoLayers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

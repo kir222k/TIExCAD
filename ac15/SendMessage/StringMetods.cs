@@ -11,12 +11,12 @@ namespace TIExCAD
     /// Статический класс для работы со строками: 
     /// поиск наиболее длинной строки из списка, получение длины наиболее длинной строки из списка, получить многострочный текст с обрамлением *
     /// </summary>
-    public static class StringMetods
+    internal static class StringMetods
     {
         /// <summary>
         /// Из списка строк выбирает самую длинную, возращает ее длину
         /// </summary>
-        public static int GetLenMaxStringOfList(List<string> listString)
+        internal static int GetLenMaxStringOfList(List<string> listString)
         {
             int lenMaxStr= 0;
             // по списку
@@ -32,7 +32,7 @@ namespace TIExCAD
         /// Из списка строк ищет самую длинную
         /// <returns>Строка по длине наибольшая из списка</returns>
         /// </summary>
-        public static string GetMaxStringOfList(List<string> listString)
+        internal static string GetMaxStringOfList(List<string> listString)
         {
             string maxStr = "";
             foreach (string sitem in listString)
@@ -55,26 +55,29 @@ namespace TIExCAD
         /// <para>*******************************</para>
         /// </remarks>
         /// <returns> Строка с обрамлением *</returns>
-        public static string GetStringFromListStars (List<string> listString)
+        internal static string GetStringFromListStars (List<string> listString, bool printHeader)
         {
-            // Заголовок
-            string strDebugPrint = "\n| D E B U G";
-
             // Найдем строку с максимальной длиной, получим ее длину
             int lenMaxStr = GetLenMaxStringOfList(listString);
-            // Проверим, если самая длинная строка короче заголовка, то 
-            lenMaxStr = (lenMaxStr < strDebugPrint.Length) ? strDebugPrint.Length : lenMaxStr;
-            Console.WriteLine(lenMaxStr);
+            string strDebugPrint = "\n| D E B U G";
 
-            // Добавим в заголовок закрывающий символ
-            //string strSpaceDebug = "";
-            for (int i = 0; i < lenMaxStr - 9; i++)
+            if (printHeader)
             {
-                strDebugPrint = $"{strDebugPrint} ";
-            }
-            strDebugPrint = strDebugPrint + " |";
-            Console.WriteLine(strDebugPrint.Length);
+                // Заголовок
 
+                // Проверим, если самая длинная строка короче заголовка, то 
+                lenMaxStr = (lenMaxStr < strDebugPrint.Length) ? strDebugPrint.Length : lenMaxStr;
+                Console.WriteLine(lenMaxStr);
+
+                // Добавим в заголовок закрывающий символ
+                //string strSpaceDebug = "";
+                for (int i = 0; i < lenMaxStr - 9; i++)
+                {
+                    strDebugPrint = $"{strDebugPrint} ";
+                }
+                strDebugPrint = strDebugPrint + " |";
+                Console.WriteLine(strDebugPrint.Length);
+            }
 
             // Список для обработанных строк
             List<string> listWithStars = new List<string>();
@@ -120,8 +123,14 @@ namespace TIExCAD
             }
             //strTol = strTol + "|";
 
-
-            return strTol + strDebugPrint + strTol + strFullWithStars + $"{strTol}\n";
+            if (printHeader)
+            {
+                return strTol + strDebugPrint + strTol + strFullWithStars + $"{strTol}\n";
+            }
+            else
+            {
+                return strTol + strFullWithStars + $"{strTol}\n";
+            }
         }
 
     }

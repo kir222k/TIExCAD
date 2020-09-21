@@ -16,19 +16,19 @@ using Autodesk.AutoCAD.EditorInput;
 namespace TIExCAD
 {
     /// <summary>
-    /// Класс для работы с сообщениями в коммандной строке AutoCAD. Отправка простого сообщения.
+    /// Класс для работы с сообщениями в коммандной строке AutoCAD.
     /// </summary>
     public class AcadSendMess
     {
         // ПОЛЯ
         /// <value>doc - ссылка  на активный открытый чертеж AutoCAD</value>
-        public readonly Document doc = Application.DocumentManager.MdiActiveDocument;
+        public Document doc = Application.DocumentManager.MdiActiveDocument;
         // Поле ed - ссылка на Editor активного чертежа
         private  Editor ed;
         
         // МЕТОДЫ
         /// <summary>
-        /// Отправка простого сообщения в ком.строку AutoCAD. Метод можно  переопределить
+        /// Отправка простого сообщения в ком.строку AutoCAD
         /// </summary>
         public virtual void SendStringDebug(string messText)
         {
@@ -41,6 +41,28 @@ namespace TIExCAD
                 ed.WriteMessage(messText);
             }
         }
+
+        /// <summary>
+        /// Отправка сообщения в ком.строку AutoCAD в обрамлении * и надписи DEBUG
+        /// </summary>
+        public void SendStringDebugStars (string messText)
+        {
+            if (doc != null)
+            {
+                doc.Editor.WriteMessage(StringMetods.GetStringFromListStars(new List<string> { messText},false));
+            }
+        }
+        /// <summary>
+        /// Отправка сообщения в ком.строку AutoCAD в обрамлении * и надписи DEBUG. Принимает список строк типа List
+        /// </summary>
+        public void SendStringDebugStars(List<string> listMess)
+        {
+            if (doc != null)
+            {
+                doc.Editor.WriteMessage(StringMetods.GetStringFromListStars(listMess, false));
+            }
+        }
+
     }
 
     /// <summary>
@@ -51,8 +73,10 @@ namespace TIExCAD
     /// или
     /// <code>  AcadSendMessDebug AcSM = new AcadSendMessDebug($"{this}"); </code>
     /// </summary>
-    public class AcadSendMessDebug : AcadSendMess // наследуем,  чтобы сразу использовать ссылку на активный чертеж doc
+    internal class AcadSendMessDebug : AcadSendMess // наследуем,  чтобы сразу использовать ссылку на активный чертеж doc
     {
+        // ПОЛЯ
+
         // СВОЙСТВА
         /// <summary>
         /// Имя метода, откуда посылается сообщение
@@ -62,8 +86,12 @@ namespace TIExCAD
         /// Имя класса, откуда посылается сообщение
         /// </summary>
         public string NameSourceClass { get; set; }
+        //public string EasyMessage { get; set }
 
         // КОНСТРУКТОРЫ
+
+        //public AcadSendMessDebug (string mess) { EasyMessage=mess}
+
         /// <summary>
         /// При создании экз класса имя класса=Неизвестно, имя метода=Неизвестно
         /// </summary>
@@ -104,11 +132,13 @@ namespace TIExCAD
                 List<string> listText = new List<string> { strClassFull, strMetodFull, strMessFull };
 
                 // Получим строку с обрамлением *
-                string stringStars = StringMetods.GetStringFromListStars(listText);
+                string stringStars = StringMetods.GetStringFromListStars(listText, true);
                 
                 // Отправим сообщение в ком строку AutoCAD
                 doc.Editor.WriteMessage(stringStars);
             }
         }
+
+
     }
 }
