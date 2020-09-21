@@ -71,28 +71,31 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="..\ac15\AcadDocInfo\AcadDocInfoLayers.cs">
-      <Link>AcadDocInfoLayers.cs</Link>
+      <Link>AcadDocInfo\AcadDocInfoLayers.cs</Link>
     </Compile>
     <Compile Include="..\ac15\AcadDocInfo\AcadDocReport.cs">
-      <Link>AcadDocReport.cs</Link>
+      <Link>AcadDocInfo\AcadDocReport.cs</Link>
     </Compile>
     <Compile Include="..\ac15\Init.cs">
       <Link>Init.cs</Link>
     </Compile>
     <Compile Include="..\ac15\IstallAndRegistration\RegGeneric.cs">
-      <Link>RegGeneric.cs</Link>
+      <Link>IstallAndRegistration\RegGeneric.cs</Link>
     </Compile>
     <Compile Include="..\ac15\IstallAndRegistration\RegTools.cs">
-      <Link>RegTools.cs</Link>
+      <Link>IstallAndRegistration\RegTools.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\IstallAndRegistration\RegtoolsCMD.cs">
+      <Link>RegtoolsCMD.cs</Link>
     </Compile>
     <Compile Include="..\ac15\SendMessage\AcadSendMess.cs">
-      <Link>AcadSendMess.cs</Link>
+      <Link>SendMessage\AcadSendMess.cs</Link>
     </Compile>
     <Compile Include="..\ac15\SendMessage\StringDebug.cs">
-      <Link>StringDebug.cs</Link>
+      <Link>SendMessage\StringDebug.cs</Link>
     </Compile>
     <Compile Include="..\ac15\SendMessage\StringMetods.cs">
-      <Link>StringMetods.cs</Link>
+      <Link>SendMessage\StringMetods.cs</Link>
     </Compile>
     <Compile Include="..\ac15\TestInACAD.cs">
       <Link>TestInACAD.cs</Link>

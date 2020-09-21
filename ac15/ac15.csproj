@@ -76,6 +76,7 @@
     <Compile Include="AcadDocInfo\AcadDocReport.cs" />
     <Compile Include="IstallAndRegistration\RegGeneric.cs" />
     <Compile Include="IstallAndRegistration\RegTools.cs" />
+    <Compile Include="IstallAndRegistration\RegtoolsCMD.cs" />
     <Compile Include="SendMessage\AcadSendMess.cs" />
     <Compile Include="Init.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

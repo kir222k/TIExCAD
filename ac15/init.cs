@@ -28,20 +28,21 @@ namespace TIExCAD
         {
             // Сообщение в ком строку AutoCAD
             AcadSendMess AcSM = new AcadSendMess();
-            AcSM.SendStringDebugStars(new List<string> 
+            AcSM.SendStringDebugStars(new List<string>
             {
-                "TIExCAD 2020", 
+                "TIExCAD 2020",
                 "Интерфейсные инструменты для работы с API .NET AutoCAD",
                 "Применяется в сборке DDECAD-MZ",
                 //"-----",
                 //"Для регистрации в реестре (автозагрузка) выполните команду AppCadReg"
             });
 
-            // Регистрация сборки.
+
             RegTools RegT = new RegTools("TIExCAD");
-            RegT.RegisterMyApp();
             // Информация о сборках
             RegT.GetRegistryKeyMyApps();
+            // Регистрация сборки.
+           // RegT.RegisterMyApp();
 
 
         }

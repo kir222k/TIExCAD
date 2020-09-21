@@ -11,39 +11,17 @@ using AcRt = Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 
-//[assembly: CommandClass(typeof(TIExCAD.RegtoolsCMD))]
+[assembly: CommandClass(typeof(TIExCAD.RegtoolsCMD))]
 
 namespace TIExCAD
 {
     /// <summary>
     /// Регистрирует сборку (dll файл) приложения в реестре для ее автозапуска при старте AutoCAD.
     /// </summary>
-    public class RegTools
+    public static class RegtoolsCMD
     {
-        // ПОЛЯ
-
         /// <value>Имя приложения для регистрации, может быть любое.</value>
-        public string NameCustomApp { get; set; }
-        /// <value>Путь к dll приложения. Нужно указывать путь именно к той dll, кот. должна быть в автозапуске AutoCAD.</value>
-        public string PathAssembly { get; set; }
-
-        // КОНСТРУКТОРЫ
-
-        public RegTools() { }
-
-        /// <summary>
-        /// Регистрирует сборку (dll файл) приложения в реестре для ее автозапуска при старте AutoCAD.
-        /// </summary>
-        /// <remarks>Путь к сборке задется как путь к dll, которая содержит класс RegTools</remarks>
-        /// <param name="nameCustomApp">Имя приложения для регистрации, может быть любое.</param>
-        public RegTools(string nameCustomApp) { NameCustomApp = nameCustomApp; PathAssembly = Assembly.GetExecutingAssembly().Location; }
-
-        /// <summary>
-        /// Регистрирует сборку (dll файл) приложения в реестре для ее автозапуска при старте AutoCAD.
-        /// </summary>
-        /// <param name="nameCustomApp">Имя приложения для регистрации, может быть любое.</param>
-        /// <param name="pathAssembly">Путь к dll приложения. Нужно указывать путь именно к той dll, кот. должна быть в автозапуске AutoCAD.</param>
-        public RegTools(string nameCustomApp, string pathAssembly) { NameCustomApp = nameCustomApp; PathAssembly = pathAssembly; }
+        public const string NameCustomApp = "TIExCAD";
 
         // МЕТОДЫ
 
@@ -51,13 +29,15 @@ namespace TIExCAD
         /// Регистрация сборки.
         /// </summary>
         /// <remarks>Доступен по команде AppCadReg из AutoCAD.</remarks>
-        public void RegisterMyApp()
+        [CommandMethod("AppCadReg")]
+        public static void RegisterMyApp()
         {
+            string PathAssembly = Assembly.GetExecutingAssembly().Location;
             RegGeneric RegGen = new RegGeneric();
             bool isReg = RegGen.RegirterCustomApp(NameCustomApp, PathAssembly);
             AcadSendMess AcSM = new AcadSendMess();
 
-            if (isReg==true) 
+            if (isReg == true)
             {
                 AcSM.SendStringDebugStars(new List<string> {
                 $"Приложение {NameCustomApp} зарегистрированно в реестре" ,
@@ -67,7 +47,7 @@ namespace TIExCAD
             }
             else
             {
-                AcSM.SendStringDebugStars($"Приложение {NameCustomApp} уже зарегистрированно.") ;
+                AcSM.SendStringDebugStars($"Приложение {NameCustomApp} уже зарегистрированно.");
             }
         }
 
@@ -76,13 +56,15 @@ namespace TIExCAD
         /// </summary>
         /// <remarks>Доступен по команде AppCadUnReg из AutoCAD.</remarks>
         //
-        public void UnregisterMyApp()
+        [CommandMethod("AppCadUnReg")]
+        public static void UnregisterMyApp()
         {
+            string PathAssembly = Assembly.GetExecutingAssembly().Location;
             RegGeneric RegGen = new RegGeneric();
             bool isReg = RegGen.UnRegisterCustomApp(NameCustomApp);
             AcadSendMess AcSM = new AcadSendMess();
 
-            if (isReg==true)
+            if (isReg == true)
             {
                 AcSM.SendStringDebugStars(new List<string> {
                 $"Регистрация приложения {NameCustomApp} в реестре отменена" ,
@@ -103,8 +85,8 @@ namespace TIExCAD
         /// Вывод информации о сборках, кот. зарег. в реестре для автозапуска.
         /// </summary>
         /// <remarks>Доступен по команде AppCadViewReg из AutoCAD.</remarks>
-        //
-        public void GetRegistryKeyMyApps()
+        [CommandMethod("AppCadViewReg")]
+        public static  void GetRegistryKeyMyApps()
         {
             List<string> listKeys = new List<string>();
 
@@ -118,38 +100,6 @@ namespace TIExCAD
             TIExCAD.AcadSendMess AcSM = new AcadSendMess();
             AcSM.SendStringDebugStars(listKeys);
         }
-
     }
-
-    /*
-    public class RegtoolsCMD
-    {
-        const string NameCustomApp = "TIExCAD";
-        RegTools RegT = new RegTools();
-
-        [CommandMethod("AppCadReg")]
-        public void RegisterMyAppCMD()
-        {
-            RegT.NameCustomApp = NameCustomApp; RegT.PathAssembly = Assembly.GetExecutingAssembly().Location;
-            RegT.RegisterMyApp();
-        }
-
-
-        [CommandMethod("AppCadUnReg")]
-        public void UnregisterMyAppCMD()
-        {
-            //RegTools RegT = new RegTools(NameCustomApp);
-            RegT.NameCustomApp = NameCustomApp; RegT.PathAssembly = Assembly.GetExecutingAssembly().Location;
-            RegT.UnregisterMyApp();
-        }
-
-        [CommandMethod("AppCadViewReg")]
-        public void GetRegistryKeyMyAppsCMD()
-        {
-            RegT.NameCustomApp = NameCustomApp; RegT.PathAssembly = Assembly.GetExecutingAssembly().Location;
-            RegT.GetRegistryKeyMyApps();
-        }
-    }
-    */
 
 }
