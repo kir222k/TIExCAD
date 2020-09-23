@@ -37,7 +37,7 @@ namespace TIExCAD
         /// </summary>
         /// <param name="nameCustomApp">Имя приложения для регистрации, может быть любое.</param>
         /// <param name="pathAssembly">Путь к dll приложения. Нужно указывать путь именно к той dll, кот. должна быть в автозапуске AutoCAD.</param>
-        public bool RegirterCustomApp(string nameCustomApp, string pathAssembly)
+        public virtual bool RegirterCustomApp(string nameCustomApp, string pathAssembly)
         {
             // Get the AutoCAD Applications key
             AcRt.RegistryKey regAcadAppKey = GetAcadRegKey();
@@ -66,8 +66,6 @@ namespace TIExCAD
 
             return true;
         }
-
-
 
         /// <summary>
         /// Отменяет регистрацию сборки (dll файл) приложения в реестре для отмены ее автозапуска при старте AutoCAD.

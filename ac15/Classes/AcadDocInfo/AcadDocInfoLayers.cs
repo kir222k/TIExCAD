@@ -14,9 +14,15 @@ using Autodesk.AutoCAD.EditorInput;
 
 namespace TIExCAD
 {
+    /// <summary>
+    /// Для вывода данных о слоях.
+    /// </summary>
     public class AcadDocInfoLayers
     {
-       // [CommandMethod("LINQ")]
+        /// <summary>
+        /// Пример работы LINQ с коллекциями чертежа. Афигенно.
+        /// </summary>
+        [CommandMethod("LINQ")]
         public static void LINQExample()
         {
             dynamic db = HostApplicationServices.WorkingDatabase;

@@ -70,35 +70,47 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ac15\AcadDocInfo\AcadDocInfoLayers.cs">
-      <Link>AcadDocInfo\AcadDocInfoLayers.cs</Link>
+    <Compile Include="..\ac15\Classes\AcadDocInfo\AcadDocInfoLayers.cs">
+      <Link>Classes\AcadDocInfo\AcadDocInfoLayers.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\AcadDocInfo\AcadDocReport.cs">
-      <Link>AcadDocInfo\AcadDocReport.cs</Link>
+    <Compile Include="..\ac15\Classes\AcadDocInfo\AcadDocReport.cs">
+      <Link>Classes\AcadDocInfo\AcadDocReport.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\Init.cs">
-      <Link>Init.cs</Link>
+    <Compile Include="..\ac15\Classes\GUI\Ribbon\RibbonGeneric.cs">
+      <Link>Classes\GUI\Ribbon\RibbonGeneric.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\IstallAndRegistration\RegGeneric.cs">
-      <Link>IstallAndRegistration\RegGeneric.cs</Link>
+    <Compile Include="..\ac15\Classes\init.cs">
+      <Link>Classes\init.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\IstallAndRegistration\RegTools.cs">
-      <Link>IstallAndRegistration\RegTools.cs</Link>
+    <Compile Include="..\ac15\Classes\IstallAndRegistration\RegGeneric.cs">
+      <Link>Classes\IstallAndRegistration\RegGeneric.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\IstallAndRegistration\RegtoolsCMD.cs">
-      <Link>RegtoolsCMD.cs</Link>
+    <Compile Include="..\ac15\Classes\IstallAndRegistration\RegTools.cs">
+      <Link>Classes\IstallAndRegistration\RegTools.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\SendMessage\AcadSendMess.cs">
-      <Link>SendMessage\AcadSendMess.cs</Link>
+    <Compile Include="..\ac15\Classes\IstallAndRegistration\RegtoolsCMD.cs">
+      <Link>Classes\IstallAndRegistration\RegtoolsCMD.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\SendMessage\StringDebug.cs">
-      <Link>SendMessage\StringDebug.cs</Link>
+    <Compile Include="..\ac15\Classes\SendMessage\AcadSendMess.cs">
+      <Link>Classes\SendMessage\AcadSendMess.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\SendMessage\StringMetods.cs">
-      <Link>SendMessage\StringMetods.cs</Link>
+    <Compile Include="..\ac15\Classes\SendMessage\StringDebug.cs">
+      <Link>Classes\SendMessage\StringDebug.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\TestInACAD.cs">
-      <Link>TestInACAD.cs</Link>
+    <Compile Include="..\ac15\Classes\SendMessage\StringMetods.cs">
+      <Link>Classes\SendMessage\StringMetods.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\StaticData\Constantes.cs">
+      <Link>Classes\StaticData\Constantes.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\StaticData\Enums.cs">
+      <Link>Classes\StaticData\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\StaticData\StaticObjects.cs">
+      <Link>Classes\StaticData\StaticObjects.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\testInACAD.cs">
+      <Link>Classes\testInACAD.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

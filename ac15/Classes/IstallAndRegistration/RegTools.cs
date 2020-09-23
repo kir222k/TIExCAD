@@ -17,6 +17,7 @@ namespace TIExCAD
 {
     /// <summary>
     /// Регистрирует сборку (dll файл) приложения в реестре для ее автозапуска при старте AutoCAD.
+    /// Разработан для работы с реестром из кода сборки. 
     /// </summary>
     public class RegTools
     {
@@ -29,6 +30,10 @@ namespace TIExCAD
 
         // КОНСТРУКТОРЫ
 
+        /// <summary>
+        /// Регистрирует сборку (dll файл) приложения в реестре для ее автозапуска при старте AutoCAD.
+        /// </summary>
+        /// <remarks>После создания экземпляра необходимо задать иям приложения и путь регистрации.</remarks>
         public RegTools() { }
 
         /// <summary>
@@ -50,52 +55,60 @@ namespace TIExCAD
         /// <summary>
         /// Регистрация сборки.
         /// </summary>
-        /// <remarks>Доступен по команде AppCadReg из AutoCAD.</remarks>
         public void RegisterMyApp()
         {
-            RegGeneric RegGen = new RegGeneric();
-            bool isReg = RegGen.RegirterCustomApp(NameCustomApp, PathAssembly);
-            AcadSendMess AcSM = new AcadSendMess();
-
-            if (isReg==true) 
+            if (NameCustomApp != null && PathAssembly != null)
             {
-                AcSM.SendStringDebugStars(new List<string> {
+
+                RegGeneric RegGen = new RegGeneric();
+                bool isReg = RegGen.RegirterCustomApp(NameCustomApp, PathAssembly);
+                AcadSendMess AcSM = new AcadSendMess();
+
+                if (isReg == true)
+                {
+                    AcSM.SendStringDebugStars(new List<string> {
                 $"Приложение {NameCustomApp} зарегистрированно в реестре" ,
                 $"{NameCustomApp} будет автоматически загружаться при последующих запусках AutoCAD",
                 "Для отмены регистрации выполните команду AppCadUnreg",
                 "Для просмотра зарегистрированных приложений выполните команду AppCadViewReg"});
-            }
-            else
-            {
-                AcSM.SendStringDebugStars($"Приложение {NameCustomApp} уже зарегистрированно.") ;
+
+                    AcSM.SendStringDebugStars("Приложение работает в следующих релизах AutoCAD:");
+                    AcSM.SendStringDebugStars(StaticObjAcadRev.GetListAcadReleaseVersions());
+                }
+                else
+                {
+                    AcSM.SendStringDebugStars($"Приложение {NameCustomApp} уже зарегистрированно.");
+                }
             }
         }
 
         /// <summary>
         /// Отмена регистрации сборки.
         /// </summary>
-        /// <remarks>Доступен по команде AppCadUnReg из AutoCAD.</remarks>
-        //
         public void UnregisterMyApp()
         {
-            RegGeneric RegGen = new RegGeneric();
-            bool isReg = RegGen.UnRegisterCustomApp(NameCustomApp);
-            AcadSendMess AcSM = new AcadSendMess();
-
-            if (isReg==true)
+            // Проверим, задано ли поле NameCustomApp
+            if (NameCustomApp != null)
             {
-                AcSM.SendStringDebugStars(new List<string> {
+                RegGeneric RegGen = new RegGeneric();
+                bool isReg = RegGen.UnRegisterCustomApp(NameCustomApp);
+                AcadSendMess AcSM = new AcadSendMess();
+
+                if (isReg == true)
+                {
+                    AcSM.SendStringDebugStars(new List<string> {
                 $"Регистрация приложения {NameCustomApp} в реестре отменена" ,
                 $"Автоматическая загрузка {NameCustomApp} при последующих запусках AutoCAD выполняться не будет",
                 "Для повторной регистрации загрузите приложение при помощи команды _.netload и выполните команду AppCadReg",
                 "Для просмотра зарегистрированных приложений выполните команду AppCadViewReg"});
-            }
-            else
-            {
-                AcSM.SendStringDebugStars(new List<string> {
+                }
+                else
+                {
+                    AcSM.SendStringDebugStars(new List<string> {
                     $"Информации о приложении {NameCustomApp} в реестре не найдено",
                     "Отмена регистрации не выполнена."
                 });
+                }
             }
         }
 
@@ -118,38 +131,11 @@ namespace TIExCAD
             TIExCAD.AcadSendMess AcSM = new AcadSendMess();
             AcSM.SendStringDebugStars(listKeys);
         }
-
     }
 
-    /*
-    public class RegtoolsCMD
+    public class RegExec
     {
-        const string NameCustomApp = "TIExCAD";
-        RegTools RegT = new RegTools();
 
-        [CommandMethod("AppCadReg")]
-        public void RegisterMyAppCMD()
-        {
-            RegT.NameCustomApp = NameCustomApp; RegT.PathAssembly = Assembly.GetExecutingAssembly().Location;
-            RegT.RegisterMyApp();
-        }
-
-
-        [CommandMethod("AppCadUnReg")]
-        public void UnregisterMyAppCMD()
-        {
-            //RegTools RegT = new RegTools(NameCustomApp);
-            RegT.NameCustomApp = NameCustomApp; RegT.PathAssembly = Assembly.GetExecutingAssembly().Location;
-            RegT.UnregisterMyApp();
-        }
-
-        [CommandMethod("AppCadViewReg")]
-        public void GetRegistryKeyMyAppsCMD()
-        {
-            RegT.NameCustomApp = NameCustomApp; RegT.PathAssembly = Assembly.GetExecutingAssembly().Location;
-            RegT.GetRegistryKeyMyApps();
-        }
     }
-    */
 
 }

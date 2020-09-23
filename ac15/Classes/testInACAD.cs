@@ -20,7 +20,7 @@ namespace TIExCAD
         /// <summary>
         /// Проверка метода для отправки сообщений в ком строку AutoCAD 
         /// </summary>
-        //[CommandMethod ("TIExAcSend")]
+        [CommandMethod ("TIExAcSend")]
         public void TIExAcSend()
         {
             AcadSendMessDebug AcSM = new AcadSendMessDebug("TIExAcSend", $"{this}");

@@ -15,7 +15,7 @@ namespace TIExCAD
 {
     /// <summary>
     /// Запускаемый класс - точка входа.
-    /// При загрузке данной dll в AutoCAD выполняется код в ac15.InitSelf.Initialize
+    /// При загрузке данной dll в AutoCAD выполняется код в методе IExtensionApplication.Initialize()
     /// </summary>
     public class InitSelf : IExtensionApplication
     {
@@ -38,12 +38,16 @@ namespace TIExCAD
             });
 
 
-            RegTools RegT = new RegTools("TIExCAD");
+            RegTools RegT = new RegTools(Constantes.ConstNameCustomApp);
             // Информация о сборках
-            RegT.GetRegistryKeyMyApps();
+            //RegT.GetRegistryKeyMyApps();
             // Регистрация сборки.
-           // RegT.RegisterMyApp();
+            RegT.RegisterMyApp();
 
+
+            ExampleRibbon ExRib = new ExampleRibbon();
+
+            
 
         }
 

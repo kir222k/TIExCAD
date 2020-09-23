@@ -13,6 +13,9 @@ using Autodesk.AutoCAD.EditorInput;
 
 namespace TIExCAD
 {
+    /// <summary>
+    /// Предназначен для вывода отчетов о свойствах и содержимом чертежа.
+    /// </summary>
     public class AcadDocReport
     {
         // ПОЛЯ
@@ -21,7 +24,11 @@ namespace TIExCAD
         // Поле ed - ссылка на Editor активного чертежа
         private Editor ed;
 
-        //[CommandMethod("TIExCADdocreport")]
+        /// <summary>
+        /// Выводит сообщение в ком строку AutoCAD о сойствах активного чертежа
+        /// </summary>
+        /// <remarks>Следует написать возращающий метод с параментрами и использовать уже здесь.</remarks>
+        [CommandMethod("TIExCADdocreport")]
         public void AcadDocGetReport()
         {
             if (doc != null)
