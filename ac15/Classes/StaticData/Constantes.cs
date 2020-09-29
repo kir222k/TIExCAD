@@ -6,6 +6,8 @@
 
 namespace TIExCAD
 {
+
+
     /// <summary>
     /// Константы для работы сборки
     /// </summary>
@@ -15,5 +17,6 @@ namespace TIExCAD
         /// Название приложения.
         /// </value>
         internal const string ConstNameCustomApp = "TIExCAD";
+        //internal const string ConstPathCustomApp = Assembly.GetExecutingAssembly().Location;
     }
 }

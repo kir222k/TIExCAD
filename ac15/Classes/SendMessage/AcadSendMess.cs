@@ -75,9 +75,9 @@ namespace TIExCAD
     /// </summary>
     internal class AcadSendMessDebug : AcadSendMess // наследуем,  чтобы сразу использовать ссылку на активный чертеж doc
     {
-        // ПОЛЯ
 
         // СВОЙСТВА
+
         /// <summary>
         /// Имя метода, откуда посылается сообщение
         /// </summary>
@@ -86,11 +86,8 @@ namespace TIExCAD
         /// Имя класса, откуда посылается сообщение
         /// </summary>
         public string NameSourceClass { get; set; }
-        //public string EasyMessage { get; set }
 
         // КОНСТРУКТОРЫ
-
-        //public AcadSendMessDebug (string mess) { EasyMessage=mess}
 
         /// <summary>
         /// При создании экз класса имя класса=Неизвестно, имя метода=Неизвестно
@@ -106,6 +103,7 @@ namespace TIExCAD
         public AcadSendMessDebug(string mn, string cn) {  NameSourceMetod = mn; NameSourceClass = cn; }
 
         // МЕТОДЫ
+
         /// <summary>
         /// Отправка  сообщения в ком.строку AutoCAD. Метод переопределен, добавлена информация, откуда шлется сообщение: Класс, Метод
         /// </summary>

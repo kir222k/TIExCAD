@@ -23,7 +23,7 @@ namespace TIExCAD
         /// Плучение ключа реестра AutoCAD.
         /// </summary>
         /// <returns>Ключ реестра AutoCAD тип Autodesk.AutoCAD.Runtime.RegistryKey.</returns>
-        internal AcRt.RegistryKey GetAcadRegKey()
+        internal virtual AcRt.RegistryKey GetAcadRegKey()
         {
             string sProdKey = HostApplicationServices.Current.UserRegistryProductRootKey;
             AcRt.RegistryKey regAcadProdKey = AcRt.Registry.CurrentUser.OpenSubKey(sProdKey);
@@ -37,7 +37,7 @@ namespace TIExCAD
         /// </summary>
         /// <param name="nameCustomApp">Имя приложения для регистрации, может быть любое.</param>
         /// <param name="pathAssembly">Путь к dll приложения. Нужно указывать путь именно к той dll, кот. должна быть в автозапуске AutoCAD.</param>
-        public virtual bool RegirterCustomApp(string nameCustomApp, string pathAssembly)
+        public virtual bool GetRegirterCustomApp(string nameCustomApp, string pathAssembly)
         {
             // Get the AutoCAD Applications key
             AcRt.RegistryKey regAcadAppKey = GetAcadRegKey();
@@ -71,7 +71,7 @@ namespace TIExCAD
         /// Отменяет регистрацию сборки (dll файл) приложения в реестре для отмены ее автозапуска при старте AutoCAD.
         /// </summary>
         /// <param name="nameCustomApp">Имя приложения, кот было ранее зарегистрированно для автозапуска.</param>
-        public bool UnRegisterCustomApp(string nameCustomApp)
+        public virtual  bool GetUnRegisterCustomApp(string nameCustomApp)
         {
 
             AcRt.RegistryKey regAcadAppKey = GetAcadRegKey();
@@ -94,7 +94,7 @@ namespace TIExCAD
         /// Формирует и выдает в виде списка List имена зарег. приложений
         /// </summary>
         /// <returns>Список строк-названий зарег. приложений в автозагрузке AutoCAD.</returns>
-        public List<string> GetRegisteredApps()
+        public virtual List<string> GetRegisteredApps()
         {
             AcRt.RegistryKey regAcadAppKey = GetAcadRegKey();
             string[] keys = regAcadAppKey.GetSubKeyNames();

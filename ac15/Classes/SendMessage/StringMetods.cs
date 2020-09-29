@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 
 namespace TIExCAD
 {
-
     /// <summary>
     /// Статический класс для работы со строками: 
-    /// поиск наиболее длинной строки из списка, получение длины наиболее длинной строки из списка, получить многострочный текст с обрамлением *
+    /// поиск наиболее длинной строки из списка, 
+    /// получение длины наиболее длинной строки из списка, 
+    /// получить многострочный текст с обрамлением *
     /// </summary>
     internal static class StringMetods
     {
@@ -55,6 +56,8 @@ namespace TIExCAD
         /// <para>*******************************</para>
         /// </remarks>
         /// <returns> Строка с обрамлением *</returns>
+        /// <param name="listString">Список строк</param>
+        /// <param name="printHeader">True =  выводить заголовок "Debug"</param>
         internal static string GetStringFromListStars (List<string> listString, bool printHeader)
         {
             // Найдем строку с максимальной длиной, получим ее длину

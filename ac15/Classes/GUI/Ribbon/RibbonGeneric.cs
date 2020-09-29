@@ -39,7 +39,9 @@ namespace TIExCAD
          * Используем его для того, чтобы "поймать" момент построения ленты,
          * учитывая, что наш плагин уже инициализировался
          */
-        void ComponentManager_ItemInitialized(object sender, Autodesk.Windows.RibbonItemEventArgs e)
+        
+        /* перенесено в Init.cs
+        public  void ComponentManager_ItemInitialized(object sender, Autodesk.Windows.RibbonItemEventArgs e)
         {
             // Проверяем, что лента загружена
             if (Autodesk.Windows.ComponentManager.Ribbon != null)
@@ -51,7 +53,7 @@ namespace TIExCAD
             }
         }
         // Построение вкладки
-        void BuildRibbonTab()
+        public void BuildRibbonTab()
         {
             // Если лента еще не загружена
             if (!isLoaded())
@@ -62,8 +64,10 @@ namespace TIExCAD
                 acadApp.SystemVariableChanged += new SystemVariableChangedEventHandler(acadApp_SystemVariableChanged);
             }
         }
+        */
+
         // Проверка "загруженности" ленты
-        bool isLoaded()
+        public  bool isLoaded()
         {
             bool _loaded = false;
             RibbonControl ribCntrl = Autodesk.Windows.ComponentManager.Ribbon;
@@ -78,11 +82,14 @@ namespace TIExCAD
             return _loaded;
         }
        
+        
         /* Удаление своей вкладки с ленты
          * В данном примере не используем
          */
+
+        /*
         [CommandMethod("RibDel")]
-        public void RemoveRibbonTab()
+        public  void RemoveRibbonTab()
         {
             try
             {
@@ -107,27 +114,39 @@ namespace TIExCAD
                   DocumentManager.MdiActiveDocument.Editor.WriteMessage(ex.Message);
             }
         }
-       
+
         /* Обработка события изменения системной переменной
          * Будем следить за системной переменной WSCURRENT (текущее рабочее пространство),
          * чтобы наша вкладка не "терялась" при изменение рабочего пространства
          */
-        void acadApp_SystemVariableChanged(object sender, SystemVariableChangedEventArgs e)
+
+        /*
+        public  void acadApp_SystemVariableChanged(object sender, SystemVariableChangedEventArgs e)
         {
             if (e.Name.Equals("WSCURRENT")) BuildRibbonTab();
         }
-
+        */
 
         // Создание нашей вкладки
         [CommandMethod ("RibCreate")]
-        public void CreateRibbonTab()
+        public  void CreateRibbonTab()
         {
             try
             {
+
+                AcadSendMess AcSM = new AcadSendMess();
+                AcSM.SendStringDebugStars(new List<string> { "CreateRibbonTab", "Заход  try"});
+
                 // Получаем доступ к ленте
                 RibbonControl ribCntrl = Autodesk.Windows.ComponentManager.Ribbon;
+                AcSM.SendStringDebugStars(new List<string> { "CreateRibbonTab", "Получаем доступ к ленте" });
+
+
                 // добавляем свою вкладку
                 RibbonTab ribTab = new RibbonTab();
+                AcSM.SendStringDebugStars(new List<string> { "CreateRibbonTab", "добавляем свою вкладку" });
+
+
                 ribTab.Title = "RibbonExample"; // Заголовок вкладки
                 ribTab.Id = "RibbonExample_ID"; // Идентификатор вкладки
                 ribCntrl.Tabs.Add(ribTab); // Добавляем вкладку в ленту
@@ -144,9 +163,9 @@ namespace TIExCAD
                   DocumentManager.MdiActiveDocument.Editor.WriteMessage(ex.Message);
             }
         }
-       
+
         // Строим новую панель в нашей вкладке
-        void addExampleContent(RibbonTab ribTab)
+        public  void addExampleContent(RibbonTab ribTab)
         {
             try
             {
@@ -207,10 +226,10 @@ namespace TIExCAD
                 /* Т.к. используем размер кнопки Large, то добавляем
                  * большое изображение с помощью специальной функции (см.ниже)
                  */
-                //ribBtn.LargeImage = LoadImage("icon_32");
+                ribBtn.LargeImage = LoadImage("icon_32");
 
                 // Показывать картинку
-                ribBtn.ShowImage = false;
+                ribBtn.ShowImage = true;
 
 
                 // Показывать текст
@@ -236,8 +255,8 @@ namespace TIExCAD
                 ribBtn.Orientation = System.Windows.Controls.Orientation.Horizontal;
                 ribBtn.Size = RibbonItemSize.Large;
 
-                //ribBtn.LargeImage = LoadImage("icon_32");
-                ribBtn.ShowImage = false;
+                ribBtn.LargeImage = LoadImage("icon_32");
+                ribBtn.ShowImage = true;
 
                 ribBtn.ShowText = true;
                 tt.Content = "Я кнопочка №2. Нажми меня и я нарисую полилинию";
@@ -289,7 +308,7 @@ namespace TIExCAD
         /* Собственный обраотчик команд
          * Это один из вариантов вызова команды по нажатию кнопки
          */
-        class RibbonCommandHandler : System.Windows.Input.ICommand
+        public class RibbonCommandHandler : System.Windows.Input.ICommand
         {
             public bool CanExecute(object parameter)
             {
