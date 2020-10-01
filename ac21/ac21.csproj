@@ -79,6 +79,9 @@
     <Compile Include="..\ac15\Classes\GUI\Ribbon\RibbonGeneric.cs">
       <Link>Classes\GUI\Ribbon\RibbonGeneric.cs</Link>
     </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs">
+      <Link>Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs</Link>
+    </Compile>
     <Compile Include="..\ac15\Classes\init.cs">
       <Link>Classes\init.cs</Link>
     </Compile>
@@ -123,14 +126,6 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="..\ac15\icon_16.png">
-      <Link>icon_16.png</Link>
-    </Content>
-    <Content Include="..\ac15\icon_32.png">
-      <Link>icon_32.png</Link>
-    </Content>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="..\ac15\Classes\_Forms\AdminAcadCmd.resx">

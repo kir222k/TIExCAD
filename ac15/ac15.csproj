@@ -105,12 +105,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
+      <SubType>Designer</SubType>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-  </ItemGroup>
-  <ItemGroup>
-    <Content Include="icon_16.png" />
-    <Content Include="icon_32.png" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Resources\" />

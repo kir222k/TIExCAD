@@ -42,35 +42,30 @@ namespace TIExCAD
             TIExCAD.RibbonCreateEasy RibCrEsy = new RibbonCreateEasy();
 
 
-            #region КНОПКА 1, с картинками
+            #region КНОПКА 1
             // Класс для создания кнопки.
             RibbonButton RbB1 = new RibbonButton();
 
             // Метод, создающий кнопку.
-            //RbB1 = RibCrEsy.GetRibButton("ОДИН ОДИНОДИН ОДИН ОДИН ", true, true,
-            //    new BitmapImage(new Uri("u:/dev/TIExCAD/distr/lib/ac15/icon_32.png")), // путь к большой картинке
-            //    new BitmapImage(new Uri("u:/dev/TIExCAD/distr/lib/ac15/icon_16.png")),  // путь к мал. картинке
-            //    RibbonItemSize.Large, // большая кнопка
-            //    Orientation.Vertical
-            //    );
             RbB1 = RibCrEsy.GetRibButton("Новая кнопка", true, RibbonItemSize.Large, Orientation.Vertical, true);
 
             // Класс для привязки метода на кнопку 1
-            // RibBtnHdlr12 RibBH1 = new RibBtnHdlr12();
             RibBtnHdlrDel RibBH1 = new RibBtnHdlrDel(RibBtnMetod);
             // Привяжем.
             RbB1.CommandHandler = RibBH1;
             #endregion
 
-            #region КНОПКА 2, только текст
-            //// Класс для создания кнопки.
-            //RibbonButton RbB2 = new RibbonButton();
-            //// Метод, создающий кнопку.
-            //RbB2 = RibCrEsy.GetRibButton("ДВА", RibbonItemSize.Large, Orientation.Horizontal);
-            //// Класс для привязки метода на кнопку 2.
-            //RibBtnHdlr22 RibBH2 = new RibBtnHdlr22();
-            //// Привяжем.
-            //RbB2.CommandHandler = RibBH2;
+            #region КНОПКА 2
+            // Класс для создания кнопки.
+            RibbonButton RbB2 = new RibbonButton();
+            RibCrEsy.PathImgFolder = "u:/dev/TIExCAD/distr/png/";
+            // Метод, создающий кнопку.
+            RbB2 = RibCrEsy.GetRibButton("Вторая кнопка", true, RibbonItemSize.Large, Orientation.Vertical,
+                true, "image_02_32.png", "image_02_16.png");
+            // Класс для привязки метода на кнопку 2.
+            RibBtnHdlrDel RibBH2 = new RibBtnHdlrDel(RibBtnMetod);
+            // Привяжем.
+            RbB2.CommandHandler = RibBH2;
             #endregion
 
 
@@ -78,7 +73,7 @@ namespace TIExCAD
             RibbonPanel RbPan = RibCrEsy.GetRibPanel("Панель для кнопок");
             // Вставим кнопки в панель.
             RbPan.Source.Items.Add(RbB1);
-            //RbPan.Source.Items.Add(RbB2);  RbPan.Source.Items.Add(RbB1); RbPan.Source.Items.Add(RbB2);
+            RbPan.Source.Items.Add(RbB2);  //RbPan.Source.Items.Add(RbB1); RbPan.Source.Items.Add(RbB2);
             #endregion
 
             #region ВКЛАДКА НА ЛЕНТЕ
@@ -92,22 +87,11 @@ namespace TIExCAD
 
             // сделаем кнопки на всю панель
             RbB1.Height = RbPan.RibbonControl.ActualHeight;
-            //RbB2.Height = RbPan.RibbonControl.ActualHeight;
+            RbB2.Height = RbPan.RibbonControl.ActualHeight;
             RbB1.MinWidth = 50;
-            //RbB2.MinWidth = 50; //RbPan.RibbonControl.ActualWidth / 2;
+            RbB2.MinWidth = 50; 
 
-            //RbB1.ResizeStyle = RibbonItemResizeStyles.ChangeSize;
             RibAcControl.UpdateLayout();
-
-
-            //AcadSendMess AcSM = new AcadSendMess();
-            //AcSM.SendStringDebugStars(new List<string> {
-            //    "Ribbon Panel ActualWidth = "   ,
-            //    $"{RbPan.RibbonControl.ActualWidth}",
-            //    "Ribbon Panel Width = ",
-            //    $"{RbPan.RibbonControl.Width}"
-            //});
-
         }
     }
 
@@ -117,36 +101,8 @@ namespace TIExCAD
         {
             AdminAcadCmd AdmWindow = new AdminAcadCmd();
             AdmWindow.ShowDialog();
-
         }
     }
-    //public class RibBtnHdlr12 : TIExCAD.RibButtonHandler
-    //{
-    //    public override void Execute(object parameter)
-    //    {
-    //        Document doc = acadApp.DocumentManager.MdiActiveDocument;
-    //        if (parameter is RibbonButton)
-    //        {
-    //            RibbonButton button = parameter as RibbonButton;
-    //            doc.Editor.WriteMessage(
-    //              "\nМетод на кнопку 1: " + button.Text + " переопределен\n");
-    //        }
-    //    }
-    //}
-    //public class RibBtnHdlr22 : TIExCAD.RibButtonHandler
-    //{
-    //    public override void Execute(object parameter)
-    //    {
-    //        Document doc = acadApp.DocumentManager.MdiActiveDocument;
-    //        if (parameter is RibbonButton)
-    //        {
-    //            RibbonButton button = parameter as RibbonButton;
-    //            doc.Editor.WriteMessage(
-    //              "\nМетод на кнопку 2: " + button.Text + " переопределен\n");
-    //        }
-    //    }
-    //}
-
     public class RibBtnHdlrDel : TIExCAD.RibButtonHandler
     {
         private DelegateRibBtnEvents DelegateRibBtnEv;

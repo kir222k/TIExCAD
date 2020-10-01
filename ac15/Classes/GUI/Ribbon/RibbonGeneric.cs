@@ -341,15 +341,10 @@ namespace TIExCAD
     /// </summary>
     public class RibbonCreateEasy
     {
-        // ПОЛЯ
 
         // СВОЙСТВА
 
-
         private string pathImgFolder;
-        /// <value>
-        /// Путь к папке img, где лежат png файлы картинок на кнопки, размеры - 32, 16 для кажд. кнопки.
-        /// </value>
         public string PathImgFolder
         {
             set
@@ -365,8 +360,6 @@ namespace TIExCAD
             }
         }
 
-
-        // КОНСТРУКТОРЫ
 
         // МЕТОДЫ
 
@@ -436,103 +429,88 @@ namespace TIExCAD
         /// <param name="ribButtonLargeImage"></param>
         /// <param name="ribButtonImage"></param>
         /// <returns>Ссылка на объект кнопки с картинками</returns>
-        public RibbonButton GetRibButton(string ribButtonText, bool showText, 
+        public RibbonButton GetRibButton(string ribButtonText, bool showText,
             RibbonItemSize ribButtonSize, Orientation ribButtonOrientation,
             bool showImage,
             string ribButtonLargeImageName = "image_32.png",
             string ribButtonImageName = "image_16.png") // аргумент не обязательный
+
         {
-                // Создадим объект кнопки.
-                AdW.RibbonButton ribButton = new RibbonButton();
+            //// Для сообщений
+            //AcadSendMess AcSM = new AcadSendMess();
+
+            // Создадим объект кнопки.
+            AdW.RibbonButton ribButton = new RibbonButton();
 
             try
             {
-                #region
-                /*
-                create the buttons listed in the split button
-
-                Autodesk.Windows.RibbonButton button1 = new RibbonButton();
-
-                button1.Text = "Button1";
-
-                button1.ShowText = true;
-
-                button1.ShowImage = true;
-
-                button1.LargeImage = getBitmap("a_large.png");
-
-                button1.Image = getBitmap("a_small.png");
-
-                button1.CommandHandler = new RibButtonHandler();
-                */
-                #endregion
-
-                // Проверка на существование путей к файлам картинок.
+                // Полный путь:
                 string pathDirIm;
-                // Проверим путь к папке img.
+
+
+                // Проверим путь к папке img. 
                 if (pathImgFolder == null || pathImgFolder == String.Empty) // если свойство PathImgFolder не задано.
                 {
-                    // присвоим путь по умолчанию.
-                    // путь к папке, откуда запущена Dll.
+                    // Если никаких путей нет, то будем искать в папке <InstallDir>/img/ 
+                    // Там должны быть файлы image_16.png, image_32.png. Их мы и подключим.
+
+                    // Зададим путь к папке, откуда запущена Dll.
                     DirectoryInfo dirDLL = new DirectoryInfo(Assembly.GetExecutingAssembly().Location);
-                    // Проверим, что в <InstallDir> есть папка img.
-                    pathDirIm = $"{dirDLL.Parent.Parent.Parent.ToString()}/img/";
+
+                    // Зададим полный путь к папке img:  <InstallDir>/img/ 
+                    pathDirIm = $"{dirDLL.Parent.Parent.Parent.FullName}/img/";
+                    //AcSM.SendStringDebugStars(new List<string> { "Путь к папке картинок", $"{pathDirIm}" });
                 }
-                else // если свойство PathImgFolder задано, то
+                else // если свойство PathImgFolder не нулевое, т.е. мы прописали сами путь к папке картинок, то
                 {
-                    pathDirIm = this.pathImgFolder; // присвоим тот путь, кот. задали сами
+                    pathDirIm = pathImgFolder; // присвоим тот путь, кот. задали сами
                 }
 
+
                 // Теперь займемся файлами картинок.
-                if (Directory.Exists(pathDirIm)) // еще раз проверяем сущ пути к папке картинок
+                if (Directory.Exists(pathDirIm)) // Проверим, что в <InstallDir> есть папка img.
                 {
-                    // получим объект для получения полного пути.
-                    DirectoryInfo dirIMG = new DirectoryInfo(pathDirIm); 
-                    // присвоим путь к папке <InstallDir>/img.
-                    pathImgFolder = dirIMG.FullName;
                     // получим путь к файлу большой картинки.
-                    string pathImg32 = pathImgFolder + ribButtonLargeImageName;
+                    string pathImg32 = pathDirIm + ribButtonLargeImageName;
                     // получим путь к файлу малой картинки.
-                    string pathImg16 = pathImgFolder + ribButtonImageName;
+                    string pathImg16 = pathDirIm + ribButtonImageName;
+
+                    //AcSM.SendStringDebugStars(new List<string> { "Полный путь к папке картинок",
+                    //    $"{pathDirIm}",
+                    //    "Путь к большой картинке",
+                    //    $"{pathImg32}",
+                    //    "Путь к малой картинке",
+                    //    $"{pathImg16}"
+                    //});
+
                     // Проверим существование картинок в папке IMG.
                     if (File.Exists(pathImg32) && File.Exists(pathImg16))
                     {
                         // создадим объекты BitmapImage
                         BitmapImage bitmapImage32 = new BitmapImage(new Uri(pathImg32)); // путь к большой картинке
                         BitmapImage bitmapImage16 = new BitmapImage(new Uri(pathImg16));
-                        // создадим картинки
-                        // Uri uri1 = new Uri("C:/test/path/file.txt") // Implicit file path.
-                        // Если файл рисунка лежит рядом с dll: Assembly.GetExecutingAssembly().Location.
-                        // или
-                        // ribButtonBig.LargeImage = LoadImage(My.Resources.question) - но нужен еще метод https://adndevblog.typepad.com/autocad/2012/05/arrange-ribbon-buttons-into-columns.html
-
-                        // Метод, создающий кнопку.
-                        // RbB1 = RibCrEsy.GetRibButton("ОДИН ОДИНОДИН ОДИН ОДИН ", true, true,
-                        // new BitmapImage(new Uri("u:/dev/TIExCAD/distr/lib/ac15/icon_32.png")), // путь к большой картинке
-                        // new BitmapImage(new Uri("u:/dev/TIExCAD/distr/lib/ac15/icon_16.png")),  // путь к мал. картинке
-
+             
                         ribButton.Image = bitmapImage16;
                         ribButton.LargeImage = bitmapImage32;
                         ribButton.ShowImage = showImage;
-
                     }
                     else // Если картинок для кнопки так и не найдено, отключим их прорисовку
                     {
-                        //ribButton.Image = bitmapImage16;
-                        //ribButton.LargeImage = bitmapImage32;
                         ribButton.ShowImage = false;
+                        //AcSM.SendStringDebugStars("Картинок для кнопок не найдено");
                     }
-
                 }
                 else // если какой-то сбой и пути к картинкам нет
                 {
                     ribButton.ShowImage = false;
+                    //AcSM.SendStringDebugStars("Что-то не так с картинками!");
                 }
+
 
                 // С картинками закончено, настроим др. свойства кнопки.
                 ribButton.Text = ribButtonText;
                 ribButton.ShowText = showText;
-                ribButton.Size= ribButtonSize;
+                ribButton.Size = ribButtonSize;
                 ribButton.Orientation = ribButtonOrientation;
 
                 return ribButton;
@@ -541,52 +519,15 @@ namespace TIExCAD
             #region CATCH
             catch (System.Exception)
             {
-                
+
                 //throw;
-                AcadSendMess AcSM = new AcadSendMess();
-                AcSM.SendStringDebugStars(new List<string>
-                {$"Создание кнопки {ribButtonText} прервано", "Класс:", $"{this}", "Метод:", "GetRibButton"});
+                //AcSM.SendStringDebugStars(new List<string>
+                //{$"Создание кнопки {ribButtonText} прервано", "Класс:", $"{this}", "Метод:", "GetRibButton"});
 
                 return null;
             }
             #endregion
         }
-    
-        
-        ///// <summary>
-        ///// Создание кнопки без картинки
-        ///// </summary>
-        ///// <param name="ribButtonText">Текст кнопки</param>
-        ///// <returns>Ссылка на объект кнопки</returns>
-        //public RibbonButton GetRibButton(string ribButtonText, RibbonItemSize ribButtonSize, Orientation ribButtonOrientation)
-        //{
-        //    try
-        //    {
-        //        AdW.RibbonButton ribButton = new RibbonButton()
-        //        {
-        //            //Text
-        //            Text = ribButtonText,
-        //            //ShowText
-        //            ShowText = true,
-        //            //ShowImage
-        //            ShowImage = false,
-        //            // 
-        //            Size = ribButtonSize,
-        //            // 
-        //            Orientation = ribButtonOrientation,
-        //            //
-        //            //ResizeStyle = RibbonItemResizeStyles.ResizeWidth
-        //        };
-
-        //        return ribButton;
-        //    }
-
-        //    catch (System.Exception)
-        //    {
-        //        return null;
-        //        throw;
-        //    }
-        //}
 
     }
 
