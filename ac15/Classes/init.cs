@@ -1,5 +1,11 @@
 //  Файл инициализации библиотеки
 
+// ПОЛЯ
+// СВОЙЙСТВА
+// КОНСТРУКТОРЫ
+// МЕТОДЫ
+
+
 using System;
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
@@ -52,6 +58,8 @@ namespace TIExCAD
 
         }
 
+
+        /*
         public void ComponentManager_ItemInitialized(object sender, Autodesk.Windows.RibbonItemEventArgs e)
         {
             // Проверяем, что лента загружена
@@ -79,7 +87,7 @@ namespace TIExCAD
                 //    new SystemVariableChangedEventHandler(acadApp_SystemVariableChanged);
             }
         }
-
+        */
 
     }
 

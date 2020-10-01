@@ -2,10 +2,16 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Media.Imaging;
+using System.Windows.Controls;
+using System.IO;
+using System.Reflection;
+
 // Acad
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.Windows;
+using AdW = Autodesk.Windows;
 using acadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
 [assembly: CommandClass(typeof(TIExCAD.ExampleRibbon))]
@@ -13,7 +19,7 @@ using acadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
 namespace TIExCAD
 {
-    public class ExampleRibbon 
+    public class ExampleRibbon
     {
         //// Инициализация нашего плагина
         //public void Initialize()
@@ -39,7 +45,7 @@ namespace TIExCAD
          * Используем его для того, чтобы "поймать" момент построения ленты,
          * учитывая, что наш плагин уже инициализировался
          */
-        
+
         /* перенесено в Init.cs
         public  void ComponentManager_ItemInitialized(object sender, Autodesk.Windows.RibbonItemEventArgs e)
         {
@@ -67,7 +73,7 @@ namespace TIExCAD
         */
 
         // Проверка "загруженности" ленты
-        public  bool isLoaded()
+        public bool isLoaded()
         {
             bool _loaded = false;
             RibbonControl ribCntrl = Autodesk.Windows.ComponentManager.Ribbon;
@@ -81,8 +87,8 @@ namespace TIExCAD
             }
             return _loaded;
         }
-       
-        
+
+
         /* Удаление своей вкладки с ленты
          * В данном примере не используем
          */
@@ -128,14 +134,14 @@ namespace TIExCAD
         */
 
         // Создание нашей вкладки
-        [CommandMethod ("RibCreate")]
-        public  void CreateRibbonTab()
+        [CommandMethod("RibCreate")]
+        public void CreateRibbonTab()
         {
             try
             {
 
                 AcadSendMess AcSM = new AcadSendMess();
-                AcSM.SendStringDebugStars(new List<string> { "CreateRibbonTab", "Заход  try"});
+                AcSM.SendStringDebugStars(new List<string> { "CreateRibbonTab", "Заход  try" });
 
                 // Получаем доступ к ленте
                 RibbonControl ribCntrl = Autodesk.Windows.ComponentManager.Ribbon;
@@ -165,7 +171,7 @@ namespace TIExCAD
         }
 
         // Строим новую панель в нашей вкладке
-        public  void addExampleContent(RibbonTab ribTab)
+        public void addExampleContent(RibbonTab ribTab)
         {
             try
             {
@@ -329,4 +335,295 @@ namespace TIExCAD
             }
         }
     }
+
+    /// <summary>
+    /// Создание вкладки на ленте. Основной метод возращает настроенную вклвдку, кот. затем можно встроить в ленту Autodesk.Windows.ComponentManager.Ribbon.Tabs.Add  
+    /// </summary>
+    public class RibbonCreateEasy
+    {
+        // ПОЛЯ
+
+        // СВОЙСТВА
+
+
+        private string pathImgFolder;
+        /// <value>
+        /// Путь к папке img, где лежат png файлы картинок на кнопки, размеры - 32, 16 для кажд. кнопки.
+        /// </value>
+        public string PathImgFolder
+        {
+            set
+            {
+                if (Directory.Exists(value))
+                {
+                    pathImgFolder = value;
+                }
+                else
+                {
+                    pathImgFolder = null;
+                }
+            }
+        }
+
+
+        // КОНСТРУКТОРЫ
+
+        // МЕТОДЫ
+
+        /// <summary>
+        /// Создание вкладки ленты, пустой, нужно добавить панель(панели), в напели добавить кнопки.
+        /// </summary>
+        /// <param name="ribTitle">Заголовок вкладки ленты</param>
+        /// <param name="ribID">ID вкладки ленты</param>
+        /// <returns>Ссылка на объект "Вкладка ленты"</returns>
+        public RibbonTab GetRibTab(string ribTitle, string ribID)
+        {
+            try
+            {
+                // добавляем свою вкладку
+                RibbonTab ribTab = new RibbonTab()
+                {
+                    Title = ribTitle,
+                    Id = ribID
+                };
+
+                return ribTab;
+            }
+            catch (System.Exception)
+            {
+                return null;
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Создание Панели вкладки ленты, пустой, нужно еще добавить кнопки. Саму панель нужно вставить во Вкладку ribTab.Panels.Add(ribPanel).
+        /// </summary>
+        /// <param name="ribPanelTitle"></param>
+        /// <returns>Ссылка на объект "Панель кладки ленты"</returns>
+        public RibbonPanel GetRibPanel(string ribPanelTitle)
+        {
+            try
+            {
+                // создаем panel source
+                RibbonPanelSource ribSourcePanel = new RibbonPanelSource()
+                {
+                    Title = ribPanelTitle
+                };
+
+                // теперь саму панель
+                RibbonPanel ribPanel = new RibbonPanel()
+                {
+                    Source = ribSourcePanel
+                };
+
+                return ribPanel;
+            }
+
+            catch (System.Exception)
+            {
+                return null;
+                throw;
+            }
+        }
+
+        /// <summary>
+        /// Создание кнопки с картинками
+        /// </summary>
+        /// <param name="ribButtonText"></param>
+        /// <param name="showText"></param>
+        /// <param name="showImage"></param>
+        /// <param name="ribButtonLargeImage"></param>
+        /// <param name="ribButtonImage"></param>
+        /// <returns>Ссылка на объект кнопки с картинками</returns>
+        public RibbonButton GetRibButton(string ribButtonText, bool showText, 
+            RibbonItemSize ribButtonSize, Orientation ribButtonOrientation,
+            bool showImage,
+            string ribButtonLargeImageName = "image_32.png",
+            string ribButtonImageName = "image_16.png") // аргумент не обязательный
+        {
+                // Создадим объект кнопки.
+                AdW.RibbonButton ribButton = new RibbonButton();
+
+            try
+            {
+                #region
+                /*
+                create the buttons listed in the split button
+
+                Autodesk.Windows.RibbonButton button1 = new RibbonButton();
+
+                button1.Text = "Button1";
+
+                button1.ShowText = true;
+
+                button1.ShowImage = true;
+
+                button1.LargeImage = getBitmap("a_large.png");
+
+                button1.Image = getBitmap("a_small.png");
+
+                button1.CommandHandler = new RibButtonHandler();
+                */
+                #endregion
+
+                // Проверка на существование путей к файлам картинок.
+                string pathDirIm;
+                // Проверим путь к папке img.
+                if (pathImgFolder == null || pathImgFolder == String.Empty) // если свойство PathImgFolder не задано.
+                {
+                    // присвоим путь по умолчанию.
+                    // путь к папке, откуда запущена Dll.
+                    DirectoryInfo dirDLL = new DirectoryInfo(Assembly.GetExecutingAssembly().Location);
+                    // Проверим, что в <InstallDir> есть папка img.
+                    pathDirIm = $"{dirDLL.Parent.Parent.Parent.ToString()}/img/";
+                }
+                else // если свойство PathImgFolder задано, то
+                {
+                    pathDirIm = this.pathImgFolder; // присвоим тот путь, кот. задали сами
+                }
+
+                // Теперь займемся файлами картинок.
+                if (Directory.Exists(pathDirIm)) // еще раз проверяем сущ пути к папке картинок
+                {
+                    // получим объект для получения полного пути.
+                    DirectoryInfo dirIMG = new DirectoryInfo(pathDirIm); 
+                    // присвоим путь к папке <InstallDir>/img.
+                    pathImgFolder = dirIMG.FullName;
+                    // получим путь к файлу большой картинки.
+                    string pathImg32 = pathImgFolder + ribButtonLargeImageName;
+                    // получим путь к файлу малой картинки.
+                    string pathImg16 = pathImgFolder + ribButtonImageName;
+                    // Проверим существование картинок в папке IMG.
+                    if (File.Exists(pathImg32) && File.Exists(pathImg16))
+                    {
+                        // создадим объекты BitmapImage
+                        BitmapImage bitmapImage32 = new BitmapImage(new Uri(pathImg32)); // путь к большой картинке
+                        BitmapImage bitmapImage16 = new BitmapImage(new Uri(pathImg16));
+                        // создадим картинки
+                        // Uri uri1 = new Uri("C:/test/path/file.txt") // Implicit file path.
+                        // Если файл рисунка лежит рядом с dll: Assembly.GetExecutingAssembly().Location.
+                        // или
+                        // ribButtonBig.LargeImage = LoadImage(My.Resources.question) - но нужен еще метод https://adndevblog.typepad.com/autocad/2012/05/arrange-ribbon-buttons-into-columns.html
+
+                        // Метод, создающий кнопку.
+                        // RbB1 = RibCrEsy.GetRibButton("ОДИН ОДИНОДИН ОДИН ОДИН ", true, true,
+                        // new BitmapImage(new Uri("u:/dev/TIExCAD/distr/lib/ac15/icon_32.png")), // путь к большой картинке
+                        // new BitmapImage(new Uri("u:/dev/TIExCAD/distr/lib/ac15/icon_16.png")),  // путь к мал. картинке
+
+                        ribButton.Image = bitmapImage16;
+                        ribButton.LargeImage = bitmapImage32;
+                        ribButton.ShowImage = showImage;
+
+                    }
+                    else // Если картинок для кнопки так и не найдено, отключим их прорисовку
+                    {
+                        //ribButton.Image = bitmapImage16;
+                        //ribButton.LargeImage = bitmapImage32;
+                        ribButton.ShowImage = false;
+                    }
+
+                }
+                else // если какой-то сбой и пути к картинкам нет
+                {
+                    ribButton.ShowImage = false;
+                }
+
+                // С картинками закончено, настроим др. свойства кнопки.
+                ribButton.Text = ribButtonText;
+                ribButton.ShowText = showText;
+                ribButton.Size= ribButtonSize;
+                ribButton.Orientation = ribButtonOrientation;
+
+                return ribButton;
+            }
+
+            #region CATCH
+            catch (System.Exception)
+            {
+                
+                //throw;
+                AcadSendMess AcSM = new AcadSendMess();
+                AcSM.SendStringDebugStars(new List<string>
+                {$"Создание кнопки {ribButtonText} прервано", "Класс:", $"{this}", "Метод:", "GetRibButton"});
+
+                return null;
+            }
+            #endregion
+        }
+    
+        
+        ///// <summary>
+        ///// Создание кнопки без картинки
+        ///// </summary>
+        ///// <param name="ribButtonText">Текст кнопки</param>
+        ///// <returns>Ссылка на объект кнопки</returns>
+        //public RibbonButton GetRibButton(string ribButtonText, RibbonItemSize ribButtonSize, Orientation ribButtonOrientation)
+        //{
+        //    try
+        //    {
+        //        AdW.RibbonButton ribButton = new RibbonButton()
+        //        {
+        //            //Text
+        //            Text = ribButtonText,
+        //            //ShowText
+        //            ShowText = true,
+        //            //ShowImage
+        //            ShowImage = false,
+        //            // 
+        //            Size = ribButtonSize,
+        //            // 
+        //            Orientation = ribButtonOrientation,
+        //            //
+        //            //ResizeStyle = RibbonItemResizeStyles.ResizeWidth
+        //        };
+
+        //        return ribButton;
+        //    }
+
+        //    catch (System.Exception)
+        //    {
+        //        return null;
+        //        throw;
+        //    }
+        //}
+
+    }
+
+    /// <summary>
+    /// Содержит переопределяемый метод, кот. выполняется при нажатии кнопки на ленте.
+    /// Экз. данного класса (или его наследника) присваивается свойству CommandHandler кнопки ленты.
+    /// Для использования в основном коде, чтобы использовать свои методы как обработчики, 
+    /// нужно создать класс-наследник от RibButtonHandler, переопределить метод Execute
+    /// </summary>
+    public class RibButtonHandler : System.Windows.Input.ICommand
+    {
+        /// <summary>
+        /// Определен в интерфейсе  System.Windows.Input.ICommand, не используется.
+        /// </summary>
+        /// <param name="parameter"></param>
+        /// <returns></returns>
+        public bool CanExecute(object parameter)
+        {
+            return true;
+        }
+        /// <summary>
+        /// Событие на нажатие кнопки
+        /// </summary>
+        public event EventHandler CanExecuteChanged;
+
+        public virtual void Execute(object parameter)
+        {
+            Document doc = acadApp.DocumentManager.MdiActiveDocument;
+
+            if (parameter is RibbonButton)
+            {
+                RibbonButton button = parameter as RibbonButton;
+                doc.Editor.WriteMessage(
+                  "\nRibbonButton Executed: " + button.Text + "\n");
+            }
+        }
+    }
+
+
 }

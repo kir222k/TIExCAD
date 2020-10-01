@@ -73,6 +73,7 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs" />
     <Compile Include="Classes\_Forms\AdminAcadCmd.cs">
       <SubType>Form</SubType>
     </Compile>
