@@ -38,13 +38,11 @@ namespace TIExCAD
         /// </summary>
         void IExtensionApplication.Initialize()
         {
-            InitThis InTi = new InitThis();
-
             // Вывод данных о приложении в ком строку AutoCAD
-            InTi.InitOne();
+            InitThis.InitOne();
 
             // Загрузка интерфейса
-            //InTi.LoadUserInterface();
+            InitThis.LoadUserInterface();
 
         }
 
@@ -92,9 +90,9 @@ namespace TIExCAD
     }
 
 
-    internal class InitThis
+    internal static class InitThis
     {
-        internal void InitOne()
+        internal static void InitOne()
         {
             // Сообщение в ком строку AutoCAD
             AcadSendMess AcSM = new AcadSendMess();
@@ -124,18 +122,18 @@ namespace TIExCAD
             // Иначе ничего не делаем, т.к. наше приложение уже есть в автозагрузке AutoCAD.
         }
 
-        internal void LoadUserInterface()
+        internal static  void LoadUserInterface()
         {
 
             // если файла usercadr.ini нет в папке /sys, то загрузка в соотв. с настройками cadr.ini (кот. исп. при инсталяции)
             // usercadr.ini создается при первой запуске окна настроек, или при "сбросить" в онке настроек (заново создается)
 
             // Лента
-            ExampleRibbon ExRib = new ExampleRibbon();
+            ////ExampleRibbon ExRib = new ExampleRibbon();
 
-            //AcadSendMess AcSM = new AcadSendMess();
-            //AcSM.SendStringDebugStars("Загрузить вкладку на ленту можно командой RibCreate");
-            ExRib.CreateRibbonTab();
+            //////AcadSendMess AcSM = new AcadSendMess();
+            //////AcSM.SendStringDebugStars("Загрузить вкладку на ленту можно командой RibCreate");
+            ////ExRib.CreateRibbonTab();
 
             //ExRib.ComponentManager_ItemInitialized()
 

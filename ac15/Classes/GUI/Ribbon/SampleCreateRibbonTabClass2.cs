@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows.Media.Imaging;
 using System.Windows.Controls;
 
-
+using TIExCAD.Generic.Ribbon;
 // Acad
 using Autodesk.AutoCAD.Runtime;
 using Autodesk.AutoCAD.ApplicationServices;
@@ -19,7 +19,7 @@ using acadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 namespace TIExCAD
 
 {
-    public delegate void DelegateRibBtnEvents();
+
 
     /// <summary>
     /// Пример создания вкладки на ленте с кнопками
@@ -32,89 +32,137 @@ namespace TIExCAD
         [CommandMethod("TiexTestRibCreate2")]
         public void TiexTestRibCreate()
         {
-            // Экз делегата для события кнопки
-            DelegateRibBtnEvents RibBtnMetod = new DelegateRibBtnEvents(ShowAdminWindow);
-
-            // Получаем доступ к ленте
-            RibbonControl RibAcControl = Autodesk.Windows.ComponentManager.Ribbon;
 
             // Класс для создания вкладки на ленте, содержит методы создания кннопок, панелей, вкладок ленты
-            TIExCAD.RibbonCreateEasy RibCrEsy = new RibbonCreateEasy();
+            RibbonCreateEasy RibCrEsy = new RibbonCreateEasy();
+
+            string ribbonTabTitle = "TIExCAD";
+            string ribbonTabID = "tiexid";
+
+            if (!RibCrEsy.GetIsRibbonLoaded(ribbonTabTitle, ribbonTabID)) // если вкладки еще нет
+            {
 
 
-            #region КНОПКА 1
-            // Класс для создания кнопки.
-            RibbonButton RbB1 = new RibbonButton();
+                // Экз делегата для события кнопки
+                DelegateRibButtonHandler delegateRibBtnMetod = new DelegateRibButtonHandler(ShowAdminWindow);
 
-            // Метод, создающий кнопку.
-            RbB1 = RibCrEsy.GetRibButton("Новая кнопка", true, RibbonItemSize.Large, Orientation.Vertical, true);
-
-            // Класс для привязки метода на кнопку 1
-            RibBtnHdlrDel RibBH1 = new RibBtnHdlrDel(RibBtnMetod);
-            // Привяжем.
-            RbB1.CommandHandler = RibBH1;
-            #endregion
-
-            #region КНОПКА 2
-            // Класс для создания кнопки.
-            RibbonButton RbB2 = new RibbonButton();
-            RibCrEsy.PathImgFolder = "u:/dev/TIExCAD/distr/png/";
-            // Метод, создающий кнопку.
-            RbB2 = RibCrEsy.GetRibButton("Вторая кнопка", true, RibbonItemSize.Large, Orientation.Vertical,
-                true, "image_02_32.png", "image_02_16.png");
-            // Класс для привязки метода на кнопку 2.
-            RibBtnHdlrDel RibBH2 = new RibBtnHdlrDel(RibBtnMetod);
-            // Привяжем.
-            RbB2.CommandHandler = RibBH2;
-            #endregion
+                // Получаем доступ к ленте
+                RibbonControl RibAcControl = Autodesk.Windows.ComponentManager.Ribbon;
 
 
-            #region ПАНЕЛЬ ДЛЯ КНОПОК
-            RibbonPanel RbPan = RibCrEsy.GetRibPanel("Панель для кнопок");
-            // Вставим кнопки в панель.
-            RbPan.Source.Items.Add(RbB1);
-            RbPan.Source.Items.Add(RbB2);  //RbPan.Source.Items.Add(RbB1); RbPan.Source.Items.Add(RbB2);
-            #endregion
+                #region КНОПКА 1
+                // Класс для создания кнопки.
+                RibbonButton RbB1 = new RibbonButton();
 
-            #region ВКЛАДКА НА ЛЕНТЕ
-            RibbonTab RbTab = RibCrEsy.GetRibTab("Заголовок панели", "panID");
-            // Вставим панель во вкладку.
-            RbTab.Panels.Add(RbPan);
-            #endregion
+                // Вызываем метод, создающий кнопку.
+                RbB1 = RibCrEsy.GetRibButton("Новая кнопка", true, RibbonItemSize.Large, Orientation.Vertical, delegateRibBtnMetod, true);
 
-            // Добавляем вкладку в ленту
-            RibAcControl.Tabs.Add(RbTab);
+                // Привязка метода к экз делегата
+                delegateRibBtnMetod = new DelegateRibButtonHandler(ShowAdminWindow);
 
-            // сделаем кнопки на всю панель
-            RbB1.Height = RbPan.RibbonControl.ActualHeight;
-            RbB2.Height = RbPan.RibbonControl.ActualHeight;
-            RbB1.MinWidth = 50;
-            RbB2.MinWidth = 50; 
+                // Класс для привязки метода на кнопку 1
+                RibBtnHdlrDel RibBH1 = new RibBtnHdlrDel(delegateRibBtnMetod);
+                // Привяжем.
+                RbB1.CommandHandler = RibBH1;
+                #endregion
 
-            RibAcControl.UpdateLayout();
+                #region КНОПКА 2
+                // Класс для создания кнопки.
+                RibbonButton RbB2 = new RibbonButton();
+                RibCrEsy.PathImgFolder = "u:/dev/TIExCAD/distr/png/";
+                // Метод, создающий кнопку.
+                RbB2 = RibCrEsy.GetRibButton("Вторая кнопка", true, RibbonItemSize.Large, Orientation.Vertical,
+                    delegateRibBtnMetod,
+                    true, "image_02_32.png", "image_02_16.png");
+                /*
+                // Класс для привязки метода на кнопку 2.
+                RibBtnHdlrDel RibBH2 = new RibBtnHdlrDel(delegateRibBtnMetod);
+                // Привяжем.
+                RbB2.CommandHandler = RibBH2; */
+                #endregion
+
+
+                #region ПАНЕЛЬ ДЛЯ КНОПОК
+                RibbonPanel RbPan = RibCrEsy.GetRibPanel("Панель для кнопок");
+                // Вставим кнопки в панель.
+                RbPan.Source.Items.Add(RbB1);
+                RbPan.Source.Items.Add(RbB2);  //RbPan.Source.Items.Add(RbB1); RbPan.Source.Items.Add(RbB2);
+                #endregion
+
+                #region ВКЛАДКА НА ЛЕНТЕ
+                RibbonTab RbTab = RibCrEsy.GetRibTab(ribbonTabTitle, ribbonTabID);
+                // Вставим панель во вкладку.
+                RbTab.Panels.Add(RbPan);
+                #endregion
+
+                // Добавляем вкладку в ленту
+                RibAcControl.Tabs.Add(RbTab);
+
+                // сделаем кнопки на всю панель
+                RbB1.Height = RbPan.RibbonControl.ActualHeight;
+                RbB2.Height = RbPan.RibbonControl.ActualHeight;
+                RbB1.MinWidth = 50;
+                RbB2.MinWidth = 50;
+
+                RibAcControl.UpdateLayout();
+            }
         }
     }
 
     public partial class SampleCreateRibbonTabClass2
     {
+        [CommandMethod("TiexTestRibCreate3")]
+        public void TiexTestRibCreate3()
+        {
+            List<RibButtonMyShort> listBtn = new List<RibButtonMyShort>();
+
+            RibButtonMyShort btn1 = new RibButtonMyShort();
+            btn1.ribButtonText = "Кнопка1"; btn1.ribButtonSize = RibbonItemSize.Large; btn1.delegateRibBtnEv = GetStaticInfo.SendMessToAcad;
+            listBtn.Add(btn1);
+
+            listBtn.Add(new RibButtonMyShort()
+            {
+                ribButtonText = "Кнопка2",
+                ribButtonSize = RibbonItemSize.Large,
+                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+            }) ;
+
+            listBtn.Add(new RibButtonMyShort()
+            {
+                ribButtonText = "Кнопка3",
+                ribButtonSize = RibbonItemSize.Large,
+                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+            });
+
+
+
+            //TIExCAD.Generic.Ribbon.CreateRibTabSpeed CrTabSpeed =
+            //    new CreateRibTabSpeed("TIExCAD-2", "tiexcad2", listBtn);
+
+            //CrTabSpeed.CreateOrModifityRibbonTab();
+
+        }
+
+    }
+
+
+    public partial class SampleCreateRibbonTabClass2
+    {
         internal void ShowAdminWindow()
         {
-            AdminAcadCmd AdmWindow = new AdminAcadCmd();
-            AdmWindow.ShowDialog();
-        }
-    }
-    public class RibBtnHdlrDel : TIExCAD.RibButtonHandler
-    {
-        private DelegateRibBtnEvents DelegateRibBtnEv;
-        public RibBtnHdlrDel() { }
-        public RibBtnHdlrDel(DelegateRibBtnEvents delegateRibBtnEv)
-        {
-            DelegateRibBtnEv = delegateRibBtnEv;
-        }
-        public override void Execute(object parameter)
-        {
-            DelegateRibBtnEv();
+
+            AcadSendMess AcSM = new AcadSendMess();
+            AcSM.SendStringDebugStars(new List<string> { "Обработчик", "Кнопка на ленте" });
         }
     }
 
+    public static class GetStaticInfo
+    {
+        public static void SendMessToAcad ()
+        {
+
+            AcadSendMess AcSM = new AcadSendMess();
+            AcSM.SendStringDebugStars(new List<string> {"Метод привязанный к делегату", "delegateRibBtnEv" });
+        }
+    }
 }
