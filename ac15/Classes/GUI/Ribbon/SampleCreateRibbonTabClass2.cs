@@ -149,7 +149,7 @@ namespace TIExCAD
                  //Имя файла малой картинки. 
                  ribButtonImageName = "image_standart.png",
                 //Экземпляр делегата
-                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+                delegateRibBtnEv = GetStaticInfo.SendMessToAcad_test1
             }) ;
 
             // 2
@@ -170,7 +170,7 @@ namespace TIExCAD
                 //Имя файла малой картинки. 
                 ribButtonImageName = "image_standart.png",
                 //Экземпляр делегата
-                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+                delegateRibBtnEv = GetStaticInfo.SendMessToAcad_test1
             });
 
             CrTabSpeed.CreateOrModifityRibbonTab("TIExCAD-2", "tiexcad2", "AdMin Tools", listBtn);
@@ -198,7 +198,7 @@ namespace TIExCAD
                 //Имя файла малой картинки. 
                 ribButtonImageName = "image_standart.png",
                 //Экземпляр делегата
-                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+                delegateRibBtnEv = GetStaticInfo.SendMessToAcad_test1
             });
 
             // 2
@@ -219,16 +219,22 @@ namespace TIExCAD
                 //Имя файла малой картинки. 
                 ribButtonImageName = "image_standart.png",
                 //Экземпляр делегата
-                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+                delegateRibBtnEv = GetStaticInfo.SendMessToAcad_test1
             });
 
             CrTabSpeed.CreateOrModifityRibbonTab("TIExCAD-2", "tiexcad2", "Doc Info", listBtn2);
 
             #endregion
-            
+
 
             #region ПАНЕЛЬ 2. Добавление кнопки 
+            // Создадим экз делегата на нажатие кнопки. При создании сразу подключаем метод.
+            DelegateRibButtonHandler DelBtn23 = new DelegateRibButtonHandler(GetStaticInfo.SendMessToAcad_test1);
+            // Добавим к экз делегата еще один метод.
+            DelBtn23 += GetStaticInfo.SendMessToAcad_test2;
+            // Создадим экз - список кнопок, где кнопка представлена структурой RibButtonMyFull
             List<RibButtonMyFull> listBtn3 = new List<RibButtonMyFull>();
+
             // 1
             listBtn3.Add(new RibButtonMyFull()
             {
@@ -237,7 +243,7 @@ namespace TIExCAD
                 //Показать текст.
                 showText = true,
                 //Размер кнопки.
-                ribButtonSize = RibbonItemSize.Standard,
+                ribButtonSize = RibbonItemSize.Large,
                 //Ориентация кнопки.
                 ribButtonOrientation = Orientation.Vertical,
                 //Показать картинку.
@@ -247,10 +253,10 @@ namespace TIExCAD
                 //Имя файла малой картинки. 
                 ribButtonImageName = "image_standart.png",
                 //Экземпляр делегата
-                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+                delegateRibBtnEv = DelBtn23 //  GetStaticInfo.SendMessToAcad_test1
             });
 
-
+            // Создадим кнопку.
             CrTabSpeed.CreateOrModifityRibbonTab("TIExCAD-2", "tiexcad2", "Doc Info", listBtn3, true);
 
             #endregion
@@ -273,11 +279,17 @@ namespace TIExCAD
 
     public static class GetStaticInfo
     {
-        public static void SendMessToAcad ()
+        public static void SendMessToAcad_test1 ()
         {
-
             AcadSendMess AcSM = new AcadSendMess();
-            AcSM.SendStringDebugStars(new List<string> {"Метод привязанный к делегату", "delegateRibBtnEv" });
+            AcSM.SendStringDebugStars(new List<string> {"Метод 1 привязанный к делегату", "типа DelegateRibButtonHandler" });
         }
+        public static void SendMessToAcad_test2()
+        {
+            AcadSendMess AcSM = new AcadSendMess();
+            AcSM.SendStringDebugStars(new List<string> { "Метод 2 привязанный к делегату", "типа DelegateRibButtonHandler" });
+        }
+
+
     }
 }

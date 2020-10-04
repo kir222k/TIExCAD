@@ -75,6 +75,7 @@
   <ItemGroup>
     <Compile Include="Classes\AcadEvents\AcadSysVarsChange.cs" />
     <Compile Include="Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs" />
+    <Compile Include="Classes\GUI\Ribbon\GenRibbonEvHandler.cs" />
     <Compile Include="Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocInfoLayers.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocReport.cs" />

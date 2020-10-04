@@ -481,14 +481,6 @@ namespace TIExCAD.Generic.Ribbon
                     // получим путь к файлу малой картинки.
                     string pathImg = pathDirIm + ribButtonImageName;
 
-                    //AcSM.SendStringDebugStars(new List<string> { "Полный путь к папке картинок",
-                    //    $"{pathDirIm}",
-                    //    "Путь к большой картинке",
-                    //    $"{pathLargeImg}",
-                    //    "Путь к малой картинке",
-                    //    $"{pathImg}"
-                    //});
-
                     // Проверим существование картинок в папке IMG.
                     if (File.Exists(pathLargeImg) && File.Exists(pathImg))
                     {
@@ -535,25 +527,6 @@ namespace TIExCAD.Generic.Ribbon
             #endregion
         }
 
-        /*
-        // Проверка "загруженности" ленты
-        public bool GetIsRibbonLoaded(string ribbonTabTitle, string ribbonTabID)
-        {
-            bool ribLoaded = false;
-            //RibbonControl ribCntrl = Autodesk.Windows.ComponentManager.Ribbon;
-            // Делаем итерацию по вкладкам ленты
-            foreach (RibbonTab tab in Autodesk.Windows.ComponentManager.Ribbon.Tabs)
-            {
-                // И если у вкладки совпадает идентификатор и заголовок, то значит вкладка загружена
-                if (tab.Id.Equals(ribbonTabID) & tab.Title.Equals(ribbonTabTitle))
-                {
-                    ribLoaded = true;
-                    break;
-                }
-                else ribLoaded = false;
-            }
-            return ribLoaded;
-        } */
 
         /// <summary>
         /// Проверка существования вклвдки на ленте
@@ -632,29 +605,6 @@ namespace TIExCAD.Generic.Ribbon
     {
         // КОНСТРУКТОРЫ
 
-        /*
-        /// <summary>
-        /// Создание вкладки ленты с одной панелью, кнопки одинаковые, в ряд.
-        /// </summary>
-        /// <param name="ribbonTabTitle">Заголовок вкладки</param>
-        /// <param name="ribbonTabID">ID вкладки</param>
-        /// <param name="listRibbonButtons">список из кнопок, заданных структурой RibButtonMyShort </param>
-        internal CreateRibTabSpeed(string ribbonTabTitle, string ribbonTabID, List<RibButtonMyShort> listRibbonButtons)
-        {
-            ribTabTitle = ribbonTabTitle; ribTabID = ribbonTabID; listRibButtons = listRibbonButtons;
-        }
-        */
-
-        /*
-        /// <summary>
-        /// Создание вкладки ленты, добавление панели в сущ. вклвдку.
-        /// </summary>
-        /// <param name="ribbonTabTitle">Заголовок вкладки</param>
-        /// <param name="ribbonTabID">ID вкладки</param>
-        /// <param name="listRibbonButtons">список из кнопок, заданных структурой RibButtonMyFull </param>
-        CreateRibTabSpeed(string ribbonTabTitle, string ribbonTabID, List<RibButtonMyFull> listRibbonButtons) { }
-        */
-
         // ПОЛЯ
 
         /*
@@ -712,7 +662,6 @@ namespace TIExCAD.Generic.Ribbon
             }
             else { isPanelExist = false; }
 
-
             // если вкладка и панель существует и modifityPanel = true   ИЛИ   панели не существует
             if ((isPanelExist && modifityPanel) || (!isPanelExist))
             {
@@ -746,9 +695,7 @@ namespace TIExCAD.Generic.Ribbon
                     Autodesk.Windows.ComponentManager.Ribbon.Tabs.Add(ribbonTab);
                 }
             }
-
             // если панель есть, она уже загружена и в коде выше уже добавлены кнопки.
-
 
             // Обновим ленту.
             Autodesk.Windows.ComponentManager.Ribbon.UpdateLayout();
@@ -800,6 +747,7 @@ namespace TIExCAD.Generic.Ribbon
         internal DelegateRibButtonHandler delegateRibBtnEv;
     }
 
+    /*
     /// <summary>
     /// Кнопка ленты: Текст, Размер.
     /// </summary>
@@ -821,6 +769,6 @@ namespace TIExCAD.Generic.Ribbon
 
         internal DelegateRibButtonHandler delegateRibBtnEv;
     }
-
-
+    */ 
+  
 }
