@@ -39,7 +39,7 @@ namespace TIExCAD
             string ribbonTabTitle = "TIExCAD";
             string ribbonTabID = "tiexid";
 
-            if (!RibCrEsy.GetIsRibbonLoaded(ribbonTabTitle, ribbonTabID)) // если вкладки еще нет
+            if (RibCrEsy.GetIsRibbonTabLoadedRef(ribbonTabTitle, ribbonTabID) == null) // если вкладки еще нет
             {
 
 
@@ -109,38 +109,153 @@ namespace TIExCAD
         }
     }
 
+
     public partial class SampleCreateRibbonTabClass2
     {
         [CommandMethod("TiexTestRibCreate3")]
         public void TiexTestRibCreate3()
         {
-            List<RibButtonMyShort> listBtn = new List<RibButtonMyShort>();
+            CreateRibTabSpeed CrTabSpeed = new CreateRibTabSpeed();
 
-            RibButtonMyShort btn1 = new RibButtonMyShort();
-            btn1.ribButtonText = "Кнопка1"; btn1.ribButtonSize = RibbonItemSize.Large; btn1.delegateRibBtnEv = GetStaticInfo.SendMessToAcad;
-            listBtn.Add(btn1);
+            #region ПАНЕЛЬ 1
+            List<RibButtonMyFull> listBtn = new List<RibButtonMyFull>();
+            
+            /**
+            *    Текст кнопки. 
+            *    Показать текст. 
+            *    Размер кнопки. 
+            *    Ориентация кнопки. 
+            *    Показать картинку. 
+            *    Имя файла большой картинки. 
+            *    Имя файла малой картинки. 
+            *    Экземпляр делегата
+            */
 
-            listBtn.Add(new RibButtonMyShort()
+            // 1
+            listBtn.Add(new RibButtonMyFull()
             {
-                ribButtonText = "Кнопка2",
+                //Текст кнопки.
+                ribButtonText = "Кнопка1",
+                //Показать текст.
+                showText = true,
+                //Размер кнопки.
                 ribButtonSize = RibbonItemSize.Large,
+                //Ориентация кнопки.
+                ribButtonOrientation = Orientation.Vertical,
+                //Показать картинку.
+                showImage = true,
+                //Имя файла большой картинки.
+                ribButtonLargeImageName ="image_large.png",
+                 //Имя файла малой картинки. 
+                 ribButtonImageName = "image_standart.png",
+                //Экземпляр делегата
                 delegateRibBtnEv = GetStaticInfo.SendMessToAcad
             }) ;
 
-            listBtn.Add(new RibButtonMyShort()
+            // 2
+            listBtn.Add(new RibButtonMyFull()
             {
-                ribButtonText = "Кнопка3",
+                //Текст кнопки.
+                ribButtonText = "Кнопка2",
+                //Показать текст.
+                showText = true,
+                //Размер кнопки.
                 ribButtonSize = RibbonItemSize.Large,
+                //Ориентация кнопки.
+                ribButtonOrientation = Orientation.Vertical,
+                //Показать картинку.
+                showImage = true,
+                //Имя файла большой картинки.
+                ribButtonLargeImageName = "image_large.png",
+                //Имя файла малой картинки. 
+                ribButtonImageName = "image_standart.png",
+                //Экземпляр делегата
+                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+            });
+
+            CrTabSpeed.CreateOrModifityRibbonTab("TIExCAD-2", "tiexcad2", "AdMin Tools", listBtn);
+            #endregion
+
+            
+
+            #region ПАНЕЛЬ 2
+            List<RibButtonMyFull> listBtn2 = new List<RibButtonMyFull>();
+            // 1
+            listBtn2.Add(new RibButtonMyFull()
+            {
+                //Текст кнопки.
+                ribButtonText = "Кнопка2.1",
+                //Показать текст.
+                showText = true,
+                //Размер кнопки.
+                ribButtonSize = RibbonItemSize.Large,
+                //Ориентация кнопки.
+                ribButtonOrientation = Orientation.Vertical,
+                //Показать картинку.
+                showImage = true,
+                //Имя файла большой картинки.
+                ribButtonLargeImageName = "image_large.png",
+                //Имя файла малой картинки. 
+                ribButtonImageName = "image_standart.png",
+                //Экземпляр делегата
+                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+            });
+
+            // 2
+            listBtn2.Add(new RibButtonMyFull()
+            {
+                //Текст кнопки.
+                ribButtonText = "Кнопка2.2",
+                //Показать текст.
+                showText = true,
+                //Размер кнопки.
+                ribButtonSize = RibbonItemSize.Large,
+                //Ориентация кнопки.
+                ribButtonOrientation = Orientation.Vertical,
+                //Показать картинку.
+                showImage = true,
+                //Имя файла большой картинки.
+                ribButtonLargeImageName = "image_large.png",
+                //Имя файла малой картинки. 
+                ribButtonImageName = "image_standart.png",
+                //Экземпляр делегата
+                delegateRibBtnEv = GetStaticInfo.SendMessToAcad
+            });
+
+            CrTabSpeed.CreateOrModifityRibbonTab("TIExCAD-2", "tiexcad2", "Doc Info", listBtn2);
+
+            #endregion
+            
+
+            #region ПАНЕЛЬ 2. Добавление кнопки 
+            List<RibButtonMyFull> listBtn3 = new List<RibButtonMyFull>();
+            // 1
+            listBtn3.Add(new RibButtonMyFull()
+            {
+                //Текст кнопки.
+                ribButtonText = "Кнопка2.3",
+                //Показать текст.
+                showText = true,
+                //Размер кнопки.
+                ribButtonSize = RibbonItemSize.Standard,
+                //Ориентация кнопки.
+                ribButtonOrientation = Orientation.Vertical,
+                //Показать картинку.
+                showImage = true,
+                //Имя файла большой картинки.
+                ribButtonLargeImageName = "image_large.png",
+                //Имя файла малой картинки. 
+                ribButtonImageName = "image_standart.png",
+                //Экземпляр делегата
                 delegateRibBtnEv = GetStaticInfo.SendMessToAcad
             });
 
 
+            CrTabSpeed.CreateOrModifityRibbonTab("TIExCAD-2", "tiexcad2", "Doc Info", listBtn3, true);
 
-            //TIExCAD.Generic.Ribbon.CreateRibTabSpeed CrTabSpeed =
-            //    new CreateRibTabSpeed("TIExCAD-2", "tiexcad2", listBtn);
+            #endregion
 
-            //CrTabSpeed.CreateOrModifityRibbonTab();
-
+            
         }
 
     }

@@ -71,6 +71,51 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\ac15\Classes\AcadEvents\AcadSysVarsChange.cs">
+      <Link>Classes\AcadEvents\AcadSysVarsChange.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs">
+      <Link>Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonCreate.cs">
+      <Link>Classes\GUI\Ribbon\GenRibbonCreate.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs">
+      <Link>Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\Init.cs">
+      <Link>Classes\Init.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\AcadDocInfo\AcadDocInfoLayers.cs">
+      <Link>Classes\System\AcadDocInfo\AcadDocInfoLayers.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\AcadDocInfo\AcadDocReport.cs">
+      <Link>Classes\System\AcadDocInfo\AcadDocReport.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\RegGeneric.cs">
+      <Link>Classes\System\IstallAndRegistration\RegGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\RegtoolsCMDF.cs">
+      <Link>Classes\System\IstallAndRegistration\RegtoolsCMDF.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\SendMessage\AcadSendMess.cs">
+      <Link>Classes\System\SendMessage\AcadSendMess.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\SendMessage\StringMetods.cs">
+      <Link>Classes\System\SendMessage\StringMetods.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\StaticData\Constantes.cs">
+      <Link>Classes\System\StaticData\Constantes.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\StaticData\Enums.cs">
+      <Link>Classes\System\StaticData\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\StaticData\StaticObjects.cs">
+      <Link>Classes\System\StaticData\StaticObjects.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\testInACAD.cs">
+      <Link>Classes\testInACAD.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

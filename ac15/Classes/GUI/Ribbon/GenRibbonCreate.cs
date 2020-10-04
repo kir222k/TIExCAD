@@ -159,7 +159,7 @@ namespace TIExCAD.Generic.Ribbon
                 // добавляем содержимое в свою вкладку (одну панель)
                 addExampleContent(ribTab);
                 // Делаем вкладку активной (не желательно, ибо неудобно)
-                //ribTab.IsActive = true;
+                //ribbonTab.IsActive = true;
                 // Обновляем ленту (если делаете вкладку активной, то необязательно)
                 ribCntrl.UpdateLayout();
             }
@@ -373,7 +373,7 @@ namespace TIExCAD.Generic.Ribbon
         {
             try
             {
-                if (!GetIsRibbonLoaded(ribbonTabTitle, ribbonTabID))
+                if (GetIsRibbonTabLoadedRef(ribbonTabTitle, ribbonTabID) == null)
                 // добавляем свою вкладку
                 {
                     RibbonTab ribTab = new RibbonTab()
@@ -391,13 +391,13 @@ namespace TIExCAD.Generic.Ribbon
             }
             catch (System.Exception)
             {
-                return null;
+                // return null;
                 throw;
             }
         }
 
         /// <summary>
-        /// Создание Панели вкладки ленты, пустой, нужно еще добавить кнопки. Саму панель нужно вставить во Вкладку ribTab.Panels.Add(ribPanel).
+        /// Создание Панели вкладки ленты, пустой, нужно еще добавить кнопки. Саму панель нужно вставить во Вкладку ribbonTab.Panels.Add(ribPanel).
         /// </summary>
         /// <param name="ribPanelTitle"></param>
         /// <returns>Ссылка на объект "Панель кладки ленты"</returns>
@@ -431,7 +431,7 @@ namespace TIExCAD.Generic.Ribbon
         /// Создание кнопки
         /// </summary>
         /// <param name="ribButtonText">Текст кнопки</param>
-        /// <param name="showText">Показат ьтекст</param>
+        /// <param name="showText">Показать текст</param>
         /// <param name="showImage">Показать картинку</param>
         /// <param name="ribButtonLargeImageName">Большая картинка</param>
         /// <param name="ribButtonImageName">Стандартная картинка</param>
@@ -535,7 +535,7 @@ namespace TIExCAD.Generic.Ribbon
             #endregion
         }
 
-
+        /*
         // Проверка "загруженности" ленты
         public bool GetIsRibbonLoaded(string ribbonTabTitle, string ribbonTabID)
         {
@@ -553,11 +553,17 @@ namespace TIExCAD.Generic.Ribbon
                 else ribLoaded = false;
             }
             return ribLoaded;
-        }
+        } */
 
-        public RibbonTab GetIsRibbonLoadedRef(string ribbonTabTitle, string ribbonTabID)
+        /// <summary>
+        /// Проверка существования вклвдки на ленте
+        /// </summary>
+        /// <param name="ribbonTabTitle">Название вкладки</param>
+        /// <param name="ribbonTabID">ID вкладки</param>
+        /// <returns>вкладка, тип RibbonTab, если найдена в ленте. Иначе - null</returns>
+        public RibbonTab GetIsRibbonTabLoadedRef(string ribbonTabTitle, string ribbonTabID)
         {
-            RibbonTab rbTab=null;
+            RibbonTab rbTab = null;
             //RibbonControl ribCntrl = Autodesk.Windows.ComponentManager.Ribbon;
             // Делаем итерацию по вкладкам ленты
             foreach (RibbonTab tab in Autodesk.Windows.ComponentManager.Ribbon.Tabs)
@@ -567,15 +573,55 @@ namespace TIExCAD.Generic.Ribbon
                 {
                     // return tab;
                     rbTab = tab;
-                    break;
+                    // break;
                 }
             }
             return rbTab; // вернем ее
         }
 
+        /// <summary>
+        /// Проверяет сущ. панели во вкладке.
+        /// </summary>
+        /// <param name="ribbonTab">Объект вкладки</param>
+        /// <param name="ribbonPanelTitle">Заголовок панели</param>
+        /// <returns>Объект Панели, если такая содержится в проверяемой вкладке. NULL - если такой панели нет.</returns>
+        public RibbonPanel GetIsRibbonPanelLoadedRef(RibbonTab ribbonTab, string ribbonPanelTitle)
+        {
+            RibbonPanel RibPan = null; // = new RibbonPanel();
 
-        //public bool GetIsRibbonPanelLoaded ()
+            // проверим вкладку, если она вообще не загружена, то и смысла нет проверять панель
+            if (GetIsRibbonTabLoadedRef(ribbonTab.Title, ribbonTab.Id) != null) // если вкладка загружена в ленту
+            {
+                // Делаем итерацию по панелям вклвдки
+                foreach (RibbonPanel pan in ribbonTab.Panels)
+                {
+                    if (pan.Source.Title.Equals(ribbonPanelTitle)) // если такая панель есть на сущ. вкладке.
+                    {
+                        RibPan = pan;
+                        //break;
+                    }
+                }
+            }
 
+            return RibPan; // Если панели нет, возращ. null
+        }
+
+        public RibbonButton GetIsRibbonButtonLoadedRef(RibbonTab ribbonTab, RibbonPanel ribbonPanel, string ribbonButtonText)
+        {
+            RibbonButton RibBtn = null;
+            // проверим панель, если она вообще не загружена, то и смысла нет проверять сущ. кнопки
+            if (GetIsRibbonPanelLoadedRef(ribbonTab, ribbonPanel.Source.Title) != null)
+            {
+                foreach (RibbonButton rRtn in ribbonPanel.Source.Items) // проверим кнопки панели
+                {
+                    if (rRtn.Text.Equals(ribbonButtonText)) // если текст кнопки совпал, вернем эту кнопку.
+                    {
+                        RibBtn = rRtn;
+                    }
+                }
+            }
+            return RibBtn;
+        }
 
     }
 
@@ -623,77 +669,135 @@ namespace TIExCAD.Generic.Ribbon
 
         // МЕТОДЫ
 
-        internal void CreateOrModifityRibbonTab(string ribbonTabTitle, string ribbonTabID, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons)
+        internal void CreateOrModifityRibbonTab(string ribbonTabTitle, string ribbonTabID, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel = false)
         {
             // проверим вкладку на существование в ленте
-            RibbonTab RibTab = RibCr.GetIsRibbonLoadedRef(ribbonTabTitle, ribbonTabID);
+            RibbonTab RibTab = RibCr.GetIsRibbonTabLoadedRef(ribbonTabTitle, ribbonTabID);
 
-            // если тfкой вкладки нет, 
+            // если такой вкладки нет, 
             if (RibTab == null)
             {
-                 RibTab = RibCr.GetRibTab(ribbonTabTitle, ribbonTabID); //создадим вкладку
-            }
+                RibTab = RibCr.GetRibTab(ribbonTabTitle, ribbonTabID); //создадим вкладку
+            } // иначе работаем с существующей.
 
-            //  создадим панель
-            CreateOrModifityRibbonPanel(RibTab, ribbonPanelTitle, listRibbonButtons);
+            //  создадим/модифицируем панель.
+            CreateOrModifityRibbonPanel(RibTab, ribbonPanelTitle, listRibbonButtons, modifityPanel);
 
         }
 
-        internal void CreateOrModifityRibbonPanel(RibbonTab ribTab, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons)
+        internal void CreateOrModifityRibbonPanel(RibbonTab ribbonTab, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel)
         {
-            // создадим панель
-            RibbonPanel RibPan = RibCr.GetRibPanel(ribbonPanelTitle);
+            //  проверим панель на существование во вкладке. 
+            RibbonPanel ribbonPan = RibCr.GetIsRibbonPanelLoadedRef(ribbonTab, ribbonPanelTitle);
 
-            //RibbonButton RbBx;
-            // кнопки
-            foreach (RibButtonMyShort RbBtn in listRibButtons)
+            // если такой панели нет, создадим
+            if (ribbonPan == null)
             {
-                RibPan.Source.Items.Add(
-                    RibCr.GetRibButton(
-                    RbBtn.ribButtonText, true, RbBtn.ribButtonSize, Orientation.Vertical, RbBtn.delegateRibBtnEv, true));
+                ribbonPan = RibCr.GetRibPanel(ribbonPanelTitle); //создадим панель
+            }// иначе работаем с существующей.
 
-                //// Метод, создающий кнопку.
-                //RbBx = RibCr.GetRibButton(
-                //    RbBtn.ribButtonText, true, RbBtn.ribButtonSize, Orientation.Vertical, true);
+            // передаем панель дальше, создаем кнопки
+            //если установить  modifityPanel = true, то можно добавить кнопки в сущ. панель.
+            CreateOrModifityRibbonButton(ribbonTab, ribbonPan, listRibbonButtons, modifityPanel);
+        }
 
-                //// Класс для привязки метода на кнопку 2.
-                //RibBtnHdlrDel ribBtnCliclHandler = new RibBtnHdlrDel(RbBtn.delegateRibBtnEv);
-                //// Привяжем.
-                ////RbB2.CommandHandler = RibBH2;
+        internal void CreateOrModifityRibbonButton(RibbonTab ribbonTab, RibbonPanel ribbonPan, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel)
+        {
+            bool isPanelExist; // если вкладка  существует
+
+            // если вкладка  существует
+            if (RibCr.GetIsRibbonPanelLoadedRef(ribbonTab, ribbonPan.Source.Title) != null) // панель есть
+            {
+                isPanelExist = true;
+            }
+            else { isPanelExist = false; }
+
+
+            // если вкладка и панель существует и modifityPanel = true   ИЛИ   панели не существует
+            if ((isPanelExist && modifityPanel) || (!isPanelExist))
+            {
+
+                foreach (RibButtonMyFull RbBtn in listRibbonButtons)
+                {
+                    // проверим, есть ли такая кнопка
+                    if (RibCr.GetIsRibbonButtonLoadedRef(ribbonTab, ribbonPan, RbBtn.ribButtonText) == null)
+                    {
+                        // если кнопки нет, добавим ее.
+                        ribbonPan.Source.Items.Add(
+                            RibCr.GetRibButton(
+                            RbBtn.ribButtonText, RbBtn.showText,
+                            RbBtn.ribButtonSize, RbBtn.ribButtonOrientation,
+                            RbBtn.delegateRibBtnEv,
+                            RbBtn.showImage,
+                            RbBtn.ribButtonLargeImageName, RbBtn.ribButtonImageName
+                            ));
+                    }
+                }
             }
 
-            // Вставим панель во вкладку.
-            RibTab.Panels.Add(RibPan);
+            //  если панели нет 
+            if (!isPanelExist)
+            {
+                // Вставим панель во вкладку.
+                ribbonTab.Panels.Add(ribbonPan);
+                // добавляем вкладку в ленту, если такой еще не загружено
+                if (RibCr.GetIsRibbonTabLoadedRef(ribbonTab.Title, ribbonTab.Id) == null)
+                {
+                    Autodesk.Windows.ComponentManager.Ribbon.Tabs.Add(ribbonTab);
+                }
+            }
 
-            // Добавляем вкладку в ленту.
-            Autodesk.Windows.ComponentManager.Ribbon.Tabs.Add(RibTab);
+            // если панель есть, она уже загружена и в коде выше уже добавлены кнопки.
+
+
             // Обновим ленту.
             Autodesk.Windows.ComponentManager.Ribbon.UpdateLayout();
         }
 
-        internal void AddNewPanelToExistRibbonTab(RibbonTab ribTab)
-        {
-
-        }
     }
+
 
 
     // -----------------------------------------------------------------------------------------------
     /// СТРУКТУРЫ
 
     /// <summary>
-    ///  Кнопка ленты: Текст, Показать текст, Размер кнопки, Показать кнопку, Название больш. картинки, Название мал. картинки.
+    ///  Кнопка ленты: Текст кнопки. Показать текст. Размер кнопки. Ориентация кнопки. Показать картинку. Имя файла большой картинки. Имя файла малой картинки. Экземпляр делегата
     /// </summary>
     internal struct RibButtonMyFull
     {
-        string ribButtonText;
-        bool showText;
-        RibbonItemSize ribButtonSize;
-        Orientation ribButtonOrientation;
-        bool showImage;
-        string ribButtonLargeImageName;
-        string ribButtonImageName;
-        DelegateRibButtonHandler delegateRibBtnEv;
+        /// <value>
+        ///  Текст кнопки.
+        /// </value>
+        internal string ribButtonText;
+        /// <value>
+        ///  Показать текст.
+        /// </value>
+        internal bool showText;
+        /// <value>
+        ///  Размер кнопки.
+        /// </value>
+        internal RibbonItemSize ribButtonSize;
+        /// <value>
+        ///  Ориентация кнопки.
+        /// </value>
+        internal Orientation ribButtonOrientation;
+        /// <value>
+        ///  Показать картинку.
+        /// </value>
+        internal bool showImage;
+        /// <value>
+        ///  Имя файла большой картинки.
+        /// </value>
+        internal string ribButtonLargeImageName;
+        /// <value>
+        ///  Имя файла малой картинки.
+        /// </value>
+        internal string ribButtonImageName;
+        /// <value>
+        ///  Экземпляр делегата, кот. содержит методы-обработчики нажатия кнопки.
+        /// </value>
+        internal DelegateRibButtonHandler delegateRibBtnEv;
     }
 
     /// <summary>
