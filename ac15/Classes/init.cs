@@ -40,7 +40,8 @@ namespace TIExCAD
         {
             // Вывод данных о приложении в ком строку AutoCAD
             InitThis.InitOne();
-
+            // Подключение обработчиков основных событий.
+            InitThis.BasicEventHadlerlersConnect();
             // Загрузка интерфейса
             InitThis.LoadUserInterface();
 
@@ -57,90 +58,74 @@ namespace TIExCAD
         }
 
 
-        /*
-        public void ComponentManager_ItemInitialized(object sender, Autodesk.Windows.RibbonItemEventArgs e)
+        internal static class InitThis
         {
-            // Проверяем, что лента загружена
-            if (Autodesk.Windows.ComponentManager.Ribbon != null)
+            internal static void InitOne()
             {
-                // Строим нашу вкладку
-                BuildRibbonTab();
-                //и раз уж лента запустилась, то отключаем обработчик событий
-                Autodesk.Windows.ComponentManager.ItemInitialized -=
-                    new EventHandler<RibbonItemEventArgs>(ComponentManager_ItemInitialized);
-            }
-        }
-        // Построение вкладки
-        public void BuildRibbonTab()
-        {
-            ExampleRibbon ExRib = new ExampleRibbon();
-
-            // Если лента еще не загружена
-            if (!ExRib.isLoaded())
-            {
-                // Строим вкладку
-                ExRib.CreateRibbonTab();
-                // Подключаем обработчик событий изменения системных переменных
-                //acadApp.SystemVariableChanged += 
-                //    new SystemVariableChangedEventHandler(acadApp_SystemVariableChanged);
-            }
-        }
-        */
-
-    }
-
-
-    internal static class InitThis
-    {
-        internal static void InitOne()
-        {
-            // Сообщение в ком строку AutoCAD
-            AcadSendMess AcSM = new AcadSendMess();
-            AcSM.SendStringDebugStars(new List<string>
+                // Сообщение в ком строку AutoCAD
+                AcadSendMess AcSM = new AcadSendMess();
+                AcSM.SendStringDebugStars(new List<string>
             {
                 "TIExCAD - Загружено",
                 "С# 8.0, VS2019, API .NET AutoCAD",
                 "Применяется в сборке DDECAD-MZ",
             });
 
-            // Регистрация сборок в автозагрузке AutoCAD.
-            RegtoolsCMDF RegCMD = new RegtoolsCMDF();
+                // Регистрация сборок в автозагрузке AutoCAD.
+                RegtoolsCMDF RegCMD = new RegtoolsCMDF();
 
-            // Проверка регистрации сборки в автозагрузке AutoCAD.
-            RegGeneric RegGen = new RegGeneric();
-            // Вызывается регистрация сборки: 
-            if (RegGen.GetRegirterCustomApp(Constantes.ConstNameCustomApp,
-                Assembly.GetExecutingAssembly().Location)) // true
-                                                           // если регистрация прошла успешно, то уведомляем
+                // Проверка регистрации сборки в автозагрузке AutoCAD.
+                RegGeneric RegGen = new RegGeneric();
+                // Вызывается регистрация сборки: 
+                if (RegGen.GetRegirterCustomApp(Constantes.ConstNameCustomApp,
+                    Assembly.GetExecutingAssembly().Location)) // true
+                                                               // если регистрация прошла успешно, то уведомляем
+                {
+                    AcSM.SendStringDebugStars("Приложение зарегистрировано. " +
+                        "\nПри следуюющем запуске AutoCAD будет загружно автоматически!");
+                    // выведем список зарег приложений, кот в автозагрузке AutoCAD.
+                    RegCMD.GetRegistryKeyAppsCMD();
+
+                }
+                // Иначе ничего не делаем, т.к. наше приложение уже есть в автозагрузке AutoCAD.
+            }
+
+            /// <summary>
+            /// Подключение обработчиков основных событий.
+            /// </summary>
+            internal static void BasicEventHadlerlersConnect()
             {
-                AcSM.SendStringDebugStars("Приложение зарегистрировано. " +
-                    "\nПри следуюющем запуске AutoCAD будет загружно автоматически!");
-                // выведем список зарег приложений, кот в автозагрузке AutoCAD.
-                RegCMD.GetRegistryKeyAppsCMD();
+                // 
+                // Подключим автосоздание вкладки ленты.
+                AcadComponentManagerInit.AcadComponentManagerInit_ConnectHandler();
+
+                // ИЗМЕНЕНИЯ СИСТЕМНЫХ ПЕРЕМЕННЫХ
+                // Подключим пересоздание вкладки ленты.
+                // В случае вкладки ленты, отслеживается переменная WSCURRENT.
+                AcadSystemVarChanged.AcadSystemVariableChanged_ConnectHandler();
+
 
             }
-            // Иначе ничего не делаем, т.к. наше приложение уже есть в автозагрузке AutoCAD.
+
+            internal static void LoadUserInterface()
+            {
+
+                // если файла usercadr.ini нет в папке /sys, то загрузка в соотв. с настройками cadr.ini (кот. исп. при инсталяции)
+                // usercadr.ini создается при первой запуске окна настроек, или при "сбросить" в онке настроек (заново создается)
+
+                #region ЛЕНТА
+                // Загрузка выполняется в методе 
+                // AcadComponentManager_ItemInitialized
+                // Перезагрузка при смене раб. пр. - в методе
+                // AcadSysVarChangedEvHr_WSCURRENT
+                #endregion
+
+
+                // Меню
+
+                // Другие элементы интерфейса
+            }
+
         }
-
-        internal static  void LoadUserInterface()
-        {
-
-            // если файла usercadr.ini нет в папке /sys, то загрузка в соотв. с настройками cadr.ini (кот. исп. при инсталяции)
-            // usercadr.ini создается при первой запуске окна настроек, или при "сбросить" в онке настроек (заново создается)
-
-            // Лента
-            ////ExampleRibbon ExRib = new ExampleRibbon();
-
-            //////AcadSendMess AcSM = new AcadSendMess();
-            //////AcSM.SendStringDebugStars("Загрузить вкладку на ленту можно командой RibCreate");
-            ////ExRib.CreateRibbonTab();
-
-            //ExRib.ComponentManager_ItemInitialized()
-
-            // Меню
-
-            // Другие элементы интерфейса
-        }
-
     }
 }

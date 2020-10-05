@@ -10,7 +10,7 @@ using Autodesk.Windows;
 using AdW = Autodesk.Windows;
 using acadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
-namespace TIExCAD.Generic.Ribbon
+namespace TIExCAD.Generic
 {
     class GenRibbonEvHandler
     {

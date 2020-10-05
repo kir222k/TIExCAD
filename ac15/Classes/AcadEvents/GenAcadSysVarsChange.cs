@@ -11,10 +11,18 @@ using AdW = Autodesk.Windows;
 using acadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
 
-namespace TIExCAD
+namespace TIExCAD.Generic
 {
     class AcadSysVarsChange
     {
+        public void acadApp_SystemVariableChanged(object sender, SystemVariableChangedEventArgs e)
+        {
+            //if (e.Name.Equals("WSCURRENT")) BuildRibbonTab();
+            // 
+        }
+
 
     }
+
+
 }

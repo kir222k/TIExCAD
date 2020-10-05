@@ -71,8 +71,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ac15\Classes\AcadEvents\AcadSysVarsChange.cs">
-      <Link>Classes\AcadEvents\AcadSysVarsChange.cs</Link>
+    <Compile Include="..\ac15\Classes\AcadEvents\AcadComponentManagerInit.cs">
+      <Link>Classes\AcadEvents\AcadComponentManagerInit.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\AcadEvents\AcadSystemVarChanged.cs">
+      <Link>Classes\AcadEvents\AcadSystemVarChanged.cs</Link>
     </Compile>
     <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs">
       <Link>Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs</Link>
@@ -80,8 +83,14 @@
     <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonCreate.cs">
       <Link>Classes\GUI\Ribbon\GenRibbonCreate.cs</Link>
     </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonEvHandler.cs">
+      <Link>Classes\GUI\Ribbon\GenRibbonEvHandler.cs</Link>
+    </Compile>
     <Compile Include="..\ac15\Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs">
       <Link>Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Ribbon\TIExRibbonBuild.cs">
+      <Link>Classes\GUI\Ribbon\TIExRibbonBuild.cs</Link>
     </Compile>
     <Compile Include="..\ac15\Classes\Init.cs">
       <Link>Classes\Init.cs</Link>
