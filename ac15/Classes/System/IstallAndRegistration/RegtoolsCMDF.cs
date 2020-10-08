@@ -11,6 +11,8 @@ using Autodesk.AutoCAD.Runtime;
 //using Autodesk.AutoCAD.ApplicationServices;
 //using Autodesk.AutoCAD.DatabaseServices;
 
+using TIExCAD.Generic;
+
 // Если строку ниже закомментировать, методы [CommandMethod] из AutoCAD недоступны.
 [assembly: CommandClass(typeof(TIExCAD.RegtoolsCMDF))]
 
@@ -23,7 +25,7 @@ namespace TIExCAD
     /// Методы информируют о своей работе кратко. В отличие от класса RegtoolsCMD, 
     /// не требуется создание промежуточного класса RegTools. Код оптимизирован!
     /// </summary>
-    public class RegtoolsCMDF
+     public class RegtoolsCMDF
     {
         /// <summary>
         /// Регистрирует сборку (dll файл) приложения в реестре для ее автозапуска при старте AutoCAD.
@@ -36,7 +38,7 @@ namespace TIExCAD
             AcadSendMess AcSM = new AcadSendMess();
             string appName = Constantes.ConstNameCustomApp;
 
-            if (RegGen.GetRegirterCustomApp(appName, Assembly.GetExecutingAssembly().Location))
+            if (RegGen.GetRegisterCustomApp(appName, Assembly.GetExecutingAssembly().Location))
             {
                 AcSM.SendStringDebugStars($"Регистрация {appName} выполнена.");
             }

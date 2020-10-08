@@ -17,6 +17,8 @@ using System.Reflection;
 using Autodesk.Windows;
 using acadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
+using TIExCAD.Generic;
+
 
 
 // This line is not mandatory, but improves loading performances, чтобы это не значило(!)
@@ -28,7 +30,7 @@ namespace TIExCAD
     /// Запускаемый класс - точка входа.
     /// При загрузке данной dll в AutoCAD выполняется код в методе IExtensionApplication.Initialize()
     /// </summary>
-    public class InitSelf : IExtensionApplication
+    internal  class InitSelf : IExtensionApplication
     {
 
         /// <summary>
@@ -82,7 +84,7 @@ namespace TIExCAD
                 // Проверка регистрации сборки в автозагрузке AutoCAD.
                 RegGeneric RegGen = new RegGeneric();
                 // Вызывается регистрация сборки: 
-                if (RegGen.GetRegirterCustomApp(Constantes.ConstNameCustomApp,
+                if (RegGen.GetRegisterCustomApp(Constantes.ConstNameCustomApp,
                     Assembly.GetExecutingAssembly().Location)) // true
                                                                // если регистрация прошла успешно, то уведомляем
                 {

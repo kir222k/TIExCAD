@@ -19,37 +19,37 @@ using acadApp = Autodesk.AutoCAD.ApplicationServices.Application;
 
 namespace TIExCAD.Generic
 {
-/*
- //Удаление своей вкладки с ленты
- // В данном примере не используем
+    /*
+     //Удаление своей вкладки с ленты
+     // В данном примере не используем
 
-[CommandMethod("RibDel")]
-        public  void RemoveRibbonTab()
-        {
-            try
+    [CommandMethod("RibDel")]
+            public  void RemoveRibbonTab()
             {
-                RibbonControl ribCntrl = Autodesk.Windows.ComponentManager.Ribbon;
-                // Делаем итерацию по вкладкам ленты
-                foreach (RibbonTab tab in ribCntrl.Tabs)
+                try
                 {
-                    if (tab.Id.Equals("RibbonExample_ID") & tab.Title.Equals("RibbonExample"))
+                    RibbonControl ribCntrl = Autodesk.Windows.ComponentManager.Ribbon;
+                    // Делаем итерацию по вкладкам ленты
+                    foreach (RibbonTab tab in ribCntrl.Tabs)
                     {
-                        // И если у вкладки совпадает идентификатор и заголовок, то удаляем эту вкладку
-                        ribCntrl.Tabs.Remove(tab);
-                        // Отключаем обработчик событий
-                        acadApp.SystemVariableChanged -= new SystemVariableChangedEventHandler(acadApp_SystemVariableChanged);
-                        // Останавливаем итерацию
-                        break;
+                        if (tab.Id.Equals("RibbonExample_ID") & tab.Title.Equals("RibbonExample"))
+                        {
+                            // И если у вкладки совпадает идентификатор и заголовок, то удаляем эту вкладку
+                            ribCntrl.Tabs.Remove(tab);
+                            // Отключаем обработчик событий
+                            acadApp.SystemVariableChanged -= new SystemVariableChangedEventHandler(acadApp_SystemVariableChanged);
+                            // Останавливаем итерацию
+                            break;
+                        }
                     }
                 }
+                catch (Autodesk.AutoCAD.Runtime.Exception ex)
+                {
+                    Autodesk.AutoCAD.ApplicationServices.Application.
+                      DocumentManager.MdiActiveDocument.Editor.WriteMessage(ex.Message);
+                }
             }
-            catch (Autodesk.AutoCAD.Runtime.Exception ex)
-            {
-                Autodesk.AutoCAD.ApplicationServices.Application.
-                  DocumentManager.MdiActiveDocument.Editor.WriteMessage(ex.Message);
-            }
-        }
-    */
+        */
 
     /// <summary>
     /// Создание вкладки на ленте. Основной метод возращает настроенную вклвдку, кот. затем можно встроить в ленту Autodesk.Windows.ComponentManager.Ribbon.Tabs.Add  
@@ -74,7 +74,7 @@ namespace TIExCAD.Generic
                 }
             }
         }
-       
+
         /// <summary>
         /// Создание вкладки ленты, пустой, нужно добавить панель(панели), в напели добавить кнопки.
         /// </summary>
@@ -333,7 +333,7 @@ namespace TIExCAD.Generic
 
         // МЕТОДЫ
 
-        internal void CreateOrModifityRibbonTab(string ribbonTabTitle, string ribbonTabID, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel = false)
+        public void CreateOrModifityRibbonTab(string ribbonTabTitle, string ribbonTabID, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel = false)
         {
             // проверим вкладку на существование в ленте
             RibbonTab RibTab = RibCr.GetIsRibbonTabLoadedRef(ribbonTabTitle, ribbonTabID);
@@ -349,7 +349,7 @@ namespace TIExCAD.Generic
 
         }
 
-        internal void CreateOrModifityRibbonPanel(RibbonTab ribbonTab, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel)
+        public void CreateOrModifityRibbonPanel(RibbonTab ribbonTab, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel)
         {
             //  проверим панель на существование во вкладке. 
             RibbonPanel ribbonPan = RibCr.GetIsRibbonPanelLoadedRef(ribbonTab, ribbonPanelTitle);
@@ -365,7 +365,7 @@ namespace TIExCAD.Generic
             CreateOrModifityRibbonButton(ribbonTab, ribbonPan, listRibbonButtons, modifityPanel);
         }
 
-        internal void CreateOrModifityRibbonButton(RibbonTab ribbonTab, RibbonPanel ribbonPan, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel)
+        public void CreateOrModifityRibbonButton(RibbonTab ribbonTab, RibbonPanel ribbonPan, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel)
         {
             bool isPanelExist; // если вкладка  существует
 
@@ -424,40 +424,40 @@ namespace TIExCAD.Generic
     /// <summary>
     ///  Кнопка ленты: Текст кнопки. Показать текст. Размер кнопки. Ориентация кнопки. Показать картинку. Имя файла большой картинки. Имя файла малой картинки. Экземпляр делегата
     /// </summary>
-    internal struct RibButtonMyFull
+    public struct RibButtonMyFull
     {
         /// <value>
         ///  Текст кнопки.
         /// </value>
-        internal string ribButtonText;
+        public string ribButtonText;
         /// <value>
         ///  Показать текст.
         /// </value>
-        internal bool showText;
+        public bool showText;
         /// <value>
         ///  Размер кнопки.
         /// </value>
-        internal RibbonItemSize ribButtonSize;
+        public RibbonItemSize ribButtonSize;
         /// <value>
         ///  Ориентация кнопки.
         /// </value>
-        internal Orientation ribButtonOrientation;
+        public Orientation ribButtonOrientation;
         /// <value>
         ///  Показать картинку.
         /// </value>
-        internal bool showImage;
+        public bool showImage;
         /// <value>
         ///  Имя файла большой картинки.
         /// </value>
-        internal string ribButtonLargeImageName;
+        public string ribButtonLargeImageName;
         /// <value>
         ///  Имя файла малой картинки.
         /// </value>
-        internal string ribButtonImageName;
+        public string ribButtonImageName;
         /// <value>
         ///  Экземпляр делегата, кот. содержит методы-обработчики нажатия кнопки.
         /// </value>
-        internal DelegateRibButtonHandler delegateRibBtnEv;
+        public DelegateRibButtonHandler delegateRibBtnEv;
     }
 
 }

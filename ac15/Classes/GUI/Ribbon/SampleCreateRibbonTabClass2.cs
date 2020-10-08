@@ -24,7 +24,7 @@ namespace TIExCAD
     /// <summary>
     /// Пример создания вкладки на ленте с кнопками
     /// </summary>
-    public partial class SampleCreateRibbonTabClass2
+    internal partial class SampleCreateRibbonTabClass2
     {
         /// <summary>
         /// Создание вкладки на ленте. Тестовый пример.
@@ -110,7 +110,7 @@ namespace TIExCAD
     }
 
 
-    public partial class SampleCreateRibbonTabClass2
+    internal partial class SampleCreateRibbonTabClass2
     {
         [CommandMethod("TiexTestRibCreate3")]
         public void TiexTestRibCreate3()
@@ -268,7 +268,7 @@ namespace TIExCAD
     }
 
 
-    public partial class SampleCreateRibbonTabClass2
+    internal partial class SampleCreateRibbonTabClass2
     {
         internal void ShowAdminWindow()
         {
@@ -278,14 +278,14 @@ namespace TIExCAD
         }
     }
 
-    public static class GetStaticInfo
+    internal static class GetStaticInfo
     {
-        public static void SendMessToAcad_test1 ()
+        internal static void SendMessToAcad_test1 ()
         {
             AcadSendMess AcSM = new AcadSendMess();
             AcSM.SendStringDebugStars(new List<string> {"Метод 1 привязанный к делегату", "типа DelegateRibButtonHandler" });
         }
-        public static void SendMessToAcad_test2()
+        internal static void SendMessToAcad_test2()
         {
             AcadSendMess AcSM = new AcadSendMess();
             AcSM.SendStringDebugStars(new List<string> { "Метод 2 привязанный к делегату", "типа DelegateRibButtonHandler" });

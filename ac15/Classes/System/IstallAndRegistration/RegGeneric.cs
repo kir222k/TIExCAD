@@ -12,7 +12,7 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 
 
-namespace TIExCAD
+namespace TIExCAD.Generic
 {
     /// <summary>
     /// Работа с реестром. Автозапуск.
@@ -23,7 +23,7 @@ namespace TIExCAD
         /// Плучение ключа реестра AutoCAD.
         /// </summary>
         /// <returns>Ключ реестра AutoCAD тип Autodesk.AutoCAD.Runtime.RegistryKey.</returns>
-        internal virtual AcRt.RegistryKey GetAcadRegKey()
+        public virtual AcRt.RegistryKey GetAcadRegKey()
         {
             string sProdKey = HostApplicationServices.Current.UserRegistryProductRootKey;
             AcRt.RegistryKey regAcadProdKey = AcRt.Registry.CurrentUser.OpenSubKey(sProdKey);
@@ -37,7 +37,7 @@ namespace TIExCAD
         /// </summary>
         /// <param name="nameCustomApp">Имя приложения для регистрации, может быть любое.</param>
         /// <param name="pathAssembly">Путь к dll приложения. Нужно указывать путь именно к той dll, кот. должна быть в автозапуске AutoCAD.</param>
-        public virtual bool GetRegirterCustomApp(string nameCustomApp, string pathAssembly)
+        public virtual bool GetRegisterCustomApp(string nameCustomApp, string pathAssembly)
         {
             // Get the AutoCAD Applications key
             AcRt.RegistryKey regAcadAppKey = GetAcadRegKey();
