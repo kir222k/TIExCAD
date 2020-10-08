@@ -55,13 +55,13 @@ namespace TIExCAD
 
         internal static void AcadSysVarChangedEvHr_WSCURRENT()
         {
-            /// \TODO Нужно разобраться, что это.
+            /// @TODO Нужно разобраться, что это.
             string cmdNames =
             (string)Autodesk.AutoCAD.ApplicationServices.Application.
                 GetSystemVariable(
                     "CMDNAMES");
 
-            /// \TODO Нужно разобраться, что это: 
+            /// @TODO Нужно разобраться, что это: 
             /// if the QUICKCUI or CUI command is active, returns
             if (cmdNames.ToUpper().IndexOf("QUICKCUI") >= 0 ||
                 cmdNames.ToUpper().IndexOf("CUI") >= 0)

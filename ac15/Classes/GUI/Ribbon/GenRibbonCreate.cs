@@ -56,10 +56,10 @@ namespace TIExCAD.Generic
     /// </summary>
     public class RibbonCreateEasy
     {
-
-        // СВОЙСТВА
-
         private string pathImgFolder;
+        /// <summary>
+        /// Путь к папке с картинками.
+        /// </summary>
         public string PathImgFolder
         {
             set
@@ -74,10 +74,7 @@ namespace TIExCAD.Generic
                 }
             }
         }
-
-
-        // МЕТОДЫ
-
+       
         /// <summary>
         /// Создание вкладки ленты, пустой, нужно добавить панель(панели), в напели добавить кнопки.
         /// </summary>
@@ -110,7 +107,6 @@ namespace TIExCAD.Generic
                 throw;
             }
         }
-
         /// <summary>
         /// Создание Панели вкладки ленты, пустой, нужно еще добавить кнопки. Саму панель нужно вставить во Вкладку ribbonTab.Panels.Add(ribPanel).
         /// </summary>
@@ -145,12 +141,15 @@ namespace TIExCAD.Generic
         /// <summary>
         /// Создание кнопки
         /// </summary>
-        /// <param name="ribButtonText">Текст кнопки</param>
+        /// <param name="ribButtonText">Текст</param>
         /// <param name="showText">Показать текст</param>
+        /// <param name="ribButtonSize">Размер</param>
+        /// <param name="ribButtonOrientation">Ориентация</param>
+        /// <param name="delegateRibBtnEv">Делегат на клик по кнопке</param>
         /// <param name="showImage">Показать картинку</param>
-        /// <param name="ribButtonLargeImageName">Большая картинка</param>
-        /// <param name="ribButtonImageName">Стандартная картинка</param>
-        /// <returns>Ссылка на объект кнопки</returns>
+        /// <param name="ribButtonLargeImageName">имя файлв большой картинки</param>
+        /// <param name="ribButtonImageName"></param>
+        /// <returns></returns>
         public RibbonButton GetRibButton(string ribButtonText, bool showText,
             RibbonItemSize ribButtonSize, Orientation ribButtonOrientation,
             DelegateRibButtonHandler delegateRibBtnEv,

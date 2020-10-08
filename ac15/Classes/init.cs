@@ -57,7 +57,12 @@ namespace TIExCAD
 
         }
 
-
+        /// <summary>
+        /// Дествия при загрузки сборки.
+        /// </summary>
+        /// <remarks>Подключение обработчиков основных событий, 
+        /// Загрузка интерфейса пользователя,
+        /// чтение ini-файлов, выполнение затем каких-то настроек и др.</remarks>
         internal static class InitThis
         {
             internal static void InitOne()

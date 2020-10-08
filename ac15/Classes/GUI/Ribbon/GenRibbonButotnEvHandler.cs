@@ -52,7 +52,9 @@ namespace TIExCAD.Generic
         /// Событие на нажатие кнопки
         /// </summary>
         public event EventHandler CanExecuteChanged;
-
+        /// <summary>
+        /// Стандартный метод.
+        /// </summary>
         public virtual void Execute(object parameter)
         {
             Document doc = acadApp.DocumentManager.MdiActiveDocument;
@@ -72,14 +74,72 @@ namespace TIExCAD.Generic
     public class RibBtnHdlrDel : RibButtonEventHandler
     {
         private DelegateRibButtonHandler DelegateRibBtnEv;
-        public RibBtnHdlrDel() { }
+        //public RibBtnHdlrDel() { }        
+
+        /// <summary>
+        /// Конструктор.
+        /// </summary>
+        /// <param name="delegateRibBtnEv">Делегат, содержащий методы-обработчики</param>
         public RibBtnHdlrDel(DelegateRibButtonHandler delegateRibBtnEv)
         {
             DelegateRibBtnEv = delegateRibBtnEv;
         }
+
+        /// <summary>
+        /// Стандартный метод.
+        /// </summary>
+
         public override void Execute(object parameter)
         {
             DelegateRibBtnEv();
+        }
+    }
+
+
+
+
+    /// <summary>
+    /// Приемы с делегатами.
+    /// </summary>
+    internal static class TestDelegateStandart
+    {
+        //delegate  Action TestDelegateAction();
+
+        internal static void Test1()
+        {
+            Action del;
+            del = TestDelegateStandart.Test2;
+            del += Test2;
+            //new DelegateRibButtonHandler(TestDEl2.Test2);
+            del?.Invoke();
+        }
+
+        internal static void Test2()
+        {
+            Console.WriteLine("Test2");
+            Console.ReadKey();
+        }
+        internal static void Test3()
+        {
+
+        }
+
+    }
+
+    /// <summary>
+    /// Пример работы с вызовом событий.
+    /// </summary>
+    public class EventGeneratedMY
+    {
+        public delegate void MyDelegate();
+        public event MyDelegate MyEvent;
+        void GeneratedEvent(int i)
+        {
+            if (i > 3)
+                MyEvent();
+            // или, что одно и то же, но с проверкой делегата на null
+            if (i > 3)
+                MyEvent?.Invoke();
         }
     }
 
