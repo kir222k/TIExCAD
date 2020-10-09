@@ -9,31 +9,31 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 
-[assembly: CommandClass(typeof(TIExCAD.AcadDocReport))]
+[assembly: CommandClass(typeof(TIExCAD.Generic.AcadDocReport))]
 
-namespace TIExCAD
+namespace TIExCAD.Generic
 {
     /// <summary>
     /// Предназначен для вывода отчетов о свойствах и содержимом чертежа.
     /// </summary>
-    public class AcadDocReport
+    public static  class AcadDocReport
     {
         // ПОЛЯ
         /// <value>doc - ссылка  на активный открытый чертеж AutoCAD</value>
-        public Document doc = Application.DocumentManager.MdiActiveDocument;
+        private static readonly Document doc = Application.DocumentManager.MdiActiveDocument;
         // Поле ed - ссылка на Editor активного чертежа
-        private Editor ed;
+        //private static Editor ed = doc.Editor;
 
         /// <summary>
         /// Выводит сообщение в ком строку AutoCAD о сойствах активного чертежа
         /// </summary>
         /// <remarks>Следует написать возращающий метод с параментрами и использовать уже здесь.</remarks>
         [CommandMethod("TIExCADdocreport")]
-        public void AcadDocGetReport()
+        public static void AcadDocPrintReport()
         {
             if (doc != null)
             {
-                ed = doc.Editor;
+                //ed = doc.Editor;
 
                 AcadSendMess AcSM = new AcadSendMess();
                 AcSM.SendStringDebugStars(new List<string>

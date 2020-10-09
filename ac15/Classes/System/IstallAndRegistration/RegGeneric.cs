@@ -71,6 +71,7 @@ namespace TIExCAD.Generic
         /// Отменяет регистрацию сборки (dll файл) приложения в реестре для отмены ее автозапуска при старте AutoCAD.
         /// </summary>
         /// <param name="nameCustomApp">Имя приложения, кот было ранее зарегистрированно для автозапуска.</param>
+        /// <returns>TRUE - если регистрация отменена, FALSE - если отмена регистрации не выполнена.</returns>
         public virtual  bool GetUnRegisterCustomApp(string nameCustomApp)
         {
 

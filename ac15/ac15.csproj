@@ -7,7 +7,7 @@
     <ProjectGuid>{5923FAC7-C36D-45EB-86BC-EFF65946E9B2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>TIExCAD</RootNamespace>
+    <RootNamespace>TIExCAD.Generic</RootNamespace>
     <AssemblyName>ac15</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -63,7 +63,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -76,20 +78,21 @@
     <Compile Include="Classes\AcadEvents\AcadComponentManagerInit.cs" />
     <Compile Include="Classes\AcadEvents\AcadSystemVarChanged.cs" />
     <Compile Include="Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs" />
-    <Compile Include="Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs" />
-    <Compile Include="Classes\GUI\Ribbon\TIExRibbonBuild.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocInfoLayers.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocReport.cs" />
     <Compile Include="Classes\GUI\Ribbon\GenRibbonCreate.cs" />
-    <Compile Include="Classes\Init.cs" />
     <Compile Include="Classes\System\IstallAndRegistration\RegGeneric.cs" />
     <Compile Include="Classes\System\IstallAndRegistration\RegtoolsCMDF.cs" />
     <Compile Include="Classes\System\SendMessage\AcadSendMess.cs" />
     <Compile Include="Classes\System\SendMessage\StringMetods.cs" />
-    <Compile Include="Classes\System\StaticData\Constantes.cs" />
     <Compile Include="Classes\System\StaticData\Enums.cs" />
     <Compile Include="Classes\System\StaticData\StaticObjects.cs" />
-    <Compile Include="Classes\testInACAD.cs" />
+    <Compile Include="Classes\System\IstallAndRegistration\AdmReg.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Classes\System\IstallAndRegistration\AdmReg.Designer.cs">
+      <DependentUpon>AdmReg.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -98,6 +101,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="Classes\System\IstallAndRegistration\AdmReg.resx">
+      <DependentUpon>AdmReg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <SubType>Designer</SubType>

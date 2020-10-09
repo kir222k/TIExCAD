@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace TIExCAD
+namespace TIExCAD.Generic
 {
     /// <summary>
     /// Статический класс для работы со строками: 
@@ -12,12 +12,12 @@ namespace TIExCAD
     /// получение длины наиболее длинной строки из списка, 
     /// получить многострочный текст с обрамлением *
     /// </summary>
-    internal static class StringMetods
+     public class StringMetods
     {
         /// <summary>
         /// Из списка строк выбирает самую длинную, возращает ее длину
         /// </summary>
-        internal static int GetLenMaxStringOfList(List<string> listString)
+        public static int GetLenMaxStringOfList(List<string> listString)
         {
             int lenMaxStr= 0;
             // по списку
@@ -33,7 +33,7 @@ namespace TIExCAD
         /// Из списка строк ищет самую длинную
         /// <returns>Строка по длине наибольшая из списка</returns>
         /// </summary>
-        internal static string GetMaxStringOfList(List<string> listString)
+        public static string GetMaxStringOfList(List<string> listString)
         {
             string maxStr = "";
             foreach (string sitem in listString)
@@ -58,7 +58,7 @@ namespace TIExCAD
         /// <returns> Строка с обрамлением *</returns>
         /// <param name="listString">Список строк</param>
         /// <param name="printHeader">True =  выводить заголовок "Debug"</param>
-        internal static string GetStringFromListStars (List<string> listString, bool printHeader)
+        public static string GetStringFromListStars (List<string> listString, bool printHeader)
         {
             // Найдем строку с максимальной длиной, получим ее длину
             int lenMaxStr = GetLenMaxStringOfList(listString);

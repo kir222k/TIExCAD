@@ -14,9 +14,9 @@ using Autodesk.AutoCAD.Runtime;
 using TIExCAD.Generic;
 
 // Если строку ниже закомментировать, методы [CommandMethod] из AutoCAD недоступны.
-[assembly: CommandClass(typeof(TIExCAD.RegtoolsCMDF))]
+[assembly: CommandClass(typeof(TIExCAD.Generic.RegtoolsCMDF))]
 
-namespace TIExCAD
+namespace TIExCAD.Generic
 {
 
     /// <summary>
@@ -27,6 +27,21 @@ namespace TIExCAD
     /// </summary>
      public class RegtoolsCMDF
     {
+        // ПОЛЯ
+
+        string appName;
+
+        // СВОЙСТВА
+
+        public string  AppName 
+        {
+            set { appName = value; }
+        }
+
+        // КОНСТРУКТОРЫ
+
+        RegtoolsCMDF (string appName) { this.appName=appName;}
+
         /// <summary>
         /// Регистрирует сборку (dll файл) приложения в реестре для ее автозапуска при старте AutoCAD.
         /// Команда AppCadRegF
@@ -36,7 +51,8 @@ namespace TIExCAD
         {
             RegGeneric RegGen = new RegGeneric();
             AcadSendMess AcSM = new AcadSendMess();
-            string appName = Constantes.ConstNameCustomApp;
+
+            //string appName 
 
             if (RegGen.GetRegisterCustomApp(appName, Assembly.GetExecutingAssembly().Location))
             {
@@ -58,7 +74,7 @@ namespace TIExCAD
         {
             RegGeneric RegGen = new RegGeneric();
             AcadSendMess AcSM = new AcadSendMess();
-            string appName = Constantes.ConstNameCustomApp;
+            //string appName = Constantes.ConstNameCustomApp;
 
             if (RegGen.GetUnRegisterCustomApp(appName))
             {
@@ -70,13 +86,13 @@ namespace TIExCAD
             }
         }
 
-        public void UnregisterMyAppCMD(string appName)
-        {
-            RegGeneric RegGen = new RegGeneric();
-            AcadSendMess AcSM = new AcadSendMess();
-            //string appName = Constantes.ConstNameCustomApp;
-            RegGen.GetUnRegisterCustomApp(appName);
-        }
+        //public void UnregisterMyAppCMD(string appName)
+        //{
+        //    RegGeneric RegGen = new RegGeneric();
+        //    AcadSendMess AcSM = new AcadSendMess();
+        //    //string appName = Constantes.ConstNameCustomApp;
+        //    RegGen.GetUnRegisterCustomApp(appName);
+        //}
 
 
         /// <summary>
@@ -96,14 +112,15 @@ namespace TIExCAD
             AcSM.SendStringDebugStars(listKeys);
         }
 
-        [CommandMethod("AppCadUnRegCMD")]
-        public void UnregisterMyAppConsole()
+        [CommandMethod("AppCadUnRegForm")]
+        public void UnregisterMyAppForm()
         {
             //string appName;
             //System.Console.WriteLine("Input aplication name for unregistration:");
             //appName = System.Console.ReadLine();
             //UnregisterMyAppCMD(appName);
-
+            AdmReg AR = new AdmReg();
+            AR.ShowDialog();
         }
     }
 

@@ -9,10 +9,10 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 
-[assembly: CommandClass(typeof(TIExCAD.AcadDocInfoLayers))]
+[assembly: CommandClass(typeof(TIExCAD.Generic.AcadDocInfoLayers))]
 
 
-namespace TIExCAD
+namespace TIExCAD.Generic
 {
     /// <summary>
     /// Для вывода данных о слоях.

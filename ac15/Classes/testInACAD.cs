@@ -11,9 +11,9 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 
-[assembly: CommandClass(typeof(TIExCAD.TestInACAD))]
+[assembly: CommandClass(typeof(TIExCAD.Generic.TestInACAD))]
 
-namespace TIExCAD
+namespace TIExCAD.Generic
 {
     class TestInACAD
     {

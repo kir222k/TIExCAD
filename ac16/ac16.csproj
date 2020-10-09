@@ -61,7 +61,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
     <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -83,23 +85,19 @@
     <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonCreate.cs">
       <Link>Classes\GUI\Ribbon\GenRibbonCreate.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonEvHandler.cs">
-      <Link>Classes\GUI\Ribbon\GenRibbonEvHandler.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs">
-      <Link>Classes\GUI\Ribbon\SampleCreateRibbonTabClass2.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\GUI\Ribbon\TIExRibbonBuild.cs">
-      <Link>Classes\GUI\Ribbon\TIExRibbonBuild.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\Init.cs">
-      <Link>Classes\Init.cs</Link>
-    </Compile>
     <Compile Include="..\ac15\Classes\System\AcadDocInfo\AcadDocInfoLayers.cs">
       <Link>Classes\System\AcadDocInfo\AcadDocInfoLayers.cs</Link>
     </Compile>
     <Compile Include="..\ac15\Classes\System\AcadDocInfo\AcadDocReport.cs">
       <Link>Classes\System\AcadDocInfo\AcadDocReport.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\AdmReg.cs">
+      <Link>Classes\System\IstallAndRegistration\AdmReg.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\AdmReg.designer.cs">
+      <Link>Classes\System\IstallAndRegistration\AdmReg.designer.cs</Link>
+      <DependentUpon>AdmReg.cs</DependentUpon>
     </Compile>
     <Compile Include="..\ac15\Classes\System\IstallAndRegistration\RegGeneric.cs">
       <Link>Classes\System\IstallAndRegistration\RegGeneric.cs</Link>
@@ -113,17 +111,11 @@
     <Compile Include="..\ac15\Classes\System\SendMessage\StringMetods.cs">
       <Link>Classes\System\SendMessage\StringMetods.cs</Link>
     </Compile>
-    <Compile Include="..\ac15\Classes\System\StaticData\Constantes.cs">
-      <Link>Classes\System\StaticData\Constantes.cs</Link>
-    </Compile>
     <Compile Include="..\ac15\Classes\System\StaticData\Enums.cs">
       <Link>Classes\System\StaticData\Enums.cs</Link>
     </Compile>
     <Compile Include="..\ac15\Classes\System\StaticData\StaticObjects.cs">
       <Link>Classes\System\StaticData\StaticObjects.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\testInACAD.cs">
-      <Link>Classes\testInACAD.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -133,6 +125,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <EmbeddedResource Include="..\ac15\Classes\System\IstallAndRegistration\AdmReg.resx">
+      <Link>Classes\System\IstallAndRegistration\AdmReg.resx</Link>
+      <DependentUpon>AdmReg.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

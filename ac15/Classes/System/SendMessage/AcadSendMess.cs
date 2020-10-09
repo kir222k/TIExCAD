@@ -10,10 +10,9 @@ using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
 
 
-
 // [assembly: CommandClass(typeof(TIExCAD.AcadSendMess))]
 //
-namespace TIExCAD
+namespace TIExCAD.Generic
 {
     /// <summary>
     /// Класс для работы с сообщениями в коммандной строке AutoCAD.
@@ -75,7 +74,6 @@ namespace TIExCAD
     /// </summary>
     internal class AcadSendMessDebug : AcadSendMess // наследуем,  чтобы сразу использовать ссылку на активный чертеж doc
     {
-
         // СВОЙСТВА
 
         /// <summary>
@@ -136,7 +134,6 @@ namespace TIExCAD
                 doc.Editor.WriteMessage(stringStars);
             }
         }
-
 
     }
 }
