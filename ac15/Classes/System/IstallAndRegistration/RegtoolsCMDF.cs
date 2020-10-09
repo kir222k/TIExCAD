@@ -70,6 +70,14 @@ namespace TIExCAD
             }
         }
 
+        public void UnregisterMyAppCMD(string appName)
+        {
+            RegGeneric RegGen = new RegGeneric();
+            AcadSendMess AcSM = new AcadSendMess();
+            //string appName = Constantes.ConstNameCustomApp;
+            RegGen.GetUnRegisterCustomApp(appName);
+        }
+
 
         /// <summary>
         /// Вывод данных о зарег. сборках.
@@ -88,6 +96,15 @@ namespace TIExCAD
             AcSM.SendStringDebugStars(listKeys);
         }
 
+        [CommandMethod("AppCadUnRegCMD")]
+        public void UnregisterMyAppConsole()
+        {
+            //string appName;
+            //System.Console.WriteLine("Input aplication name for unregistration:");
+            //appName = System.Console.ReadLine();
+            //UnregisterMyAppCMD(appName);
+
+        }
     }
 
 }

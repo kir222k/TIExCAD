@@ -16,8 +16,9 @@ namespace TIExCAD
     /// <summary>
     /// Работа с событием изменения сист переменных.
     /// </summary>
-    static partial class AcadSystemVarChanged
+    internal static  class AcadSystemVarChanged
     {
+
         /// <summary>
         /// Подключение обоработчика к событию изменения системных переменных, 
         /// в т.ч., для переподключения нашей вкладки при смене раб. пр-ва.
@@ -28,7 +29,7 @@ namespace TIExCAD
                 new SystemVariableChangedEventHandler(AcadSysVarChangedEventHandler);
         }
 
-        
+
         /// <summary>
         /// Обработчик события изменения системных переменных.
         /// </summary>
