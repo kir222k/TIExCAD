@@ -22,25 +22,34 @@ namespace TIExCAD.Generic
     /// <summary>
     /// Работа с регистрацией приложения.
     /// Разработан для вызова методов работы с реестром по команде из AutoCAD.
-    /// Методы информируют о своей работе кратко. В отличие от класса RegtoolsCMD, 
-    /// не требуется создание промежуточного класса RegTools. Код оптимизирован!
+    /// Методы информируют о своей работе кратко.
     /// </summary>
      public class RegtoolsCMDF
     {
         // ПОЛЯ
 
-        string appName;
+        private string appName;
 
         // СВОЙСТВА
 
+        /// <value>
+        /// Имя приложения для регистрации.
+        /// </value>
         public string  AppName 
         {
             set { appName = value; }
         }
 
         // КОНСТРУКТОРЫ
+        //public RegtoolsCMDF() { }
 
-        RegtoolsCMDF (string appName) { this.appName=appName;}
+        /// <summary>
+        /// Работа с регистрацией приложения.
+        /// </summary>
+        /// <param name="appName"></param>
+        public RegtoolsCMDF(string appName) { this.appName=appName;}
+
+        // МЕТОДЫ
 
         /// <summary>
         /// Регистрирует сборку (dll файл) приложения в реестре для ее автозапуска при старте AutoCAD.
@@ -86,15 +95,6 @@ namespace TIExCAD.Generic
             }
         }
 
-        //public void UnregisterMyAppCMD(string appName)
-        //{
-        //    RegGeneric RegGen = new RegGeneric();
-        //    AcadSendMess AcSM = new AcadSendMess();
-        //    //string appName = Constantes.ConstNameCustomApp;
-        //    RegGen.GetUnRegisterCustomApp(appName);
-        //}
-
-
         /// <summary>
         /// Вывод данных о зарег. сборках.
         /// Команда AppCadViewReg
@@ -112,6 +112,12 @@ namespace TIExCAD.Generic
             AcSM.SendStringDebugStars(listKeys);
         }
 
+
+
+        /// <summary>
+        ///  Отмена регистрации сборки по ее имени.
+        ///  Диалоговое окно.
+        /// </summary>
         [CommandMethod("AppCadUnRegForm")]
         public void UnregisterMyAppForm()
         {

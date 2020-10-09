@@ -73,7 +73,7 @@ namespace TIExCAD.Generic
     /// </summary>
     public class RibBtnHdlrDel : RibButtonEventHandler
     {
-        private DelegateRibButtonHandler DelegateRibBtnEv;
+        private readonly DelegateRibButtonHandler DelegateRibBtnEv;
         //public RibBtnHdlrDel() { }        
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace TIExCAD.Generic
 
 
 
-
+    /*
     /// <summary>
     /// Приемы с делегатами.
     /// </summary>
@@ -142,6 +142,6 @@ namespace TIExCAD.Generic
                 MyEvent?.Invoke();
         }
     }
-
+    */
 
 }

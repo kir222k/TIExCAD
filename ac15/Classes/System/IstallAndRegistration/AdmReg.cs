@@ -12,12 +12,15 @@ namespace TIExCAD.Generic
 {
     public partial class AdmReg : Form
     {
+        /// <summary>
+        /// Форма для отмены регистрации приложения по его имени.
+        /// </summary>
         public AdmReg()
         {
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void Button1_Click(object sender, EventArgs e)
         {
             string appName;
             //System.Console.WriteLine("Input aplication name for unregistration:");

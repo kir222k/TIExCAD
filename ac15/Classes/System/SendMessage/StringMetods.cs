@@ -78,7 +78,7 @@ namespace TIExCAD.Generic
                 {
                     strDebugPrint = $"{strDebugPrint} ";
                 }
-                strDebugPrint = strDebugPrint + " |";
+                strDebugPrint += " |";
                 Console.WriteLine(strDebugPrint.Length);
             }
 
@@ -103,7 +103,7 @@ namespace TIExCAD.Generic
 
                     for (int i = 0; i < deltaSymString; i++)
                     {
-                        strSpaceNeed = strSpaceNeed + " ";
+                        strSpaceNeed += " ";
                     }
                     listWithStars.Add($"\n| {sitem} {strSpaceNeed}|");
                 }
@@ -115,14 +115,14 @@ namespace TIExCAD.Generic
 
             // Превратим в строку
             string strFullWithStars ="";
-            foreach (var s in listWithStars) {strFullWithStars = strFullWithStars + s;}
+            foreach (var s in listWithStars) {strFullWithStars += s;}
 
 
             // Разделитель
             string strTol="\n----";
             for (int i = 0; i < lenMaxStr; i++)
             {
-                strTol = strTol + "-";
+                strTol += "-";
             }
             //strTol = strTol + "|";
 

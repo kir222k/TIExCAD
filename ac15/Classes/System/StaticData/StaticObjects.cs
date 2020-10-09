@@ -12,12 +12,33 @@ namespace TIExCAD.Generic
     /// </summary>
     public static class StaticObjAcadRev
     {
+        /// <summary>
+        /// AutoCAD 2015
+        /// </summary>
         public static readonly string Acad2015 = "20.0";
+        /// <summary>
+        /// AutoCAD 2016
+        /// </summary>
         public static readonly string Acad2016 = "20.1";
+        /// <summary>
+        /// AutoCAD 2017
+        /// </summary>
         public static readonly string Acad2017 = "21.0";
+        /// <summary>
+        /// AutoCAD 2018
+        /// </summary>
         public static readonly string Acad2018 = "22.0";
+        /// <summary>
+        /// AutoCAD 2019
+        /// </summary>
         public static readonly string Acad2019 = "23.0";
+        /// <summary>
+        /// AutoCAD 2020
+        /// </summary>
         public static readonly string Acad2020 = "23.1";
+        /// <summary>
+        /// AutoCAD 2021
+        /// </summary>
         public static readonly string Acad2021 = "24.0";
 
         /// <summary>

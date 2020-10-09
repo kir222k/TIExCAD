@@ -75,7 +75,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\AcadEvents\AcadComponentManagerInit.cs" />
     <Compile Include="Classes\AcadEvents\AcadSystemVarChanged.cs" />
     <Compile Include="Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocInfoLayers.cs" />

@@ -293,6 +293,13 @@ namespace TIExCAD.Generic
             return RibPan; // Если панели нет, возращ. null
         }
 
+        /// <summary>
+        /// Проверяет сущ. кнопки в панели
+        /// </summary>
+        /// <param name="ribbonTab">Объект вкладки</param>
+        /// <param name="ribbonPanel">Объект панели</param>
+        /// <param name="ribbonButtonText">Текст кнопки</param>
+        /// <returns></returns>
         public RibbonButton GetIsRibbonButtonLoadedRef(RibbonTab ribbonTab, RibbonPanel ribbonPanel, string ribbonButtonText)
         {
             RibbonButton RibBtn = null;
@@ -328,11 +335,20 @@ namespace TIExCAD.Generic
         */
 
         // создадим класс по работе с вкладками
-        RibbonCreateEasy RibCr = new RibbonCreateEasy();
+        readonly RibbonCreateEasy RibCr = new RibbonCreateEasy();
 
 
         // МЕТОДЫ
 
+        /// <summary>
+        /// Создать или модифицировать вкладку ленты
+        /// </summary>
+        /// <param name="ribbonTabTitle">Названи вкладки.</param>
+        /// <param name="ribbonTabID">ID вкладки.</param>
+        /// <param name="ribbonPanelTitle">Название панели.</param>
+        /// <param name="listRibbonButtons">Коллекция кнопок, каждая кнопка - экз. структуры.</param>
+        /// <param name="modifityPanel">TRUE - модифицировать панель, если такая есть (т.е. добавлять кнопки), 
+        /// FALSE - не модифицировать (т.е. панель создается, если только такой еще нет на вкладке).</param>
         public void CreateOrModifityRibbonTab(string ribbonTabTitle, string ribbonTabID, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel = false)
         {
             // проверим вкладку на существование в ленте
@@ -349,6 +365,14 @@ namespace TIExCAD.Generic
 
         }
 
+        /// <summary>
+        /// Создать или модифицировать панель вкладки ленты.
+        /// </summary>
+        /// <param name="ribbonTab">Объект вкладки.</param>
+        /// <param name="ribbonPanelTitle">Название панели.</param>
+        /// <param name="listRibbonButtons">Коллекция кнопок, каждая кнопка - экз. структуры.</param>
+        /// <param name="modifityPanel">TRUE - модифицировать панель, если такая есть (т.е. добавлять кнопки), 
+        /// FALSE - не модифицировать (т.е. панель создается, если только такой еще нет на вкладке).</param>
         public void CreateOrModifityRibbonPanel(RibbonTab ribbonTab, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel)
         {
             //  проверим панель на существование во вкладке. 
@@ -365,6 +389,14 @@ namespace TIExCAD.Generic
             CreateOrModifityRibbonButton(ribbonTab, ribbonPan, listRibbonButtons, modifityPanel);
         }
 
+        /// <summary>
+        /// Создать или добавить кнопки панели вкладки ленты.
+        /// </summary>
+        /// <param name="ribbonTab">Объект вкладки.</param>
+        /// <param name="ribbonPan">Объект панели.</param>
+        /// <param name="listRibbonButtons">Коллекция кнопок, каждая кнопка - экз. структуры.</param>
+        /// <param name="modifityPanel">TRUE - модифицировать панель, если такая есть (т.е. добавлять кнопки), 
+        /// FALSE - не модифицировать.</param>
         public void CreateOrModifityRibbonButton(RibbonTab ribbonTab, RibbonPanel ribbonPan, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel)
         {
             bool isPanelExist; // если вкладка  существует
