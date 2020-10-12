@@ -17,7 +17,7 @@ namespace TIExCAD.Generic
     /// <summary>
     /// Подключение обработчика для автозагрузки вкладки н ленту при загрузке сборки в AutoCAD.
     /// </summary>
-    /// <remarks>1. Подписаться на событие BuildRibbonTabEvent - подключить делегат типа Action к этому событию.
+    /// <remarks>1. Подписаться на событие RibbonInitializedEvent - подключить делегат типа Action к этому событию.
     /// 2. вызвать метод AcadComponentManagerInit.AcadComponentManagerInit_ConnectHandler</remarks>
     public static  class AcadComponentManagerInit
     {
@@ -27,7 +27,7 @@ namespace TIExCAD.Generic
         /// Объявление события "Можно загружать вкладку ленты", на кот. может подписаться делегат типа Action,
         /// т.е. делегат, методы кот. не имеют  арггументов и кот. ничего не возращает.
         /// </summary>
-        public static event Action BuildRibbonTabEvent;
+        public static event Action RibbonInitializedEvent;
 
 
         /// <summary>
@@ -45,12 +45,8 @@ namespace TIExCAD.Generic
         internal static void AcadComponentManager_ItemInitialized(object sender, Autodesk.Windows.RibbonItemEventArgs e)
         {
             // Создать и загрузить вкладку
-            //SampleCreateRibbonTabClass2 SampleRibTab =
-            //    new SampleCreateRibbonTabClass2();
-            //SampleRibTab.TiexTestRibCreate3();
-
-            // создадим событие, при подписке на которое создается и загружвается вкладка.
-            BuildRibbonTabEvent?.Invoke();
+            // создадим событие, при подписке на которое создается и загружается вкладка.
+            RibbonInitializedEvent?.Invoke();
 
 
             // Отключить обработчик загрузки ленты, т.к. он вызвается

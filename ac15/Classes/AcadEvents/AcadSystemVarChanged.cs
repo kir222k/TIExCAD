@@ -26,9 +26,9 @@ namespace TIExCAD.Generic
         public static event Action AcadSysVarChangeEvent_WSCURRENT;
         /// <summary>
         /// событие изменения сист переменной, любой, кроме тех, на кот уже есть свои события, 
-        /// можно подписаться и подключить свой делегат типа Action.
+        /// можно подписаться и подключить свой делегат типа EventHandler.
         /// </summary>
-        public static event Action AcadSysVarChangeEvent_ANYVAR;
+        public static event EventHandler AcadSysVarChangeEvent_ANYVAR;
 
         // МЕТОДЫ
 
@@ -71,7 +71,7 @@ namespace TIExCAD.Generic
                 //    ;
                 //    break;
                 default:
-                    AcadSysVarChangeEvent_ANYVAR?.Invoke(); // событие, можно подписаться и прикрутить свой делегат типа Action.
+                    AcadSysVarChangeEvent_ANYVAR?.Invoke(e.Name, null); // событие, можно подписаться и прикрутить свой делегат типа EventHandler.
                     break;
             }
         }
