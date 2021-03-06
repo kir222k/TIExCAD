@@ -36,5 +36,31 @@ namespace TIExCAD.Generic
         Sunday=7
     }
 
+    //             Size sz = new Size { Width = 310, Height = 500 };
+
+public enum WidthPaletteSet : int
+    {
+        WidthMin = 400,
+        WidthMiddle = 600,
+        WidthBig = 800,
+
+        //HeightMin = 600,
+        //HeightMiddle = 800,
+        //HeightBig = 1000,
+
+    }
+
+    public enum HeigthPaletteSet : int
+    {
+        //WidthMin = 400,
+        //WidthMiddle = 600,
+        //WidthBig = 800,
+
+        HeightMin = 600,
+        HeightMiddle = 800,
+        HeightBig = 1000,
+
+    }
+
 
 }
