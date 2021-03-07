@@ -29,6 +29,8 @@ namespace TIExCAD.Generic
     /// </summary>
     public class CustomPaletteSetAcad : IPaletteSetCustom
     {
+        
+
         #region ПОЛЯ
         private PaletteSet paletteSetAcad;
         private string paletteSetAcadName;
@@ -131,7 +133,18 @@ namespace TIExCAD.Generic
             Size sz = new Size { Width = widthPaletteSet, Height = heigthPaletteSet };
             // передача размеров палитре
             paletteSetAcad.SetSize(sz);
+
+            paletteAc.SizeChanged += PaletteAc_SizeChanged;
         }
+
+        private void PaletteAc_SizeChanged(object sender, PaletteSetSizeEventArgs e)
+        {
+            //ElementHost ParControl =(ElementHost)paletteControl.Parent;
+            
+            //AT.Dock = DockStyle.Fill;
+            // throw new NotImplementedException();
+        }
+
         /// <inheritdoc/>
         public void PaletteSetSetting()
         {

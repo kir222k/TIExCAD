@@ -44,6 +44,8 @@ namespace TIExCAD.Generic
         /// </summary>
         void PaletteSetShow();
 
+       // void PaletteSetResize();
+
 
 
     }
