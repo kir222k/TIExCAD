@@ -12,10 +12,6 @@ namespace TIExCAD.Generic
     interface IPaletteSetCustom
     {
         /// <summary>
-        /// Палитра.
-        /// </summary>
-        //PaletteSet PaletteSetAcad { get; }
-        /// <summary>
         /// Имя палитры.
         /// </summary>
         string PaletteSetAcadName { get; }
@@ -23,10 +19,7 @@ namespace TIExCAD.Generic
         /// GUD палитры.
         /// </summary>
         System.Guid PaletteSetGuid { get; }
-        /// <summary>
-        /// Контрол, внедряемый в палитру.
-        /// </summary>
-        //UserControl PalettteControl { set; }
+        
         /// <summary>
         /// Имя внедряемого в палитру контрола.
         /// </summary>
@@ -45,8 +38,6 @@ namespace TIExCAD.Generic
         void PaletteSetShow();
 
        // void PaletteSetResize();
-
-
 
     }
 

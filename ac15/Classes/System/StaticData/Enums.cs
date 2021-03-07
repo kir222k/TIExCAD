@@ -40,7 +40,7 @@ namespace TIExCAD.Generic
 
 public enum WidthPaletteSet : int
     {
-        WidthMin = 400,
+        WidthMin = 406,
         WidthMiddle = 600,
         WidthBig = 800,
 
@@ -56,7 +56,7 @@ public enum WidthPaletteSet : int
         //WidthMiddle = 600,
         //WidthBig = 800,
 
-        HeightMin = 600,
+        HeightMin = 256,
         HeightMiddle = 800,
         HeightBig = 1000,
 

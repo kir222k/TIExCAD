@@ -29,8 +29,6 @@ namespace TIExCAD.Generic
     /// </summary>
     public class CustomPaletteSetAcad : IPaletteSetCustom
     {
-        
-
         #region ПОЛЯ
         private PaletteSet paletteSetAcad;
         private string paletteSetAcadName;
@@ -42,25 +40,18 @@ namespace TIExCAD.Generic
         #endregion
 
         #region СВОЙСТВА
-        // Палитра
-        /// <inheritdoc/>
-        //public PaletteSet PaletteSetAcad   { get => paletteSetAcad; set => paletteSetAcad = value; }
         // Имя палитры
         /// <inheritdoc/>
         public string PaletteSetAcadName { get => paletteSetAcadName; set => paletteSetAcadName = value; }
         // GUID  Палитры
         /// <inheritdoc/>
         public Guid PaletteSetGuid { get => paletteSetGuid; set => paletteSetGuid = value; }
-        // Контрол для вставки в палитру
-        /// <inheritdoc/>
-        //public UserControl PaletteControl { set => paletteControl = value; }
-        //public UserControl PalettteControl { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
         // Имя контрола палитры
         /// <inheritdoc/>
         public string PalettteControlName { get => paletteControlName; set => paletteControlName = value; }
         #endregion
 
-
+        
         /// <summary>
         /// Создает или открывает скрытую палитру.
         /// </summary>
@@ -130,20 +121,25 @@ namespace TIExCAD.Generic
                 PaletteSetStyles.ShowAutoHideButton;
 
             // объект размера
-            Size sz = new Size { Width = widthPaletteSet, Height = heigthPaletteSet };
+            Size PaletteSetSize = new Size { Width = (int)WidthPaletteSet.WidthMin - 2, Height = (int)HeigthPaletteSet.HeightMin - 2 };
+            Size PaletteSetSizeMin = new Size { Width = (int)WidthPaletteSet.WidthMin, Height = (int)HeigthPaletteSet.HeightMin };
             // передача размеров палитре
-            paletteSetAcad.SetSize(sz);
+            //paletteAc.MinimumSize = new System.Drawing.Size(413,252);
+            paletteAc.MinimumSize = PaletteSetSizeMin;
+            paletteAc.SetSize(PaletteSetSize);
 
-            paletteAc.SizeChanged += PaletteAc_SizeChanged;
+            //paletteAc.SizeChanged += PaletteAc_SizeChanged;
         }
 
-        private void PaletteAc_SizeChanged(object sender, PaletteSetSizeEventArgs e)
-        {
-            //ElementHost ParControl =(ElementHost)paletteControl.Parent;
-            
-            //AT.Dock = DockStyle.Fill;
-            // throw new NotImplementedException();
-        }
+        //private void PaletteAc_SizeChanged(object sender, PaletteSetSizeEventArgs e)
+        //{
+        //    //throw new NotImplementedException();
+        //    if ((paletteSetAcad.Size.Width < paletteSetAcad.MinimumSize.Width) | (paletteSetAcad.Size.Height < paletteSetAcad.MinimumSize.Height))
+        //    {
+        //        Size PaletteSetSizeMin = new Size { Width = (int)WidthPaletteSet.WidthMin, Height = (int)HeigthPaletteSet.HeightMin };
+        //        paletteSetAcad.SetSize (PaletteSetSizeMin);
+        //    }
+        //}
 
         /// <inheritdoc/>
         public void PaletteSetSetting()
