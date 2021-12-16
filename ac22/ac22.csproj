@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{48ADE35D-4296-4CB0-AAEA-CF852FA7885A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TIExCAD</RootNamespace>
+    <AssemblyName>ac22</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\..\..\..\distr\lib\ac22\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>x64</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>..\..\..\..\distr\lib\ac22\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <LangVersion>7.3</LangVersion>
+    <ErrorReport>prompt</ErrorReport>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AcCoreMgd">
+      <HintPath>C:\ObjectARX\2022\inc\AcCoreMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcCui">
+      <HintPath>C:\ObjectARX\2022\inc\AcCui.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcDbMgd">
+      <HintPath>C:\ObjectARX\2022\inc\AcDbMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcMgd">
+      <HintPath>C:\ObjectARX\2022\inc\AcMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcWindows">
+      <HintPath>C:\ObjectARX\2022\inc\AcWindows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AdWindows">
+      <HintPath>C:\ObjectARX\2022\inc\AdWindows.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Windows.Presentation" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+    <Reference Include="WindowsBase" />
+    <Reference Include="WindowsFormsIntegration" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\ac15\Classes\AcadEvents\AcadComponentManagerInit.cs">
+      <Link>Classes\AcadEvents\AcadComponentManagerInit.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\AcadEvents\AcadSystemVarChanged.cs">
+      <Link>Classes\AcadEvents\AcadSystemVarChanged.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\PaletteSet\IPaletteSet.cs">
+      <Link>Classes\GUI\PaletteSet\IPaletteSet.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\PaletteSet\PaletteSet.cs">
+      <Link>Classes\GUI\PaletteSet\PaletteSet.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs">
+      <Link>Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonCreate.cs">
+      <Link>Classes\GUI\Ribbon\GenRibbonCreate.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\AcadDocInfo\AcadDocInfoLayers.cs">
+      <Link>Classes\System\AcadDocInfo\AcadDocInfoLayers.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\AcadDocInfo\AcadDocReport.cs">
+      <Link>Classes\System\AcadDocInfo\AcadDocReport.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\AdmReg.cs">
+      <Link>Classes\System\IstallAndRegistration\AdmReg.cs</Link>
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\AdmReg.designer.cs">
+      <Link>Classes\System\IstallAndRegistration\AdmReg.designer.cs</Link>
+      <DependentUpon>AdmReg.cs</DependentUpon>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\RegGeneric.cs">
+      <Link>Classes\System\IstallAndRegistration\RegGeneric.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\RegtoolsCMDF.cs">
+      <Link>Classes\System\IstallAndRegistration\RegtoolsCMDF.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\SendMessage\AcadSendMess.cs">
+      <Link>Classes\System\SendMessage\AcadSendMess.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\SendMessage\StringMetods.cs">
+      <Link>Classes\System\SendMessage\StringMetods.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\StaticData\Enums.cs">
+      <Link>Classes\System\StaticData\Enums.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\StaticData\StaticObjects.cs">
+      <Link>Classes\System\StaticData\StaticObjects.cs</Link>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="..\ac15\Classes\System\IstallAndRegistration\AdmReg.resx">
+      <Link>Classes\System\IstallAndRegistration\AdmReg.resx</Link>
+      <DependentUpon>AdmReg.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

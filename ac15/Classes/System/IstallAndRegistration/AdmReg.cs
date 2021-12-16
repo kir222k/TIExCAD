@@ -18,6 +18,7 @@ namespace TIExCAD.Generic
         public AdmReg()
         {
             InitializeComponent();
+            // добавить список зарег приложений, чтобы руками не вводить!
         }
 
         private void Button1_Click(object sender, EventArgs e)

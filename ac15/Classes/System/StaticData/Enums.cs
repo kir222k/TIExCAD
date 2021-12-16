@@ -36,31 +36,44 @@ namespace TIExCAD.Generic
         Sunday=7
     }
 
-    //             Size sz = new Size { Width = 310, Height = 500 };
+    // Size sz = new Size { Width = 310, Height = 500 };
 
+    /// <summary>
+    /// Ширина контрола палитры
+    /// </summary>
 public enum WidthPaletteSet : int
     {
+        /// <summary>
+        /// Мин. ширина
+        /// </summary>
         WidthMin = 406,
+        /// <summary>
+        /// Средняя ширина
+        /// </summary>
         WidthMiddle = 600,
+        /// <summary>
+        /// Макс. ширина
+        /// </summary>
         WidthBig = 800,
-
-        //HeightMin = 600,
-        //HeightMiddle = 800,
-        //HeightBig = 1000,
-
     }
 
+    /// <summary>
+    /// Высота контрола палитры
+    /// </summary>
     public enum HeigthPaletteSet : int
     {
-        //WidthMin = 400,
-        //WidthMiddle = 600,
-        //WidthBig = 800,
-
+        /// <summary>
+        /// Мин. высота
+        /// </summary>
         HeightMin = 256,
+        /// <summary>
+        /// Средняя высота
+        /// </summary>
         HeightMiddle = 800,
+        /// <summary>
+        /// Макс. высота
+        /// </summary>
         HeightBig = 1000,
 
     }
-
-
 }

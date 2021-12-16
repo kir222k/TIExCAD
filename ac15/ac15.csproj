@@ -96,6 +96,7 @@
     <Compile Include="Classes\System\IstallAndRegistration\AdmReg.Designer.cs">
       <DependentUpon>AdmReg.cs</DependentUpon>
     </Compile>
+    <Compile Include="Classes\System\StaticData\TextData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>

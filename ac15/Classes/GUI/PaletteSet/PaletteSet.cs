@@ -61,15 +61,15 @@ namespace TIExCAD.Generic
         /// <param name="heigthPaletteSet">Высота палитры</param>
         /// <param name="paletteControl">контрол, кот. вставлен в палитру</param>
         /// <param name="paletteControlName">имя контрола в палитре</param>
-        public CustomPaletteSetAcad( string paletteSetAcadName, Guid paletteSetGuid, WidthPaletteSet widthPaletteSet, HeigthPaletteSet heigthPaletteSet,  UserControl paletteControl, string paletteControlName) 
+        public CustomPaletteSetAcad( string paletteSetAcadName, Guid paletteSetGuid, int widthPaletteSet, int heigthPaletteSet,  UserControl paletteControl, string paletteControlName) 
         {
            // this.paletteSetAcad = paletteSetAcad;
             this.paletteSetAcadName = paletteSetAcadName;
             this.paletteSetGuid = paletteSetGuid;
             this.paletteControl = paletteControl;
             this.paletteControlName = paletteControlName;
-            this.widthPaletteSet = (int)widthPaletteSet;
-            this.heigthPaletteSet = (int)heigthPaletteSet;
+            this.widthPaletteSet = widthPaletteSet;
+            this.heigthPaletteSet = heigthPaletteSet;
         }
 
         /// <inheritdoc/>
@@ -107,8 +107,11 @@ namespace TIExCAD.Generic
         
         // Настроить палитру.
         /// <inheritdoc/>
-        public void PaletteSetSetting(ref PaletteSet paletteAc, int widthPaletteSet, int heigthPaletteSet)
+        public void PaletteSetSetting(ref PaletteSet paletteAc, int widthPaletteSet = (int)WidthPaletteSet.WidthMin, int heigthPaletteSet = (int)HeigthPaletteSet.HeightMin)
         {
+            int widthPS;
+            int heightPS;
+
             //throw new NotImplementedException("Setting PaletteSet");
             paletteAc
                 .DockEnabled = (DockSides)((int)DockSides.Left + (int)DockSides.Right);
@@ -121,8 +124,37 @@ namespace TIExCAD.Generic
                 PaletteSetStyles.ShowAutoHideButton;
 
             // объект размера
-            Size PaletteSetSize = new Size { Width = (int)WidthPaletteSet.WidthMin - 2, Height = (int)HeigthPaletteSet.HeightMin - 2 };
+            //Size PaletteSetSize = new Size { Width = (int)WidthPaletteSet.WidthMin - 2, Height = (int)HeigthPaletteSet.HeightMin - 2 };
+            //Size PaletteSetSizeMin = new Size { Width = (int)WidthPaletteSet.WidthMin, Height = (int)HeigthPaletteSet.HeightMin };
+
+            //if (widthPaletteSet < WidthPaletteSet.WidthMin) | (heigthPaletteSet < HeigthPaletteSet.HeightMin)
+            //if widthPaletteSet < WidthPaletteSet.WidthMin
+            //{
+
+            //}
+            if (widthPaletteSet < (int)WidthPaletteSet.WidthMin)
+            {
+                widthPS = (int)WidthPaletteSet.WidthMin;
+            }
+            else
+            {
+                widthPS = widthPaletteSet;
+            }
+
+            if (heigthPaletteSet < (int)HeigthPaletteSet.HeightMin)
+            {
+                heightPS = (int)HeigthPaletteSet.HeightMin;
+            }
+            else
+            {
+                heightPS= heigthPaletteSet;
+            }
+
+            Size PaletteSetSize = new Size { Width = widthPS , Height = heightPS };
             Size PaletteSetSizeMin = new Size { Width = (int)WidthPaletteSet.WidthMin, Height = (int)HeigthPaletteSet.HeightMin };
+
+
+
             // передача размеров палитре
             //paletteAc.MinimumSize = new System.Drawing.Size(413,252);
             paletteAc.MinimumSize = PaletteSetSizeMin;
@@ -130,23 +162,38 @@ namespace TIExCAD.Generic
 
             //paletteAc.SizeChanged += PaletteAc_SizeChanged;
         }
-
-        //private void PaletteAc_SizeChanged(object sender, PaletteSetSizeEventArgs e)
-        //{
-        //    //throw new NotImplementedException();
-        //    if ((paletteSetAcad.Size.Width < paletteSetAcad.MinimumSize.Width) | (paletteSetAcad.Size.Height < paletteSetAcad.MinimumSize.Height))
-        //    {
-        //        Size PaletteSetSizeMin = new Size { Width = (int)WidthPaletteSet.WidthMin, Height = (int)HeigthPaletteSet.HeightMin };
-        //        paletteSetAcad.SetSize (PaletteSetSizeMin);
-        //    }
-        //}
-
         /// <inheritdoc/>
         public void PaletteSetSetting()
         {
             throw new NotImplementedException();
         }
 
+
+        /*
+        public void PaletteSetSetting(ref PaletteSet paletteAc, int widthPaletteSet, int heigthPaletteSet)
+        {
+            //throw new NotImplementedException();
+            //throw new NotImplementedException("Setting PaletteSet");
+            paletteAc
+                .DockEnabled = (DockSides)((int)DockSides.Left + (int)DockSides.Right);
+            paletteAc
+                .RolledUp = true;
+            paletteAc
+                .Style = PaletteSetStyles.NoTitleBar |
+                PaletteSetStyles.ShowCloseButton |
+                PaletteSetStyles.ShowPropertiesMenu |
+                PaletteSetStyles.ShowAutoHideButton;
+
+            // объект размера
+            Size PaletteSetSize = new Size { Width = widthPaletteSet - 2, Height = heigthPaletteSet - 2 };
+            Size PaletteSetSizeMin = new Size { Width = (int)WidthPaletteSet.WidthMin, Height = (int)HeigthPaletteSet.HeightMin };
+            // передача размеров палитре
+            //paletteAc.MinimumSize = new System.Drawing.Size(413,252);
+            paletteAc.MinimumSize = PaletteSetSizeMin;
+            paletteAc.SetSize(PaletteSetSize);
+
+        }
+        */
 
         // Показать палитру.
         /// <inheritdoc/>

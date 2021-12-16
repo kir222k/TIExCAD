@@ -94,56 +94,6 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\ac15\Classes\AcadEvents\AcadComponentManagerInit.cs">
-      <Link>Classes\AcadEvents\AcadComponentManagerInit.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\AcadEvents\AcadSystemVarChanged.cs">
-      <Link>Classes\AcadEvents\AcadSystemVarChanged.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\GUI\PaletteSet\IPaletteSet.cs">
-      <Link>Classes\GUI\PaletteSet\IPaletteSet.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\GUI\PaletteSet\PaletteSet.cs">
-      <Link>Classes\GUI\PaletteSet\PaletteSet.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs">
-      <Link>Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonCreate.cs">
-      <Link>Classes\GUI\Ribbon\GenRibbonCreate.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\AcadDocInfo\AcadDocInfoLayers.cs">
-      <Link>Classes\System\AcadDocInfo\AcadDocInfoLayers.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\AcadDocInfo\AcadDocReport.cs">
-      <Link>Classes\System\AcadDocInfo\AcadDocReport.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\AdmReg.cs">
-      <Link>Classes\System\IstallAndRegistration\AdmReg.cs</Link>
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\AdmReg.designer.cs">
-      <Link>Classes\System\IstallAndRegistration\AdmReg.designer.cs</Link>
-      <DependentUpon>AdmReg.cs</DependentUpon>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\RegGeneric.cs">
-      <Link>Classes\System\IstallAndRegistration\RegGeneric.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\IstallAndRegistration\RegtoolsCMDF.cs">
-      <Link>Classes\System\IstallAndRegistration\RegtoolsCMDF.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\SendMessage\AcadSendMess.cs">
-      <Link>Classes\System\SendMessage\AcadSendMess.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\SendMessage\StringMetods.cs">
-      <Link>Classes\System\SendMessage\StringMetods.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\StaticData\Enums.cs">
-      <Link>Classes\System\StaticData\Enums.cs</Link>
-    </Compile>
-    <Compile Include="..\ac15\Classes\System\StaticData\StaticObjects.cs">
-      <Link>Classes\System\StaticData\StaticObjects.cs</Link>
-    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -152,10 +102,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="..\ac15\Classes\System\IstallAndRegistration\AdmReg.resx">
-      <Link>Classes\System\IstallAndRegistration\AdmReg.resx</Link>
-      <DependentUpon>AdmReg.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

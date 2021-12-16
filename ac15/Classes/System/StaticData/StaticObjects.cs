@@ -40,6 +40,10 @@ namespace TIExCAD.Generic
         /// AutoCAD 2021
         /// </summary>
         public static readonly string Acad2021 = "24.0";
+        /// <summary>
+        /// AutoCAD 2022
+        /// </summary>
+        public static readonly string Acad2022 = "24.1";
 
         /// <summary>
         /// Информация о версиях AutoCAD.
@@ -55,7 +59,8 @@ namespace TIExCAD.Generic
                 { "Acad2018", "22.0" },
                 { "Acad2019", "23.0" },
                 { "Acad2020", "23.1" },
-                { "Acad2021", "24.0" }
+                { "Acad2021", "24.0" },
+                { "Acad2022", "24.1" }
 
             };
 
