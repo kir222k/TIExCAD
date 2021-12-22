@@ -382,6 +382,7 @@ namespace TIExCAD.Generic
             if (ribbonPan == null)
             {
                 ribbonPan = RibCr.GetRibPanel(ribbonPanelTitle); //создадим панель
+                
             }// иначе работаем с существующей.
 
             // передаем панель дальше, создаем кнопки

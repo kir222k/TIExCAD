@@ -5,8 +5,8 @@ using System.Runtime.InteropServices;
 // Общие сведения об этой сборке предоставляются следующим набором
 // набора атрибутов. Измените значения этих атрибутов для изменения сведений,
 // связанные со сборкой.
-[assembly: AssemblyTitle("ac15")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("Title ac15")]
+[assembly: AssemblyDescription("Description ac'15")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("ac15")]
