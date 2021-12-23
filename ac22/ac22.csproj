@@ -92,6 +92,12 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="..\ac15\Classes\AcadBlocks\AcadBlock.cs">
+      <Link>Classes\AcadBlocks\AcadBlock.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\AcadBlocks\AcadBlocks.cs">
+      <Link>Classes\AcadBlocks\AcadBlocks.cs</Link>
+    </Compile>
     <Compile Include="..\ac15\Classes\AcadEvents\AcadComponentManagerInit.cs">
       <Link>Classes\AcadEvents\AcadComponentManagerInit.cs</Link>
     </Compile>
@@ -109,6 +115,9 @@
     </Compile>
     <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonCreate.cs">
       <Link>Classes\GUI\Ribbon\GenRibbonCreate.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\Interface.cs">
+      <Link>Classes\Interface.cs</Link>
     </Compile>
     <Compile Include="..\ac15\Classes\System\AcadDocInfo\AcadDocInfoLayers.cs">
       <Link>Classes\System\AcadDocInfo\AcadDocInfoLayers.cs</Link>
@@ -141,6 +150,9 @@
     </Compile>
     <Compile Include="..\ac15\Classes\System\StaticData\StaticObjects.cs">
       <Link>Classes\System\StaticData\StaticObjects.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\System\StaticData\TextData.cs">
+      <Link>Classes\System\StaticData\TextData.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

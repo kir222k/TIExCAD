@@ -76,11 +76,14 @@
     <Reference Include="WindowsFormsIntegration" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\AcadBlocks\AcadBlock.cs" />
+    <Compile Include="Classes\AcadBlocks\AcadBlocks.cs" />
     <Compile Include="Classes\AcadEvents\AcadComponentManagerInit.cs" />
     <Compile Include="Classes\AcadEvents\AcadSystemVarChanged.cs" />
     <Compile Include="Classes\GUI\PaletteSet\IPaletteSet.cs" />
     <Compile Include="Classes\GUI\PaletteSet\PaletteSet.cs" />
     <Compile Include="Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs" />
+    <Compile Include="Classes\Interface.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocInfoLayers.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocReport.cs" />
     <Compile Include="Classes\GUI\Ribbon\GenRibbonCreate.cs" />
