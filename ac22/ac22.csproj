@@ -98,6 +98,9 @@
     <Compile Include="..\ac15\Classes\AcadBlocks\AcadBlocks.cs">
       <Link>Classes\AcadBlocks\AcadBlocks.cs</Link>
     </Compile>
+    <Compile Include="..\ac15\Classes\AcadEvents\AcadActiveDocChange.cs">
+      <Link>Classes\AcadEvents\AcadActiveDocChange.cs</Link>
+    </Compile>
     <Compile Include="..\ac15\Classes\AcadEvents\AcadComponentManagerInit.cs">
       <Link>Classes\AcadEvents\AcadComponentManagerInit.cs</Link>
     </Compile>

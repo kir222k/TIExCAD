@@ -32,5 +32,10 @@ namespace TIExCAD.Generic
                 RegGen.GetUnRegisterCustomApp(appName);
 
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

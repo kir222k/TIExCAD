@@ -47,7 +47,8 @@ namespace TIExCAD.Generic
         /// <summary>
         /// Обработчик события изменения системных переменных.
         /// </summary>
-        internal static void AcadSysVarChangedEventHandler(object sender, Autodesk.AutoCAD.ApplicationServices.SystemVariableChangedEventArgs e)
+        internal static void AcadSysVarChangedEventHandler(object sender, 
+            Autodesk.AutoCAD.ApplicationServices.SystemVariableChangedEventArgs e)
         {
             //  Нужно разобраться, что это.
             string cmdNames =

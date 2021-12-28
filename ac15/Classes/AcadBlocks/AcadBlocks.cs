@@ -63,24 +63,27 @@ namespace TIExCAD.Generic
             {
                 try
                 {
+                    // вызов ошибки када.
+                    //throw new Autodesk.AutoCAD.Runtime.Exception(ErrorStatus.BadDwgHeader, "Ошибка када");
 
-                    // open the blok table for read so we can check to see if the name already exists
+                    // Получим таблицу блоков из БД чертежа.
                     BlockTable blockTable = (BlockTable)trans.GetObject(dwgDB.BlockTableId, OpenMode.ForRead);
 
                     foreach (ObjectId idBlock in blockTable)
                     {
+                        // Получим запись блока.
                         BlockTableRecord btRecord = (BlockTableRecord)trans.GetObject(idBlock, OpenMode.ForRead);
+                        // Добавим в список блоков.
                         blockNames.Add(btRecord.Name);
                     }
                 }
                 catch (Autodesk.AutoCAD.Runtime.Exception ex)
                 {
-                    AcadSendMess AcMs = new AcadSendMess();
-                    AcMs.SendStringDebugStars(ex.ToString());
-
+                    acadApp.ShowAlertDialog(ex.ToString());
                 }
 
             }
+
 
             return blockNames;
         }
@@ -100,14 +103,17 @@ namespace TIExCAD.Generic
         [CommandMethod("TIECADGETBLOCKNAMES")]
         public static void AcadDocBlockTestGetBlocks()
         {
-            //AcadBlocksDef.GetBlockNames();  
-
-
             AcadSendMess AcMs = new AcadSendMess();
             AcMs.SendStringDebugStars(AcadBlocksDef.GetBlockNames(HostApplicationServices.WorkingDatabase));
 
-        }
+            //System.Windows.MessageBoxResult msresult = 
+            //    System.Windows.MessageBox.Show("Is it References", "References",
+            //    System.Windows.MessageBoxButton.YesNo, System.Windows.MessageBoxImage.Question);
+            System.Windows.MessageBox.Show("тест сообщений");
 
+
+
+        }
     }
 
 

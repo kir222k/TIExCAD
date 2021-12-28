@@ -49,8 +49,10 @@
             // 
             this.textBox1.Location = new System.Drawing.Point(9, 13);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(213, 22);
+            this.textBox1.Size = new System.Drawing.Size(213, 20);
             this.textBox1.TabIndex = 1;
+            this.textBox1.Text = "TIExCADadm";
+            this.textBox1.TextChanged += new System.EventHandler(this.textBox1_TextChanged);
             // 
             // AdmReg
             // 

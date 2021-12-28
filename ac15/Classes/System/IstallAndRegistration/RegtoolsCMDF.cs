@@ -41,7 +41,7 @@ namespace TIExCAD.Generic
         }
 
         // КОНСТРУКТОРЫ
-        //public RegtoolsCMDF() { }
+        public RegtoolsCMDF() { }
 
         /// <summary>
         /// Работа с регистрацией приложения.

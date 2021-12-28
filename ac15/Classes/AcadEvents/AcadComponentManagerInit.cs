@@ -36,8 +36,13 @@ namespace TIExCAD.Generic
         public static void AcadComponentManagerInit_ConnectHandler()
         {
             Autodesk.Windows.ComponentManager.ItemInitialized +=
-                new EventHandler<RibbonItemEventArgs>(AcadComponentManager_ItemInitialized);
+              new EventHandler<RibbonItemEventArgs>(AcadComponentManager_ItemInitialized);
+
+            
         }
+
+
+        // ОБРАБОТЧИКИ
 
         /// <summary>
         /// Автосоздание вкладки ленты.
