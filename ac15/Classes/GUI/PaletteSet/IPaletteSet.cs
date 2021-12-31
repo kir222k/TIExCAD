@@ -14,16 +14,16 @@ namespace TIExCAD.Generic
         /// <summary>
         /// Имя палитры.
         /// </summary>
-        string PaletteSetAcadName { get; }
+        string PaletteSetAcadName { get; set; }
         /// <summary>
         /// GUD палитры.
         /// </summary>
-        System.Guid PaletteSetGuid { get; }
+        System.Guid PaletteSetGuid { get; set; }
         
         /// <summary>
         /// Имя внедряемого в палитру контрола.
         /// </summary>
-        string PalettteControlName { get; }
+        string PalettteControlName { get; set; }
         /// <summary>
         /// Создание палитры.
         /// </summary>

@@ -21,6 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+	<LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,6 +31,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <PlatformTarget>x64</PlatformTarget>
+	<LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
     <DebugSymbols>true</DebugSymbols>
@@ -39,6 +41,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+	<LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
     <OutputPath>..\..\..\..\distr\lib\ac22\</OutputPath>
@@ -48,6 +51,7 @@
     <PlatformTarget>x64</PlatformTarget>
     <LangVersion>7.3</LangVersion>
     <ErrorReport>prompt</ErrorReport>
+	<LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AcCoreMgd">
@@ -73,6 +77,14 @@
     <Reference Include="AdWindows">
       <HintPath>C:\ObjectARX\2022\inc\AdWindows.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.AutoCAD.Interop">
+      <HintPath>C:\ObjectARX\2022\inc-x64\Autodesk.AutoCAD.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Autodesk.AutoCAD.Interop.Common">
+      <HintPath>C:\ObjectARX\2022\inc-x64\Autodesk.AutoCAD.Interop.Common.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -107,6 +119,12 @@
     <Compile Include="..\ac15\Classes\AcadEvents\AcadSystemVarChanged.cs">
       <Link>Classes\AcadEvents\AcadSystemVarChanged.cs</Link>
     </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Menubar\IMenubar.cs">
+      <Link>Classes\GUI\Menubar\IMenubar.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Menubar\Menubar.cs">
+      <Link>Classes\GUI\Menubar\Menubar.cs</Link>
+    </Compile>
     <Compile Include="..\ac15\Classes\GUI\PaletteSet\IPaletteSet.cs">
       <Link>Classes\GUI\PaletteSet\IPaletteSet.cs</Link>
     </Compile>
@@ -118,6 +136,9 @@
     </Compile>
     <Compile Include="..\ac15\Classes\GUI\Ribbon\GenRibbonCreate.cs">
       <Link>Classes\GUI\Ribbon\GenRibbonCreate.cs</Link>
+    </Compile>
+    <Compile Include="..\ac15\Classes\GUI\Toolbar\IToolbar.cs">
+      <Link>Classes\GUI\Toolbar\IToolbar.cs</Link>
     </Compile>
     <Compile Include="..\ac15\Classes\Interface.cs">
       <Link>Classes\Interface.cs</Link>

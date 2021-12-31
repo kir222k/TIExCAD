@@ -1,23 +1,9 @@
 ﻿
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Autodesk.AutoCAD.Windows;
 using System.Drawing;
-//using System.Windows.Forms;
 using System.Windows.Controls;
 using System.Windows.Forms.Integration;
-using Autodesk.AutoCAD.Runtime;
-using Autodesk.AutoCAD.ApplicationServices;
-//using AcadApp = Autodesk.AutoCAD.ApplicationServices.Application;
-using Autodesk.AutoCAD.DatabaseServices;
-//using KR.CAD.NET.DDECAD.MZ;
-//using acad = Autodesk.AutoCAD;
-//using System.Windows;
-using System.Runtime.Remoting;
-using System.Runtime.InteropServices;
 
 //#error version
 

@@ -23,6 +23,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
+    <PlatformTarget>x64</PlatformTarget>
+	<LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -32,6 +34,8 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\..\distr\lib\ac15\ac15.xml</DocumentationFile>
+    <PlatformTarget>x64</PlatformTarget>
+	<LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AcCoreMgd">
@@ -46,8 +50,24 @@
       <HintPath>C:\ObjectARX\2015\inc\AcDbMgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
+    <Reference Include="acdbmgdbrep">
+      <HintPath>C:\ObjectARX\2015\inc\acdbmgdbrep.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcDx">
+      <HintPath>C:\ObjectARX\2015\inc\AcDx.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
     <Reference Include="AcMgd">
       <HintPath>C:\ObjectARX\2015\inc\AcMgd.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcMr">
+      <HintPath>C:\ObjectARX\2015\inc\AcMr.dll</HintPath>
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="AcTcMgd">
+      <HintPath>C:\ObjectARX\2015\inc\AcTcMgd.dll</HintPath>
       <Private>False</Private>
     </Reference>
     <Reference Include="AcWindows">
@@ -57,6 +77,14 @@
     <Reference Include="AdWindows">
       <HintPath>C:\ObjectARX\2015\inc\AdWindows.dll</HintPath>
       <Private>False</Private>
+    </Reference>
+    <Reference Include="Autodesk.AutoCAD.Interop">
+      <HintPath>C:\ObjectARX\2015\inc-x64\Autodesk.AutoCAD.Interop.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Autodesk.AutoCAD.Interop.Common">
+      <HintPath>C:\ObjectARX\2015\inc-x64\Autodesk.AutoCAD.Interop.Common.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
@@ -81,9 +109,12 @@
     <Compile Include="Classes\AcadEvents\AcadActiveDocChange.cs" />
     <Compile Include="Classes\AcadEvents\AcadComponentManagerInit.cs" />
     <Compile Include="Classes\AcadEvents\AcadSystemVarChanged.cs" />
+    <Compile Include="Classes\GUI\Menubar\IMenubar.cs" />
+    <Compile Include="Classes\GUI\Menubar\Menubar.cs" />
     <Compile Include="Classes\GUI\PaletteSet\IPaletteSet.cs" />
     <Compile Include="Classes\GUI\PaletteSet\PaletteSet.cs" />
     <Compile Include="Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs" />
+    <Compile Include="Classes\GUI\Toolbar\IToolbar.cs" />
     <Compile Include="Classes\Interface.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocInfoLayers.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocReport.cs" />
