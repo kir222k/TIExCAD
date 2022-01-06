@@ -23,20 +23,16 @@ using System.IO;
 
 namespace TIExCAD.Generic
 {
-   public struct MenuPopItem
-    {
-        public string Name;
-        public string Macros;
-    }
+  
 
-    public  class Menubar : IMenubar
+    public  class TieMenubar : ITieMenubar
     {
-        public Menubar() { }
+        public TieMenubar() { }
 
         //private  AcadApplication acadApp = (AcadApplication)AcApp.AcadApplication;
 
         private AcadPopupMenu acadPopMenu = null;
-        AcadApplication acadApp = (AcadApplication)AcApp.AcadApplication;
+        readonly AcadApplication acadApp = (AcadApplication)AcApp.AcadApplication;
         //public AcadPopupMenu AcadPopMenu { get => acadPopMenu;  } 
 
         public void MenubarCreatePopupMenu(string menuName, List<MenuPopItem> listMenuPopItems) //string menuItemName , string menuMacros)

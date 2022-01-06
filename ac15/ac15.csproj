@@ -24,7 +24,7 @@
     <WarningLevel>4</WarningLevel>
     <GenerateSerializationAssemblies>Auto</GenerateSerializationAssemblies>
     <PlatformTarget>x64</PlatformTarget>
-	<LangVersion>8.0</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>none</DebugType>
@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>..\..\..\..\distr\lib\ac15\ac15.xml</DocumentationFile>
     <PlatformTarget>x64</PlatformTarget>
-	<LangVersion>8.0</LangVersion>
+    <LangVersion>8.0</LangVersion>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="AcCoreMgd">
@@ -109,12 +109,13 @@
     <Compile Include="Classes\AcadEvents\AcadActiveDocChange.cs" />
     <Compile Include="Classes\AcadEvents\AcadComponentManagerInit.cs" />
     <Compile Include="Classes\AcadEvents\AcadSystemVarChanged.cs" />
-    <Compile Include="Classes\GUI\Menubar\IMenubar.cs" />
-    <Compile Include="Classes\GUI\Menubar\Menubar.cs" />
+    <Compile Include="Classes\GUI\Menubar\ITieMenubar.cs" />
+    <Compile Include="Classes\GUI\Menubar\TieMenubar.cs" />
     <Compile Include="Classes\GUI\PaletteSet\IPaletteSet.cs" />
     <Compile Include="Classes\GUI\PaletteSet\PaletteSet.cs" />
     <Compile Include="Classes\GUI\Ribbon\GenRibbonButotnEvHandler.cs" />
-    <Compile Include="Classes\GUI\Toolbar\IToolbar.cs" />
+    <Compile Include="Classes\GUI\Toolbar\ITieToolbar.cs" />
+    <Compile Include="Classes\GUI\Toolbar\TieToolbar.cs" />
     <Compile Include="Classes\Interface.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocInfoLayers.cs" />
     <Compile Include="Classes\System\AcadDocInfo\AcadDocReport.cs" />

@@ -18,12 +18,20 @@ using Autodesk.AutoCAD.Interop;
 
 namespace TIExCAD.Generic
 {
-     interface IMenubar
+     interface ITieMenubar
     {
         //void MenubarCreatePopupMenu(string menuName, string menuItemName, string menuMacros);
         void MenubarCreatePopupMenu(string menuName, List<MenuPopItem> listMenuPopItems);
 
-         void MenubarDeletePopupMenu(string menuName);
+        void MenubarDeletePopupMenu(string menuName);
+
+
+    }
+
+    public struct MenuPopItem
+    {
+        public string Name;
+        public string Macros;
     }
 }
 
