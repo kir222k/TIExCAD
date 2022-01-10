@@ -122,6 +122,7 @@
     <Compile Include="Classes\GUI\Ribbon\GenRibbonCreate.cs" />
     <Compile Include="Classes\System\IstallAndRegistration\RegGeneric.cs" />
     <Compile Include="Classes\System\IstallAndRegistration\RegtoolsCMDF.cs" />
+    <Compile Include="Classes\System\Logging\LogEasy.cs" />
     <Compile Include="Classes\System\SendMessage\AcadSendMess.cs" />
     <Compile Include="Classes\System\SendMessage\StringMetods.cs" />
     <Compile Include="Classes\System\StaticData\Enums.cs" />

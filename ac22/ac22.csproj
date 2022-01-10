@@ -166,6 +166,9 @@
     <Compile Include="..\ac15\Classes\System\IstallAndRegistration\RegtoolsCMDF.cs">
       <Link>Classes\System\IstallAndRegistration\RegtoolsCMDF.cs</Link>
     </Compile>
+    <Compile Include="..\ac15\Classes\System\Logging\LogEasy.cs">
+      <Link>Classes\System\Logging\LogEasy.cs</Link>
+    </Compile>
     <Compile Include="..\ac15\Classes\System\SendMessage\AcadSendMess.cs">
       <Link>Classes\System\SendMessage\AcadSendMess.cs</Link>
     </Compile>

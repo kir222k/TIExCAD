@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Reflection;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -68,4 +70,19 @@ namespace TIExCAD.Generic
         }
 
     }
+
+    internal static class Pathes
+    {
+        internal static readonly string PathLog = GetPathApp() + "\\tiex.log";
+
+        internal static string GetPathApp()
+        {
+            DirectoryInfo dirDLL = new DirectoryInfo(Assembly.GetExecutingAssembly().Location);
+            var pathDir = dirDLL.Parent.FullName;
+            return pathDir;
+        }
+
+
+    }
+
 }

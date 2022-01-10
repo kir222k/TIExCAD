@@ -15,9 +15,12 @@ using Autodesk.AutoCAD.Interop;
 using System.IO;
 using Autodesk.AutoCAD.Interop.Common;
 
+[assembly: CommandClass(typeof(TIExCAD.Generic.ToolbarTestShort))]
 
 namespace TIExCAD.Generic
 {
+
+
     public class TieToolbar : ITieToolbar
     {
         private AcadToolbar acadToolbar = null;
@@ -47,19 +50,27 @@ namespace TIExCAD.Generic
                 acadToolbar.Float(y, x, 1);
             }
 
+
+
         }
 
         internal bool IsExistToolbarInMenubar(string toolbarName)
         {
             bool isTbar = false;
 
-            foreach (AcadToolbar toolbar in acadApp.MenuBar)
+            foreach (AcadToolbar toolbar in acadApp.MenuGroups.Item(0).Toolbars)
             {
                 if (toolbar.Name == toolbarName)
                 {
                     isTbar = true;
+                    if (!toolbar.Visible) 
+                    {
+                        toolbar.Visible = true;
+                    }
                     break;
                 }
+
+                
 
             }
             return isTbar;
@@ -68,9 +79,79 @@ namespace TIExCAD.Generic
         public void ToolbarRemove(string toolbarName)
         {
             // throw new NotImplementedException();
+            //AcadApplication acadApp = (AcadApplication)AcApp.AcadApplication;
+
+            //foreach (AcadToolbar toolbar in acadApp.MenuGroups.Item(0).Toolbars)
+            //{
+            //    if (toolbar.Name == toolbarName)
+            //    {
+            //        toolbar.Delete();
+            //    }
+            //}
+            GetAcadToolbarOnName(toolbarName).Delete();
+
         }
 
+        //#error version
+        public List<int> ToolbarGetLocatioI (string toolbarName)
+        {
+            var tB = GetAcadToolbarOnName(toolbarName);
+
+            return  new List<int> { tB.top, tB.left };
+        }
+        public List<string> ToolbarGetLocationS(string toolbarName)
+        {
+            var tB = GetAcadToolbarOnName(toolbarName);
+
+            var list = new List<string>();
+
+            if (tB != null)
+            {
+                list.Add(tB.top.ToString());
+                list.Add(tB.left.ToString());
+            }
+            else
+            {
+                list.Add("null");
+            }
+
+            return list;
+        }
+
+
+        internal static AcadToolbar GetAcadToolbarOnName (string toolbarName)
+        {
+            AcadToolbar AT = null;
+            AcadApplication acadApp = (AcadApplication)AcApp.AcadApplication;
+
+            foreach (AcadToolbar toolbar in acadApp.MenuGroups.Item(0).Toolbars)
+            {
+                if (toolbar.Name == toolbarName)
+                {
+                    AT= toolbar;
+                    break;
+                }
+            }
+            return AT;
+        }
+
+
+
     }
+
+    public static class ToolbarTestShort
+    {
+        [CommandMethod("TieToolbarTestLocationPrint")]
+        public static  void ToolbarTestLocationPrint ()
+        {
+            AcadSendMess acadSendMess = new AcadSendMess();
+            TieToolbar tB = new TieToolbar();
+
+            acadSendMess.SendStringDebugStars(tB.ToolbarGetLocationS("DDECAD-MZ"));
+                 
+        }
+    }
+
 }
 
 /*

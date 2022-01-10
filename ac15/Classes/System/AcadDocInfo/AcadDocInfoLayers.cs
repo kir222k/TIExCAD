@@ -8,6 +8,7 @@ using Autodesk.AutoCAD.ApplicationServices;
 using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.EditorInput;
+using AcEx = Autodesk.AutoCAD.Runtime.Exception;
 
 [assembly: CommandClass(typeof(TIExCAD.Generic.AcadDocInfoLayers))]
 
@@ -25,37 +26,58 @@ namespace TIExCAD.Generic
         [CommandMethod("LINQ")]
         public static void LINQExample()
         {
-            dynamic db = HostApplicationServices.WorkingDatabase;
-            dynamic doc = Application.DocumentManager.MdiActiveDocument;
-
-            var layers = db.LayerTableId;
-            for (int i = 0; i < 2; i++)
+            try
             {
-                var newrec = layers.Add(new LayerTableRecord());
-                newrec.Name = "Layer" + i.ToString();
-                if (i == 0)
-                    newrec.IsFrozen = true;
-                if (i == 1)
-                    newrec.IsOff = true;
+
+                dynamic db = HostApplicationServices.WorkingDatabase;
+                dynamic doc = Application.DocumentManager.MdiActiveDocument;
+
+                var layers = db.LayerTableId;
+                for (int i = 0; i < 2; i++)
+                {
+                    var newrec = layers.Add(new LayerTableRecord());
+                    newrec.Name = "Layer" + i.ToString();
+                    if (i == 0)
+                        newrec.IsFrozen = true;
+                    if (i == 1)
+                        newrec.IsOff = true;
+                }
+
+                var OffLayers = from l in (IEnumerable<dynamic>)layers
+                                where l.IsOff
+                                select l;
+
+                doc.Editor.WriteMessage("\nLayers Turned Off:");
+
+                foreach (dynamic rec in OffLayers)
+                    doc.Editor.WriteMessage("\n - " + rec.Name);
+
+                var frozenOrOffNames = from l in (IEnumerable<dynamic>)layers
+                                       where l.IsFrozen == true || l.IsOff == true
+                                       select l;
+
+                doc.Editor.WriteMessage("\nLayers Frozen or Turned Off:");
+
+                foreach (dynamic rec in frozenOrOffNames)
+                    doc.Editor.WriteMessage("\n - " + rec.Name);
             }
+            catch (AcEx e)
+            {
+                LogEasy.WriteLog(
+                    "LINQExample " + e.Source.ToString() + e.TargetSite.ToString() +
+                    " " +  e.Message.ToString(), 
+                    Pathes.PathLog);
+                throw;
+            }
+            catch (System.Exception)
+            {
 
-            var OffLayers = from l in (IEnumerable<dynamic>)layers
-                            where l.IsOff
-                            select l;
-
-            doc.Editor.WriteMessage("\nLayers Turned Off:");
-
-            foreach (dynamic rec in OffLayers)
-                doc.Editor.WriteMessage("\n - " + rec.Name);
-
-            var frozenOrOffNames = from l in (IEnumerable<dynamic>)layers
-                                   where l.IsFrozen == true || l.IsOff == true
-                                   select l;
-
-            doc.Editor.WriteMessage("\nLayers Frozen or Turned Off:");
-
-            foreach (dynamic rec in frozenOrOffNames)
-                doc.Editor.WriteMessage("\n - " + rec.Name);
+                throw;
+            }
         }
+
+            
+
+       
     }
 }
