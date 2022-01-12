@@ -250,17 +250,26 @@ namespace TIExCAD.Generic
         /// <returns>вкладка, тип RibbonTab, если найдена в ленте. Иначе - null</returns>
         public RibbonTab GetIsRibbonTabLoadedRef(string ribbonTabTitle, string ribbonTabID)
         {
+            LogEasy.WriteLog("RibbonCreateEasy.GetIsRibbonTabLoadedRef: " +
+                "вход в GetIsRibbonTabLoadedRef", Pathes.PathLog);
+
+            if (Autodesk.Windows.ComponentManager.Ribbon == null)
+            LogEasy.WriteLog("RibbonCreateEasy.GetIsRibbonTabLoadedRef: " + "Ribbon = NULL ", 
+                Pathes.PathLog);
+
             RibbonTab rbTab = null;
-            //RibbonControl ribCntrl = Autodesk.Windows.ComponentManager.Ribbon;
-            // Делаем итерацию по вкладкам ленты
-            foreach (RibbonTab tab in Autodesk.Windows.ComponentManager.Ribbon.Tabs)
+            if (Autodesk.Windows.ComponentManager.Ribbon != null) // Если лента вообще доступна.
             {
-                // И если у вкладки совпадает идентификатор и заголовок, то значит вкладка загружена
-                if (tab.Id.Equals(ribbonTabID) & tab.Title.Equals(ribbonTabTitle))
+                // Делаем итерацию по вкладкам ленты
+                foreach (RibbonTab tab in Autodesk.Windows.ComponentManager.Ribbon.Tabs)
                 {
-                    // return tab;
-                    rbTab = tab;
-                    // break;
+                    // И если у вкладки совпадает идентификатор и заголовок, то значит вкладка загружена
+                    if (tab.Id.Equals(ribbonTabID) & tab.Title.Equals(ribbonTabTitle))
+                    {
+                        // return tab;
+                        rbTab = tab;
+                        // break;
+                    }
                 }
             }
             return rbTab; // вернем ее
@@ -351,8 +360,13 @@ namespace TIExCAD.Generic
         /// FALSE - не модифицировать (т.е. панель создается, если только такой еще нет на вкладке).</param>
         public void CreateOrModifityRibbonTab(string ribbonTabTitle, string ribbonTabID, string ribbonPanelTitle, List<RibButtonMyFull> listRibbonButtons, bool modifityPanel = false)
         {
+            LogEasy.WriteLog("CreateRibTabSpeed.CreateOrModifityRibbonTab: " +
+                 "вход в CreateOrModifityRibbonTab", Pathes.PathLog);
+
             // проверим вкладку на существование в ленте
             RibbonTab RibTab = RibCr.GetIsRibbonTabLoadedRef(ribbonTabTitle, ribbonTabID);
+            LogEasy.WriteLog("CreateRibTabSpeed.CreateOrModifityRibbonTab: " +
+                 "GetIsRibbonTabLoadedRef выполнен", Pathes.PathLog);
 
             // если такой вкладки нет, 
             if (RibTab == null)
@@ -362,6 +376,8 @@ namespace TIExCAD.Generic
 
             //  создадим/модифицируем панель.
             CreateOrModifityRibbonPanel(RibTab, ribbonPanelTitle, listRibbonButtons, modifityPanel);
+            LogEasy.WriteLog("CreateRibTabSpeed.CreateOrModifityRibbonPanel: " +
+                 "CreateOrModifityRibbonPanel выполнен", Pathes.PathLog);
 
         }
 

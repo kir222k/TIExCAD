@@ -110,6 +110,7 @@ namespace TIExCAD.Generic
             listKeys.Insert(1, "------------------------------------------------");
 
             AcSM.SendStringDebugStars(listKeys);
+            LogEasy.WriteLog("RegtoolsCMDF.GetRegistryKeyAppsCMD: " + "Вывод списка автозагрузки", Pathes.PathLog);
         }
 
 

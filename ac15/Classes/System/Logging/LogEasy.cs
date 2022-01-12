@@ -11,35 +11,51 @@ using AcEx = Autodesk.AutoCAD.Runtime.Exception;
 
 namespace TIExCAD.Generic
 {
-    
     public static  class LogEasy
     {
+        
         public static void  WriteLog(string eventName, string path)
         {
-            
             if ((eventName != string.Empty) && (path != string.Empty))
             {
-                //FileInfo FileInf = new FileInfo(path);
-
-                //if (FileInf.Exists == true )
-                //{
-
                     using (StreamWriter logger = new StreamWriter(path, true))
                     {
                         logger.WriteLine(DateTime.Now.ToLongTimeString() + " - " + eventName);
                     }
-                //}
             }
         }
 
-        private static void CreateFileLog(string pathLog)
-        {
+        //private static void CreateFileLog(string pathLog)
+        //{
             
+        //}
+
+        public static void DeleteFileLog(string pathLog)
+        {
+            if (File.Exists(pathLog))
+            {
+                var file = new FileInfo(pathLog);
+                file.Delete();
+            }
         }
 
-        private static void DeleteFileLog(string pathLog)
+        /// <summary>
+        /// Размер файла в Мб.
+        /// </summary>
+        /// <param name="filePath">Путь к файлу.</param>
+        /// <returns></returns>
+        public static float GetFileSizeMb(string filePath)
         {
-
+            // Console.WriteLine(File.Exists(curFile) ? "File exists." : "File does not exist.");
+            if (File.Exists(filePath))
+            {
+                var info = new FileInfo(filePath);
+                return (float)info.Length / 1024 / 1024;
+            }
+            else
+            {
+                return 0.0f;
+            }
         }
     }
 

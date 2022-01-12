@@ -73,6 +73,8 @@ namespace TIExCAD.Generic
 
     internal static class Pathes
     {
+        internal static readonly float sizeLogFileMb = 5.0f;
+
         internal static readonly string PathLog = GetPathApp() + "\\tiex.log";
 
         internal static string GetPathApp()

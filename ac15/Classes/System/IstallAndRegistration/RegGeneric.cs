@@ -29,6 +29,7 @@ namespace TIExCAD.Generic
             AcRt.RegistryKey regAcadProdKey = AcRt.Registry.CurrentUser.OpenSubKey(sProdKey);
             AcRt.RegistryKey regAcadAppKey = regAcadProdKey.OpenSubKey("Applications", true);
             // Ключ реестра AutoCAD для регистрации своего приложения и вообще для доступа к этому месту реестра.
+            LogEasy.WriteLog("RegGeneric.GetAcadRegKey: " + "Ключ реестра AutoCAD получен", Pathes.PathLog);
             return regAcadAppKey;
         }
 
